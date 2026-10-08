@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THINK A2 - Unit 1 Vocabulary Match</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #eef4ff, #f9fbff);
+    color: #1f2937;
+  }
+  .container {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 24px;
+  }
+  .card {
+    background: white;
+    border-radius: 18px;
+    padding: 28px;
+    box-shadow: 0 8px 30px rgba(0,0,0,.08);
+  }
+  h1 { margin: 0 0 8px; color: #173b75; }
+  .subtitle { color: #64748b; margin-bottom: 24px; }
+  .instructions {
+    background: #f1f5f9;
+    padding: 14px 18px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+  }
+  .game {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .item {
+    border: 2px solid #dbe3ef;
+    border-radius: 12px;
+    padding: 15px;
+    background: #fff;
+    cursor: pointer;
+    transition: .2s;
+    min-height: 64px;
+  }
+  .item:hover { transform: translateY(-2px); border-color: #7aa2e8; }
+  .item.selected { border-color: #2563eb; background: #eff6ff; }
+  .item.matched {
+    border-color: #22c55e;
+    background: #f0fdf4;
+    cursor: default;
+  }
+  .item.wrong {
+    border-color: #ef4444;
+    background: #fef2f2;
+  }
+  .word { font-weight: 700; color: #173b75; }
+  .definition { color: #374151; }
+  .label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #94a3b8;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+  }
+  .score {
+    margin-top: 24px;
+    font-size: 20px;
+    font-weight: 700;
+  }
+  button {
+    margin-top: 18px;
+    padding: 12px 22px;
+    border: 0;
+    border-radius: 10px;
+    background: #173b75;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  button:hover { background: #102d5a; }
+  @media (max-width: 700px) {
+    .game { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="card">
+    <h1>THINK A2 — Unit 1: Having Fun</h1>
+    <div class="subtitle">Vocabulary Matching Exercise</div>
+
+    <div class="instructions">
+      <strong>How to play:</strong> Click a word and then click its correct definition.
+      Match all 12 items to complete the exercise.
+    </div>
+
+    <div class="game">
+      <div>
+        <div class="label">Words</div>
+        <div id="words"></div>
+      </div>
+      <div>
+        <div class="label">Definitions</div>
+        <div id="definitions"></div>
+      </div>
+    </div>
+
+    <div class="score" id="score">Score: 0 / 12</div>
+    <button onclick="location.reload()">Try Again</button>
+  </div>
+</div>
+
+<script>
+const pairs = [
+  ["play an instrument", "to make music by using an instrument"],
+  ["keep a blog", "to regularly write and publish posts online"],
+  ["take photos", "to use a camera or phone to make pictures"],
+  ["collect things", "to bring together and keep items because you are interested in them"],
+  ["hobby", "an activity you enjoy doing in your free time"],
+  ["photograph", "a picture made with a camera"],
+  ["relax", "to rest and become less worried or tired"],
+  ["have fun", "to enjoy yourself"],
+  ["have a good time", "to enjoy an experience or activity"],
+  ["have a rest", "to stop working or being active for a short time"],
+  ["have a problem", "to have a difficulty or something that is wrong"],
+  ["have breakfast", "to eat your first meal of the day"]
+];
+
+let selectedWord = null;
+let matched = 0;
+let score = 0;
+
+const wordsEl = document.getElementById("words");
+const defsEl = document.getElementById("definitions");
+
+function shuffle(arr) {
+  return [...arr].sort(() => Math.random() - 0.5);
+}
+
+function render() {
+  shuffle(pairs).forEach((pair, i) => {
+    const div = document.createElement("div");
+    div.className = "item word";
+    div.dataset.index = pairs.indexOf(pair);
+    div.textContent = pair[0];
+    div.onclick = () => selectWord(div);
+    wordsEl.appendChild(div);
+  });
+
+  shuffle(pairs).forEach((pair) => {
+    const div = document.createElement("div");
+    div.className = "item definition";
+    div.dataset.index = pairs.indexOf(pair);
+    div.textContent = pair[1];
+    div.onclick = () => selectDefinition(div);
+    defsEl.appendChild(div);
+  });
+}
+
+function selectWord(el) {
+  if (el.classList.contains("matched")) return;
+  document.querySelectorAll(".word").forEach(x => x.classList.remove("selected"));
+  el.classList.add("selected");
+  selectedWord = el;
+}
+
+function selectDefinition(el) {
+  if (!selectedWord || el.classList.contains("matched")) return;
+
+  if (selectedWord.dataset.index === el.dataset.index) {
+    selectedWord.classList.remove("selected");
+    selectedWord.classList.add("matched");
+    el.classList.add("matched");
+    score++;
+    matched++;
+    selectedWord = null;
+    document.getElementById("score").textContent = `Score: ${score} / ${pairs.length}`;
+
+    if (matched === pairs.length) {
+      setTimeout(() => {
+        alert(`Excellent! You got ${score}/${pairs.length}.`);
+      }, 200);
+    }
+  } else {
+    el.classList.add("wrong");
+    selectedWord.classList.add("wrong");
+    setTimeout(() => {
+      el.classList.remove("wrong");
+      selectedWord?.classList.remove("wrong");
+    }, 500);
+  }
+}
+
+render();
+</script>
+</body>
+</html>
