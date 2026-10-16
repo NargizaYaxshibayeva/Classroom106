@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brand Names: Modal Verbs Quiz</title>
+<style>
+:root{--ink:#172033;--muted:#5b6475;--line:#d9deea;--bg:#f5f7fb;--card:#fff;--accent:#3b5ccc;--good:#e3f7e9;--bad:#ffebeb}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+main{max-width:850px;margin:0 auto;padding:24px 16px 48px}header{background:#182443;color:white;border-radius:18px;padding:25px 24px;margin-bottom:18px}header p{color:#e3e9ff;margin-bottom:0}
+h1{line-height:1.15;margin:0 0 10px;font-size:clamp(1.7rem,4vw,2.35rem)}h2{font-size:1.2rem;margin:0 0 10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin:14px 0}.instructions{color:var(--muted);margin-top:0}
+.question{padding:15px 0;border-top:1px solid var(--line)}.question:first-of-type{border-top:0}.qtitle{font-weight:700;margin-bottom:8px}
+.choices{display:grid;gap:8px}label.choice{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--line);border-radius:10px;cursor:pointer}
+label.choice:hover{border-color:#8a9be7;background:#f8f9ff}input{margin-top:5px;accent-color:var(--accent)}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}button{border:0;border-radius:10px;padding:11px 16px;font:600 15px system-ui,sans-serif;cursor:pointer}
+.primary{background:var(--accent);color:white}.secondary{background:#e9edf6;color:var(--ink)}button:focus-visible,input:focus-visible{outline:3px solid #9aabff;outline-offset:2px}
+#results{display:none}.score{font-size:1.25rem;font-weight:800;margin:0 0 6px}.feedback{border-radius:10px;padding:10px 12px;margin:8px 0}.correct{background:var(--good)}.incorrect{background:var(--bad)}
+.small{font-size:.92rem;color:var(--muted)}.tag{display:inline-block;background:#e9edff;color:#243c9a;border-radius:999px;padding:3px 9px;font-size:.82rem;font-weight:700;margin-bottom:8px}
+@media(max-width:520px){main{padding:14px 10px 32px}.card{padding:15px}header{padding:21px 18px}}
+</style>
+</head>
+<body><main>
+<header><div class="tag">GRADE 7 · ENGLISH</div><h1>Brand Names: Modal Verbs Challenge</h1><p>Choose the best answer. Read each sentence carefully. You will see your score and feedback when you submit.</p></header>
+<section class="card"><h2>Quick reminder</h2><p><strong>should / ought to</strong> = advice · <strong>shouldn't</strong> = advice against something · <strong>must / have to</strong> = necessity or obligation · <strong>mustn't</strong> = not allowed · <strong>don't have to</strong> = not necessary</p><p class="small">Remember: <em>mustn't</em> means “it is forbidden”; <em>don't have to</em> means “it is optional.”</p></section>
+<form id="quiz">
+<section class="card"><h2>Part A — Multiple choice</h2><p class="instructions">Questions 1–10: choose A, B or C. (1 point each)</p><div id="mcq"></div></section>
+<section class="card"><h2>Part B — True or False</h2><p class="instructions">Questions 11–13: choose True or False. (1 point each)</p><div id="tf"></div><div class="actions"><button class="primary" type="submit">Check my answers</button><button class="secondary" type="button" id="reset">Try again</button></div></section>
+</form>
+<section class="card" id="results" aria-live="polite"><h2>Your results</h2><p class="score" id="score"></p><p id="summary"></p><div id="feedbackList"></div><div class="actions"><button class="secondary" type="button" id="review">Review my answers</button></div></section>
+<p class="small">Teacher note: The quiz checks immediately in this browser. It does not send or store students’ answers online.</p>
+</main>
+<script>
+const questions=[
+{q:"A good brand name ___ be easy to remember. (advice)",opts:["A. mustn't","B. should","C. don't have to"],ans:1,exp:"Should gives advice: a name should be easy to remember."},
+{q:"A company ___ check what its name means in other languages. It is a good idea.",opts:["A. ought to","B. mustn't","C. doesn't have to"],ans:0,exp:"Ought to gives advice, similar to should."},
+{q:"A company ___ copy another company's logo. It is not allowed.",opts:["A. doesn't have to","B. should","C. mustn't"],ans:2,exp:"Mustn't means something is forbidden or not allowed."},
+{q:"The company can choose its founder's name or another name. It ___ use the founder's name.",opts:["A. doesn't have to","B. has to","C. must"],ans:0,exp:"Doesn't have to means it is not necessary; the company has a choice."},
+{q:"A company ___ make a good-quality product; a famous name is not enough.",opts:["A. shouldn't","B. must","C. mustn't"],ans:1,exp:"Must expresses strong necessity here."},
+{q:"You ___ choose a name that could offend your customers. (advice against)",opts:["A. shouldn't","B. have to","C. ought to"],ans:0,exp:"Shouldn't gives advice not to do something."},
+{q:"The teacher says everyone must participate in the pair task. Students ___ work with a partner.",opts:["A. have to","B. mustn't","C. don't have to"],ans:0,exp:"Have to expresses an obligation or requirement."},
+{q:"Which sentence means “It is not necessary to use a famous brand”?",opts:["A. You mustn't use a famous brand.","B. You don't have to use a famous brand.","C. You should use a famous brand."],ans:1,exp:"Don't have to means it is not necessary, but it is allowed."},
+{q:"A brand name ___ be memorable, but it doesn't need to be complicated. (advice)",opts:["A. should","B. mustn't","C. don't have to"],ans:0,exp:"Should is used for advice."},
+{q:"A company ___ follow the law when it advertises its products. (obligation)",opts:["A. ought not to","B. has to","C. shouldn't"],ans:1,exp:"Has to expresses an obligation. With 'a company', use has to."}
+];
+const trueFalse=[
+{q:"“Mustn't” means that something is not allowed.",ans:true,exp:"Correct: mustn't expresses prohibition."},
+{q:"“Don't have to” means that you are forbidden to do something.",ans:false,exp:"False: don't have to means it is not necessary; you may still do it."},
+{q:"“Should” and “ought to” can both be used to give advice.",ans:true,exp:"Correct: they have very similar meanings when giving advice."}
+];
+const mcq=document.getElementById("mcq"),tf=document.getElementById("tf");
+questions.forEach((item,i)=>{const d=document.createElement("div");d.className="question";d.innerHTML=`<div class="qtitle">${i+1}. ${item.q}</div><div class="choices">${item.opts.map((o,j)=>`<label class="choice"><input type="radio" name="q${i}" value="${j}"><span>${o}</span></label>`).join("")}</div>`;mcq.appendChild(d)});
+trueFalse.forEach((item,i)=>{const d=document.createElement("div");d.className="question";d.innerHTML=`<div class="qtitle">${i+11}. ${item.q}</div><div class="choices"><label class="choice"><input type="radio" name="q${i+10}" value="true"><span>True</span></label><label class="choice"><input type="radio" name="q${i+10}" value="false"><span>False</span></label></div>`;tf.appendChild(d)});
+const form=document.getElementById("quiz");
+form.addEventListener("submit",e=>{e.preventDefault();let score=0,answered=0;const lines=[];
+[...questions,...trueFalse].forEach((item,i)=>{const s=form.querySelector(`input[name="q${i}"]:checked`),correct=String(item.ans),ok=!!s&&s.value===correct;if(s)answered++;if(ok)score++;
+const chosen=s?(i<10?item.opts[Number(s.value)]:(s.value==="true"?"True":"False")):"No answer selected";
+const answer=i<10?item.opts[item.ans]:(item.ans?"True":"False");
+lines.push(`<div class="feedback ${ok?'correct':'incorrect'}"><strong>${i+1}. ${ok?'Correct!':(s?'Not quite.':'Not answered.')}</strong><br>Your answer: ${chosen}<br>Correct answer: ${answer}<br>${item.exp}</div>`);});
+document.getElementById("score").textContent=`Score: ${score} / 13`;document.getElementById("summary").textContent=`You answered ${answered} of 13 questions. Review the feedback below to learn from any mistakes.`;document.getElementById("feedbackList").innerHTML=lines.join("");document.getElementById("results").style.display="block";document.getElementById("results").scrollIntoView({behavior:"smooth",block:"start"});});
+document.getElementById("reset").addEventListener("click",()=>{form.reset();document.getElementById("results").style.display="none";window.scrollTo({top:0,behavior:"smooth"})});
+document.getElementById("review").addEventListener("click",()=>form.scrollIntoView({behavior:"smooth",block:"start"}));
+</script></body></html>
