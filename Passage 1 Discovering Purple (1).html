@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Passage 1 Discovering Purple</title>
+<style>
+:root{--red:#e52b2b;--ink:#171717;--muted:#5b6067;--line:#d5d7d9;--pale:#f0f1f2;--yellow:#fff0a6}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:#fff}
+body{display:flex;flex-direction:column;overflow:hidden}
+.topbar{height:60px;display:flex;align-items:center;gap:18px;padding:0 20px;border-bottom:1px solid #ddd;background:#fff;flex-shrink:0}
+.brand{font-size:30px;font-weight:900;letter-spacing:1px;color:var(--red);line-height:1}
+.brand small{font-size:10px;vertical-align:top}
+.userblock{display:flex;flex-direction:column;line-height:1.3}
+.userblock strong{font-size:15px}.userblock span{font-size:13px;color:#555}
+.top-icons{margin-left:auto;display:flex;gap:22px;font-size:22px}
+.partbar{padding:11px 22px;background:#eef0f2;border-bottom:1px solid #d8dadd;flex-shrink:0}
+.partbar strong{display:block;font-size:15px}.partbar span{font-size:16px}
+main{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 0 74px;flex:1;min-height:0;background:#eceeef}
+.reading-pane,.questions-pane{background:white;min-width:0;min-height:0;overflow-y:auto;padding:25px 34px}
+.reading-pane{border-right:1px solid #ddd;line-height:1.65;font-size:16px}
+.reading-pane h2{font-size:22px;margin:0 0 18px}
+.reading-pane p{margin:0 0 17px}
+.questions-pane{padding:25px 34px}
+h2{font-size:18px;margin:0 0 12px}
+.instruction{font-size:16px;line-height:1.5;margin:0 0 16px}
+.note-card{border:1px solid #d2d2d2;border-radius:7px;padding:22px;margin-bottom:24px}
+.note-card h3{text-align:center;font-size:18px;margin:0 0 24px}
+.note-card h4{font-size:16px;margin:18px 0 12px}
+.qrow{display:grid;grid-template-columns:minmax(0,1fr) minmax(110px,220px);align-items:center;gap:12px;margin:12px 0 16px}
+.qrow label,.tf-row label{font-size:15px;line-height:1.55}
+.qnum{display:inline-flex;justify-content:center;align-items:center;min-width:25px;height:25px;border:1px solid #777;border-radius:4px;font-size:14px;font-weight:normal;margin-right:5px;background:#fff}
+input[type=text],select{width:100%;min-width:0;border:1px solid #999;border-radius:4px;background:#fff;padding:9px 10px;font-size:16px;color:#171717}
+input[type=text]:focus,select:focus{outline:2px solid #9cc7ff;outline-offset:1px}
+.tf-row{display:grid;grid-template-columns:minmax(0,1fr) 155px;gap:18px;align-items:center;border-top:1px solid #e6e6e6;padding:14px 0}
+mark.evidence{background:var(--yellow);color:#171717;padding:1px 2px;border-radius:2px}
+.results{margin:22px 0 8px;padding:18px;border:1px solid #b8d8c5;background:#f1faf4;border-radius:8px;line-height:1.5}
+.results h3{margin:0 0 8px;font-size:20px}
+.result-item{border-top:1px solid #d7e7dd;padding:12px 0}
+.result-item:first-of-type{border-top:0}
+.result-item blockquote{margin:8px 0;padding:9px 12px;background:#fff;border-left:3px solid #e2b500;font-size:14px}
+.good{color:#18703d;font-weight:bold}.bad{color:#b42318;font-weight:bold}
+.bottom-bar{position:fixed;bottom:0;left:0;right:0;min-height:64px;background:#fff;border-top:1px solid #d4d4d4;display:flex;align-items:center;gap:12px;padding:10px 22px;z-index:5}
+.part-label{font-weight:bold;margin-right:2px}
+.qnav{display:flex;gap:11px;align-items:center;flex-wrap:wrap;font-size:14px}
+.qnav button{border:1px solid transparent;background:transparent;padding:5px 7px;border-radius:3px;cursor:pointer;font-size:14px}
+.qnav button.active{border-color:#111;font-weight:bold}
+.progress{color:#666;margin-left:8px}
+.submit{margin-left:auto;background:#111;color:white;border:0;border-radius:7px;padding:13px 25px;font-weight:bold;font-size:15px;cursor:pointer}
+.submit:hover{background:#333}
+.secondary{background:#ececec;color:#111;border:0;border-radius:7px;padding:11px 15px;cursor:pointer;font-weight:bold}
+.action-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+@media(max-width:850px){
+ body{overflow:auto;height:auto;min-height:100%}
+ .topbar{padding:0 12px}.top-icons{gap:10px}
+ main{display:flex;flex-direction:column;padding-bottom:80px;min-height:auto}
+ .reading-pane,.questions-pane{overflow:visible;padding:22px 18px}
+ .reading-pane{max-height:unset}
+ .qrow{grid-template-columns:1fr}
+ .tf-row{grid-template-columns:1fr}
+ .bottom-bar{padding:8px 10px;gap:6px}.qnav{gap:2px}.qnav button{padding:5px}
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">IELTS<small>™</small></div>
+  <div class="userblock"><strong>Nargiza Yaxshibaeva</strong><span>Reading practice — no time limit</span></div>
+  <div class="top-icons" aria-hidden="true"><span>⌁</span><span>♧</span><span>☰</span><span>／</span></div>
+</header>
+<div class="partbar"><strong>Part 1</strong><span>Read the text and answer questions 1–13.</span></div>
+<main>
+<section class="reading-pane" aria-label="Reading passage">
+      <h2>Reading Passage 1</h2>
+      <p>For thousands of years, dyes used to colour textiles and other materials were made from only natural sources. Historically, coloured dyes were made from the roots and leaves of plants, and from certain animals. Among the most precious of the animal-based dyes was the purple colour extracted from snails. This dye was very difficult to obtain and was therefore outrageously expensive. What was more, colours from natural dyes tended to be quite dull, and they faded when exposed to sunlight. But all this changed in 1856, when a London teenager made an important discovery.</p>
+      <p>William Perkin was born on March 12, 1838, in London, England. His father was a builder, and the family lived in fairly prosperous circumstances in an otherwise rather disreputable neighbourhood in the city’s East End. As a boy, Perkin’s curiosity prompted early interests in the arts, sciences, photography, and engineering. But then one day, when he was exploring his late grandfather’s home, he happened to come across a run-down, yet functional, laboratory, and this solidified his passion for chemistry.</p>
+      <p>As a student at the City of London School, Perkin became immersed in the study of chemistry. His teacher, Thomas Hall, encouraged him to attend a series of lectures given by eminent scientist Michael Faraday at the Royal Institution. Those speeches fired the young chemist’s enthusiasm further, and he became determined to attend the Royal College of Chemistry. Perkin’s father hoped to convince his bright young son to follow in his older brother’s footsteps into the more respectable field of architecture, so he tried to prevent this at first. But pressure from Hall and the wishes of his son won out, and Perkin entered the Royal College of Chemistry in 1853, at the age of 15. At the time of Perkin’s enrolment, the college was headed by noted German chemist August Wilhelm Hofmann. Perkin’s scientific gifts soon caught Hofmann’s attention, and within two years, he became Hofmann’s youngest assistant. Not long after that, Perkin made the discovery that would make him both famous and wealthy.</p>
+      <p>In 1856, the only viable medical treatment for the deadly disease malaria was quinine, derived from the bark of the cinchona tree native to South America. Demand for this drug was surpassing the available supply. Thus, when Hofmann made some passing comments about the desirability of a synthetic substitute for quinine, it is unsurprising that his star pupil was moved to take up the challenge.</p>
+      <p>During his spring school holidays that year, Perkin spent his time at home attempting to manufacture the drug from aniline, a by-product from the manufacture of the gas that lit London’s streets. Despite his best efforts, however, he did not end up with quinine. Instead, he produced a mysterious dark sludge. Luckily, Perkin’s scientific training and nature prompted him to investigate the substance further. Incorporating potassium dichromate and alcohol into the aniline at various stages of the experimental process, he finally happened upon a deep purple solution. Perkin quickly grasped that his purple solution could be used to colour fabric, thus making it the world’s first synthetic dye.</p>
+      <p>Perkin asked advice of Scottish dye works owner Robert Pullar, who convinced him that manufacturing the dye would be well worth it if the colour remained fast and the cost was not prohibitive. Thus reassured, he decided to pursue his commercial plans. Over the fierce objections of his mentor Hofmann, Perkin left college to give birth to the modern chemical industry. He was still only eighteen years old.</p>
+      <p>With the help of his father and brother, Perkin set up a factory on a site near the Grand Union Canal in Greenford Green, not far from London. Utilising the cheap and almost unlimited supply of aniline available in the city, it began producing the world’s first synthetic dye in 1857. Perkin originally called his dye ‘Tyrian Purple’ or ‘aniline purple’, but then decided to call it ‘mauve’, after the French word for the mallow plant used to make the colour violet. This was the name he fixed on in 1859, and is the name still in use to this day.</p>
+      <p>The company received an unexpected commercial boost from the Empress Eugenie of France when she decided the new colour flattered her, and it soon became the must-have shade for all the fashionable ladies of France. Not to be outdone, England’s Queen Victoria also appeared in public wearing a gown of the same hue, thus making it all the rage in England as well. The dye was bold and fast, and the public wanted more. So Perkin went back to the drawing board, and between 1859 and 1864 he developed several more synthetic dye colours.</p>
+      <p>It is important to note that Perkin’s synthetic dye discoveries had effects far beyond the merely decorative. The dyes also became vital to medical research in many ways. For instance, they were used to stain previously invisible microbes and bacteria, allowing researchers to identify such bacilli as tuberculosis, cholera, and anthrax.</p>
+    </section>
+<section class="questions-pane" aria-label="Questions">
+  <div class="question-scroll">
+    <h2>Questions 1–7</h2>
+    <p class="instruction">Complete the notes below. Choose <strong>ONE WORD ONLY</strong> from the passage for each answer.</p>
+    <div class="note-card">
+      <h3>The first synthetic dye</h3>
+      <h4>Traditional dyes</h4>
+      <div class="qrow"><label for="q1"><span class="qnum">1</span> Made from plants or animals, e.g.</label><input id="q1" type="text" autocomplete="off" aria-label="Question 1 answer"></div>
+      <div class="qrow"><label for="q2"><span class="qnum">2</span> Purple dye was hard to obtain and extremely</label><input id="q2" type="text" autocomplete="off" aria-label="Question 2 answer"></div>
+      <h4>William Perkin</h4>
+      <div class="qrow"><label for="q3"><span class="qnum">3</span> Found an old ___ in his grandfather’s house and decided to study chemistry.</label><input id="q3" type="text" autocomplete="off" aria-label="Question 3 answer"></div>
+      <div class="qrow"><label for="q4"><span class="qnum">4</span> In 1856, was trying to find a way to make the drug called</label><input id="q4" type="text" autocomplete="off" aria-label="Question 4 answer"></div>
+      <div class="qrow"><label for="q5"><span class="qnum">5</span> Created a purple solution from aniline, a by-product of the ___ industry.</label><input id="q5" type="text" autocomplete="off" aria-label="Question 5 answer"></div>
+      <div class="qrow"><label for="q6"><span class="qnum">6</span> In 1857, began manufacturing dye in his ___ near London.</label><input id="q6" type="text" autocomplete="off" aria-label="Question 6 answer"></div>
+      <div class="qrow"><label for="q7"><span class="qnum">7</span> In 1859, called his dye</label><input id="q7" type="text" autocomplete="off" aria-label="Question 7 answer"></div>
+    </div>
+    <h2>Questions 8–13</h2>
+    <p class="instruction">Do the following statements agree with the information in the passage? Choose <strong>TRUE</strong>, <strong>FALSE</strong>, or <strong>NOT GIVEN</strong>.</p>
+<div class="tf-row"><label for="q8"><span class="qnum">8</span> Hofmann noticed that Perkin had a talent for chemistry.</label><select id="q8" aria-label="Question 8 answer"><option value="">Choose answer</option><option>TRUE</option><option>FALSE</option><option>NOT GIVEN</option></select></div>
+<div class="tf-row"><label for="q9"><span class="qnum">9</span> Hofmann asked Perkin to do some experiments at home during the holidays.</label><select id="q9" aria-label="Question 9 answer"><option value="">Choose answer</option><option>TRUE</option><option>FALSE</option><option>NOT GIVEN</option></select></div>
+<div class="tf-row"><label for="q10"><span class="qnum">10</span> Perkin faced challenges obtaining the raw material needed to produce his dye.</label><select id="q10" aria-label="Question 10 answer"><option value="">Choose answer</option><option>TRUE</option><option>FALSE</option><option>NOT GIVEN</option></select></div>
+<div class="tf-row"><label for="q11"><span class="qnum">11</span> Perkin personally sent his new colour directly to the Empress Eugenie.</label><select id="q11" aria-label="Question 11 answer"><option value="">Choose answer</option><option>TRUE</option><option>FALSE</option><option>NOT GIVEN</option></select></div>
+<div class="tf-row"><label for="q12"><span class="qnum">12</span> The popularity of Perkin’s product at home and abroad led to demand for additional colours.</label><select id="q12" aria-label="Question 12 answer"><option value="">Choose answer</option><option>TRUE</option><option>FALSE</option><option>NOT GIVEN</option></select></div>
+<div class="tf-row"><label for="q13"><span class="qnum">13</span> Perkin’s dyes enabled scientists to see certain microbes and bacteria for the first time.</label><select id="q13" aria-label="Question 13 answer"><option value="">Choose answer</option><option>TRUE</option><option>FALSE</option><option>NOT GIVEN</option></select></div>
+
+    <div id="results" class="results" aria-live="polite" style="display:none"></div>
+  </div>
+</section>
+
+</main>
+<footer class="bottom-bar">
+  <span class="part-label">Part 1</span>
+  <nav class="qnav" aria-label="Question navigation">
+<button type="button" id="nav1" onclick="focusQuestion(1)">1</button>
+<button type="button" id="nav2" onclick="focusQuestion(2)">2</button>
+<button type="button" id="nav3" onclick="focusQuestion(3)">3</button>
+<button type="button" id="nav4" onclick="focusQuestion(4)">4</button>
+<button type="button" id="nav5" onclick="focusQuestion(5)">5</button>
+<button type="button" id="nav6" onclick="focusQuestion(6)">6</button>
+<button type="button" id="nav7" onclick="focusQuestion(7)">7</button>
+<button type="button" id="nav8" onclick="focusQuestion(8)">8</button>
+<button type="button" id="nav9" onclick="focusQuestion(9)">9</button>
+<button type="button" id="nav10" onclick="focusQuestion(10)">10</button>
+<button type="button" id="nav11" onclick="focusQuestion(11)">11</button>
+<button type="button" id="nav12" onclick="focusQuestion(12)">12</button>
+<button type="button" id="nav13" onclick="focusQuestion(13)">13</button>
+  </nav>
+  <span class="progress" id="progress">0 of 13</span>
+  <span class="progress" id="timer">00:00</span>
+  <button class="submit" id="submitBtn" type="button" onclick="checkAnswers()">Submit</button>
+</footer>
+<script>
+const answers={
+ q1:{answer:"snails",evidence:"Among the most precious of the animal-based dyes was the purple colour extracted from snails.",note:"The passage gives snails as an example of an animal used to make traditional dye.",phrase:"snails"},
+ q2:{answer:"expensive",evidence:"This dye was very difficult to obtain and was therefore outrageously expensive.",note:"The word in the passage directly matches the missing word.",phrase:"outrageously expensive"},
+ q3:{answer:"laboratory",evidence:"...he happened to come across a run-down, yet functional, laboratory...",note:"Perkin found this place in his grandfather’s home.",phrase:"laboratory"},
+ q4:{answer:"quinine",evidence:"...the only viable medical treatment for the deadly disease malaria was quinine...",note:"Quinine was the drug he tried to manufacture.",phrase:"quinine"},
+ q5:{answer:"gas",evidence:"...aniline, a by-product from the manufacture of the gas that lit London’s streets.",note:"The answer is the one-word noun describing what lit London’s streets.",phrase:"the gas that lit London’s streets"},
+ q6:{answer:"factory",evidence:"Perkin set up a factory on a site near the Grand Union Canal...",note:"The factory was where production began near London.",phrase:"set up a factory"},
+ q7:{answer:"mauve",evidence:"...but then decided to call it ‘mauve’...",note:"The passage says he settled on this name in 1859.",phrase:"call it ‘mauve’"},
+ q8:{answer:"TRUE",evidence:"Perkin’s scientific gifts soon caught Hofmann’s attention...",note:"This supports the statement that Hofmann noticed Perkin’s scientific talent.",phrase:"Perkin’s scientific gifts soon caught Hofmann’s attention"},
+ q9:{answer:"FALSE",evidence:"During his spring school holidays that year, Perkin spent his time at home attempting to manufacture the drug...",note:"The passage says Perkin worked at home, but does not say Hofmann asked him to. The supplied answer key marks FALSE.",phrase:"During his spring school holidays that year, Perkin spent his time at home attempting to manufacture the drug"},
+ q10:{answer:"FALSE",evidence:"Utilising the cheap and almost unlimited supply of aniline available in the city...",note:"This contradicts the claim that Perkin had difficulty obtaining the raw material.",phrase:"cheap and almost unlimited supply of aniline"},
+ q11:{answer:"NOT GIVEN",evidence:"The company received an unexpected commercial boost from the Empress Eugenie of France when she decided the new colour flattered her...",note:"The passage does not say Perkin personally sent the colour to the Empress.",phrase:"commercial boost from the Empress Eugenie of France"},
+ q12:{answer:"TRUE",evidence:"...the public wanted more. So Perkin went back to the drawing board... and ... developed several more synthetic dye colours.",note:"The dye became popular in France and England, and further colours were developed.",phrase:"the public wanted more"},
+ q13:{answer:"TRUE",evidence:"They were used to stain previously invisible microbes and bacteria, allowing researchers to identify such bacilli...",note:"The dyes made previously invisible microbes and bacteria visible for research.",phrase:"previously invisible microbes and bacteria"}
+};
+let startedAt=Date.now(), interval;
+function fmt(s){return String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0")}
+function tick(){document.getElementById("timer").textContent=fmt(Math.floor((Date.now()-startedAt)/1000))}
+interval=setInterval(tick,1000);
+function norm(s){return s.trim().toLowerCase().replace(/[’']/g,"'").replace(/\s+/g," ")}
+function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function updateProgress(){
+ let n=0;
+ for(let i=1;i<=13;i++)if(document.getElementById("q"+i).value.trim())n++;
+ document.getElementById("progress").textContent=n+" of 13";
+ for(let i=1;i<=13;i++)document.getElementById("nav"+i).classList.toggle("answered",!!document.getElementById("q"+i).value.trim());
+}
+document.querySelectorAll("input,select").forEach(el=>el.addEventListener("input",updateProgress));
+function focusQuestion(n){
+ const el=document.getElementById("q"+n);
+ el.scrollIntoView({behavior:"smooth",block:"center"});
+ el.focus({preventScroll:true});
+ document.querySelectorAll(".qnav button").forEach(b=>b.classList.remove("active"));
+ document.getElementById("nav"+n).classList.add("active");
+}
+function clearHighlights(){
+ document.querySelectorAll(".reading-pane mark.evidence").forEach(m=>m.replaceWith(document.createTextNode(m.textContent)));
+}
+function highlightPhrase(phrase){
+ const root=document.querySelector(".reading-pane");
+ const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
+ const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
+ const target=phrase.toLowerCase();
+ for(const node of nodes){
+   if(!node.parentNode || node.parentNode.closest("mark"))continue;
+   const txt=node.nodeValue, idx=txt.toLowerCase().indexOf(target);
+   if(idx<0)continue;
+   const before=document.createTextNode(txt.slice(0,idx));
+   const mark=document.createElement("mark");mark.className="evidence";mark.textContent=txt.slice(idx,idx+phrase.length);
+   const after=document.createTextNode(txt.slice(idx+phrase.length));
+   node.parentNode.insertBefore(before,node);node.parentNode.insertBefore(mark,node);node.parentNode.insertBefore(after,node);node.remove();return;
+ }
+}
+function checkAnswers(){
+ clearInterval(interval);tick();
+ let score=0,answered=0,result="";
+ for(let i=1;i<=13;i++){
+   const value=document.getElementById("q"+i).value.trim(), item=answers["q"+i], ok=norm(value)===norm(item.answer);
+   if(value)answered++;if(ok)score++;
+   result+=`<div class="result-item"><strong>Question ${i}: ${item.answer}</strong> — ${value?(ok?'<span class="good">Correct</span>':'<span class="bad">Your answer: '+escapeHtml(value)+'</span>'):'<span class="bad">Not answered</span>'}<blockquote><strong>Evidence:</strong> ${item.evidence}</blockquote><div>${item.note}</div></div>`;
+ }
+ const box=document.getElementById("results");box.style.display="block";
+ box.innerHTML=`<h3>Your score: ${score}/13</h3><p>You answered ${answered} of 13 questions. <strong>Time spent: ${fmt(Math.floor((Date.now()-startedAt)/1000))}</strong></p><p>The relevant evidence is listed below, and matching phrases are highlighted in the passage.</p>${result}`;
+ clearHighlights();
+ for(let i=1;i<=13;i++)highlightPhrase(answers["q"+i].phrase);
+ document.getElementById("submitBtn").textContent="Submitted";
+ document.getElementById("submitBtn").disabled=true;
+ document.getElementById("results").scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+updateProgress();tick();
+</script>
+</body>
+</html>
