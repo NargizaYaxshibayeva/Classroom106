@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grade 5 – Unit 2 Vocabulary Learning Challenge</title>
+<style>
+:root{--navy:#183b66;--blue:#2878c7;--pale:#eef6ff;--green:#16845b;--red:#c93636;--ink:#203047}
+*{box-sizing:border-box}body{margin:0;background:#f3f6fb;color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+header{background:linear-gradient(120deg,#17365d,#2878c7);color:#fff;text-align:center;padding:24px 16px}header h1{margin:0 0 8px;font-size:clamp(1.5rem,4vw,2.15rem)}header p{margin:0}
+main{max-width:1050px;margin:20px auto;padding:0 14px 40px}.panel{background:#fff;border-radius:16px;padding:20px;margin:16px 0;box-shadow:0 4px 18px #19395d12}
+h2{margin:0 0 8px;color:var(--navy)}.hint{color:#607187;line-height:1.5}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.stat{background:var(--pale);border-radius:12px;text-align:center;padding:12px 6px}.stat small{display:block;color:#52657c;font-size:.8rem}.stat strong{font-size:1.3rem;color:var(--navy)}
+.card{background:linear-gradient(140deg,#f7fbff,#eaf2ff);border:2px solid #d4e4f8;border-radius:15px;padding:24px;text-align:center;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px}.word{font-size:clamp(1.7rem,5vw,2.4rem);font-weight:800;color:var(--navy)}.definition{font-size:1.05rem;line-height:1.5;max-width:650px}.example{font-style:italic;color:#52657c}.controls{text-align:center;margin-top:12px}
+button{font:inherit;cursor:pointer}.action{border:0;border-radius:10px;background:var(--navy);color:white;padding:11px 17px;margin:5px 5px 0 0}.secondary{background:#e6edf5;color:var(--navy)}.tile{display:block;width:100%;text-align:left;padding:12px 14px;margin:8px 0;border:2px solid #d7e1ee;border-radius:10px;background:#fff;color:var(--ink)}.tile:hover{border-color:var(--blue);background:#f6faff}.tile.selected{border-color:var(--blue);background:#e4f1ff}.tile.wrong{border-color:var(--red);background:#ffe6e6;color:#9b2020}.columns{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px}.column h3{text-align:center;color:#52657c;font-size:.95rem}.feedback{min-height:26px;font-weight:bold;margin-top:10px}.good{color:var(--green)}.bad{color:var(--red)}
+.quiz-q{padding:14px 0;border-bottom:1px solid #e5ebf2}.quiz-q p{font-weight:bold;margin:0 0 10px}.answers{display:flex;flex-wrap:wrap;gap:8px}.answers button{background:#f7f9fc;border:1px solid #cfd9e7;border-radius:9px;padding:9px 12px;color:var(--ink)}.answers button.chosen{outline:2px solid var(--blue);background:#e5f2ff}.answers button.right{background:#e0f7ec;border-color:var(--green)}.answers button.wrong{background:#ffe6e6;border-color:var(--red);color:#9b2020}.result{padding:14px;background:#f0f7ff;border-radius:10px;line-height:1.7;margin-top:14px}footer{text-align:center;color:#718096;font-size:.85rem}
+@media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr)}.columns{grid-template-columns:1fr}.panel{padding:15px}}
+</style></head>
+<body>
+<header><h1>🛍️ Unit 2: Money and How to Spend It</h1><p>Grade 5 • Learn it, remember it, use it!</p></header>
+<main>
+<section class="panel"><h2>Your learning mission</h2><p class="hint">Study the flashcards, practise matching, complete the quiz and finish with a short sentence-building challenge. The vocabulary is drawn from Unit 2 topics: shopping, clothes, prices, buying things and the reading about world markets. Correct matching pairs disappear; incorrect matches turn red so you can try again.</p>
+<div class="stats"><div class="stat"><small>Time spent</small><strong id="clock">00:00</strong></div><div class="stat"><small>Cards studied</small><strong id="studied">0 / 24</strong></div><div class="stat"><small>Matching mistakes</small><strong id="mistakes">0</strong></div><div class="stat"><small>Quiz score</small><strong id="score">—</strong></div></div></section>
+<section class="panel"><h2>Part 1 — Learn and remember</h2><p class="hint">Read each word, definition and example. Press “Show meaning” to test yourself. Say the word aloud and try to use it in your own sentence.</p>
+<div class="card"><div class="word" id="flashWord"></div><div class="definition" id="flashDef" hidden></div><div class="example" id="flashEx" hidden></div></div>
+<div class="controls"><button class="action" id="reveal">Show meaning</button><button class="action secondary" id="prev">← Previous</button><button class="action secondary" id="next">Next →</button><button class="action secondary" id="shuffle">Shuffle cards</button></div><p class="hint" id="cardCount" style="text-align:center"></p></section>
+<section class="panel"><h2>Part 2 — Match words and definitions</h2><p class="hint">Choose a word on the left and its meaning on the right. Wrong pairs count as mistakes. Continue until every pair disappears.</p><div class="columns"><div class="column"><h3>WORDS</h3><div id="words"></div></div><div class="column"><h3>DEFINITIONS</h3><div id="definitions"></div></div></div><div id="matchFeedback" class="feedback" aria-live="polite"></div><button class="action secondary" id="resetMatch">Try matching again</button></section>
+<section class="panel"><h2>Part 3 — Choose the correct word</h2><p class="hint">Complete each sentence by choosing the best vocabulary word.</p><div id="quiz"></div><button class="action" id="submitQuiz">Check my answers</button><button class="action secondary" id="restart">Restart activity</button><div id="quizResult" class="result" hidden></div></section>
+<section class="panel"><h2>Part 4 — Use the words</h2><p class="hint">Write a sentence using each word. This helps you move from recognising vocabulary to using it yourself. Your writing stays in this browser and is included in the downloadable report.</p><div id="writing"></div></section>
+<section class="panel" id="reportPanel" hidden><h2>Your learning report</h2><div id="report"></div><button class="action" id="download">Download results (.txt)</button></section>
+<footer>Based on THINK Student’s Book 1, Unit 2 “Money and How to Spend It” (pages 20–27).</footer>
+</main>
+<script>
+const vocab=[
+{w:"price",d:"The amount of money you pay for something.",e:"What is the price of this notebook?"},
+{w:"cheap",d:"Costing little money.",e:"This pen is cheap."},
+{w:"expensive",d:"Costing a lot of money.",e:"That laptop is expensive."},
+{w:"afford",d:"To have enough money to pay for something.",e:"I can't afford a new camera yet."},
+{w:"market",d:"A place where people buy and sell goods, often from different stalls.",e:"We visited a market on Saturday."},
+{w:"stall",d:"A small stand or table where goods are sold.",e:"We bought fruit from a market stall."},
+{w:"shop assistant",d:"A person who helps customers in a shop.",e:"The shop assistant helped me find my size."},
+{w:"customer",d:"A person who buys goods or services.",e:"The customer paid for the shoes."},
+{w:"clothes shop",d:"A shop where people buy clothes.",e:"I bought a shirt at the clothes shop."},
+{w:"shoe shop",d:"A shop where people buy shoes.",e:"Let's go to the shoe shop."},
+{w:"bookshop",d:"A shop that sells books.",e:"I found a dictionary in the bookshop."},
+{w:"newsagent’s",d:"A shop that sells newspapers and magazines.",e:"He bought a magazine at the newsagent’s."},
+{w:"sports shop",d:"A shop that sells sports equipment and sportswear.",e:"We bought a football at the sports shop."},
+{w:"supermarket",d:"A large shop selling food and many everyday products.",e:"Mum bought vegetables at the supermarket."},
+{w:"department store",d:"A large shop divided into sections selling different kinds of goods.",e:"You can buy clothes and household items in a department store."},
+{w:"bargain",d:"Something bought for a lower price than usual, or a very good deal.",e:"These trainers were a bargain."},
+{w:"popular",d:"Liked or enjoyed by many people.",e:"The market is popular with tourists."},
+{w:"local",d:"Belonging to or connected with the nearby area.",e:"We buy fruit from a local shop."},
+{w:"tourist",d:"A person who travels to visit places for pleasure.",e:"Many tourists visit the market."},
+{w:"traditional",d:"Connected with the customs or way of life of a place or group.",e:"The market sells traditional food."},
+{w:"clothes",d:"Things people wear, such as shirts, trousers and dresses.",e:"I need new clothes for winter."},
+{w:"try on",d:"To put on clothes or shoes to see if they fit or look right.",e:"Can I try on these shoes?"},
+{w:"fit",d:"To be the right size or shape for someone.",e:"These trousers don't fit me."},
+{w:"spend",d:"To use money to buy something.",e:"I save some money and spend the rest carefully."}
+];
+const quizData=[
+{q:"A phone costs £300. The £300 is its…",a:["price","market","stall"],c:0},
+{q:"If something costs very little money, it is…",a:["expensive","cheap","popular"],c:1},
+{q:"If you don’t have enough money to buy something, you can’t…",a:["fit it","afford it","try it"],c:1},
+{q:"Who helps customers find things in a shop?",a:["tourist","shop assistant","stall"],c:1},
+{q:"Where would you buy a newspaper or magazine?",a:["newsagent’s","shoe shop","sports shop"],c:0},
+{q:"A small stand where goods are sold is a…",a:["department store","stall","customer"],c:1},
+{q:"A person who travels to visit a place for pleasure is a…",a:["tourist","shop assistant","customer"],c:0},
+{q:"If shoes are the right size for you, they…",a:["spend","fit","afford"],c:1},
+{q:"To put on clothes to check the size means to…",a:["try on","spend","sell out"],c:0},
+{q:"A good product at a very low price can be called a…",a:["bargain","customer","market"],c:0},
+{q:"Which place sells many kinds of food and everyday products?",a:["bookshop","supermarket","newsagent’s"],c:1},
+{q:"What does ‘spend money’ mean?",a:["Use money to buy something","Earn money at work","Keep money without using it"],c:0}
+];
+const writingPrompts=["cheap","expensive","market","bargain"];
+let started=null,timer=null,cardIndex=0,cardOrder=[...vocab],studied=new Set(),selectedWord=null,selectedDef=null,matched=new Set(),mistakes=0,wordAttempts={},answers={},checked=false;
+const $=id=>document.getElementById(id);
+function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function start(){if(!started){started=Date.now();timer=setInterval(()=>{$('clock').textContent=fmt(elapsed())},1000)}}
+function elapsed(){return started?Math.floor((Date.now()-started)/1000):0}function fmt(n){return String(Math.floor(n/60)).padStart(2,'0')+':'+String(n%60).padStart(2,'0')}
+function stats(){$('studied').textContent=studied.size+' / '+vocab.length;$('mistakes').textContent=mistakes}
+function showCard(){let v=cardOrder[cardIndex];$('flashWord').textContent=v.w;$('flashDef').textContent=v.d;$('flashEx').textContent='Example: '+v.e;$('flashDef').hidden=true;$('flashEx').hidden=true;$('reveal').textContent='Show meaning';$('cardCount').textContent='Card '+(cardIndex+1)+' of '+cardOrder.length}
+function reveal(){start();studied.add(cardOrder[cardIndex].w);$('flashDef').hidden=false;$('flashEx').hidden=false;$('reveal').textContent='Meaning revealed';stats()}
+function renderMatch(){$('words').innerHTML='';$('definitions').innerHTML='';shuffle(vocab).forEach(v=>{if(matched.has(v.w))return;let b=document.createElement('button');b.className='tile';b.textContent=v.w;b.dataset.word=v.w;b.onclick=()=>{start();selectedWord=v.w;document.querySelectorAll('#words .tile').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');checkPair()};$('words').appendChild(b)});shuffle(vocab).forEach(v=>{if(matched.has(v.w))return;let b=document.createElement('button');b.className='tile';b.textContent=v.d;b.dataset.def=v.w;b.onclick=()=>{start();selectedDef=v.w;document.querySelectorAll('#definitions .tile').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');checkPair()};$('definitions').appendChild(b)});selectedWord=null;selectedDef=null}
+function checkPair(){if(!selectedWord||!selectedDef)return;let w=selectedWord,d=selectedDef;if(w===d){matched.add(w);wordAttempts[w]=(wordAttempts[w]||0)+1;$('matchFeedback').textContent='Correct! “'+w+'” matched.';$('matchFeedback').className='feedback good';renderMatch();if(matched.size===vocab.length)$('matchFeedback').textContent='Excellent! All words matched. Now finish the exercises.'}else{mistakes++;wordAttempts[w]=(wordAttempts[w]||0)+1;wordAttempts[d]=(wordAttempts[d]||0)+1;$('matchFeedback').textContent='Not a match — try again!';$('matchFeedback').className='feedback bad';let wb=document.querySelector('#words [data-word="'+CSS.escape(w)+'"]'),db=document.querySelector('#definitions [data-def="'+CSS.escape(d)+'"]');if(wb)wb.classList.add('wrong');if(db)db.classList.add('wrong');setTimeout(()=>{if(wb)wb.classList.remove('wrong','selected');if(db)db.classList.remove('wrong','selected')},550);selectedWord=null;selectedDef=null}stats()}
+function renderQuiz(){$('quiz').innerHTML='';quizData.forEach((q,i)=>{let div=document.createElement('div');div.className='quiz-q';let p=document.createElement('p');p.textContent=(i+1)+'. '+q.q;div.appendChild(p);let ans=document.createElement('div');ans.className='answers';q.a.forEach((a,j)=>{let b=document.createElement('button');b.textContent=a;b.onclick=()=>{start();answers[i]=j;ans.querySelectorAll('button').forEach(x=>x.classList.remove('chosen'));b.classList.add('chosen');if(checked)markQuiz()};if(answers[i]===j)b.classList.add('chosen');ans.appendChild(b)});div.appendChild(ans);$('quiz').appendChild(div)})}
+function renderWriting(){ $('writing').innerHTML='';writingPrompts.forEach(w=>{let wrap=document.createElement('div');wrap.className='quiz-q';let label=document.createElement('p');label.textContent='Write a sentence using “'+w+'”.';let ta=document.createElement('textarea');ta.id='write_'+w;ta.rows=2;ta.placeholder='Write your sentence here…';ta.style.cssText='width:100%;padding:10px;border:1px solid #cfd9e7;border-radius:8px;font:inherit';ta.oninput=start;wrap.appendChild(label);wrap.appendChild(ta);$('writing').appendChild(wrap)})}
+function markQuiz(){let score=0;document.querySelectorAll('.quiz-q').forEach((div,i)=>{if(i>=quizData.length)return;div.querySelectorAll('button').forEach((b,j)=>{b.classList.remove('right','wrong');if(j===quizData[i].c)b.classList.add('right');if(answers[i]===j&&j!==quizData[i].c)b.classList.add('wrong')});if(answers[i]===quizData[i].c)score++});$('score').textContent=score+'/'+quizData.length;$('quizResult').hidden=false;$('quizResult').innerHTML='<strong>Your score: '+score+' / '+quizData.length+'</strong><br>Correct answers are green. Incorrect or unanswered questions: '+(quizData.length-score)+'. Review the correct answers, then change your choices and check again.';if(matched.size===vocab.length){$('reportPanel').hidden=false;let writing=writingPrompts.map(w=>w+': '+($('write_'+w).value.trim()||'(no sentence written)')).join('<br>');$('report').innerHTML='<p><strong>Total time:</strong> '+fmt(elapsed())+'<br><strong>Flashcards studied:</strong> '+studied.size+'/'+vocab.length+'<br><strong>Matching completed:</strong> '+matched.size+'/'+vocab.length+'<br><strong>Matching mistakes:</strong> '+mistakes+'<br><strong>Exercise score:</strong> '+score+'/'+quizData.length+'</p><p><strong>Sentence practice:</strong><br>'+writing+'</p>'}}
+$('reveal').onclick=reveal;$('next').onclick=()=>{start();cardIndex=(cardIndex+1)%cardOrder.length;showCard()};$('prev').onclick=()=>{start();cardIndex=(cardIndex-1+cardOrder.length)%cardOrder.length;showCard()};$('shuffle').onclick=()=>{start();cardOrder=shuffle(cardOrder);cardIndex=0;showCard()};
+$('resetMatch').onclick=()=>{matched=new Set();mistakes=0;wordAttempts={};$('matchFeedback').textContent='Matching restarted. Timer continues.';renderMatch();stats()};
+$('submitQuiz').onclick=()=>{start();checked=true;markQuiz()};
+$('restart').onclick=()=>{if(timer)clearInterval(timer);started=null;timer=null;cardIndex=0;cardOrder=[...vocab];studied=new Set();selectedWord=null;selectedDef=null;matched=new Set();mistakes=0;wordAttempts={};answers={};checked=false;$('clock').textContent='00:00';$('score').textContent='—';$('quizResult').hidden=true;$('reportPanel').hidden=true;$('matchFeedback').textContent='';showCard();renderMatch();renderQuiz();renderWriting();stats()};
+$('download').onclick=()=>{let score=quizData.reduce((n,q,i)=>n+(answers[i]===q.c?1:0),0);let txt='GRADE 5 — UNIT 2 MONEY AND HOW TO SPEND IT RESULTS\nTime: '+fmt(elapsed())+'\nFlashcards studied: '+studied.size+'/'+vocab.length+'\nMatching completed: '+matched.size+'/'+vocab.length+'\nMatching mistakes: '+mistakes+'\nExercise score: '+score+'/'+quizData.length+'\n\nSentence practice:\n'+writingPrompts.map(w=>w+': '+($('write_'+w).value.trim()||'(no sentence written)')).join('\n')+'\n\nRecorded selections by word:\n'+vocab.map(v=>v.w+': '+(wordAttempts[v.w]||0)).join('\n');let blob=new Blob([txt],{type:'text/plain'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='unit-2-vocabulary-results.txt';a.click();URL.revokeObjectURL(url)};
+showCard();renderMatch();renderQuiz();renderWriting();stats();
+</script></body></html>
