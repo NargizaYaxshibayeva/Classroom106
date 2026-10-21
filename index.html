@@ -3,596 +3,296 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nargiza's Classroom Tools</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#1a1a2e">
+<title>Classroom Tools | Nargiza Yaxshibayeva</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --ink: #1a1a2e;
-    --paper: #fdf8f0;
-    --cream: #f5ede0;
-    --gold: #d4a017;
-    --gold-light: #f5e6b8;
-    --muted: #7a6a5a;
-    --border: #d9cfc4;
-    --card: #ffffff;
-  }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
-    background: var(--paper);
-    color: var(--ink);
-    min-height: 100vh;
-    padding-bottom: 60px;
-  }
-
-  /* ── HEADER ── */
-  header {
-    background: var(--ink);
-    padding: 36px 48px 32px;
-    border-bottom: 4px solid var(--gold);
-    position: relative;
-    overflow: hidden;
-  }
-  header::before {
-    content: '';
-    position: absolute; top: 0; right: 0; bottom: 0;
-    width: 40%;
-    background: repeating-linear-gradient(45deg, transparent, transparent 12px, rgba(212,160,23,0.04) 12px, rgba(212,160,23,0.04) 24px);
-  }
-  .header-inner {
-    position: relative; z-index: 1;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-  .eyebrow {
-    font-size: 10px;
-    font-weight: 300;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 8px;
-  }
-  header h1 {
-    font-family: 'Playfair Display', serif;
-    font-weight: 400;
-    font-size: clamp(26px, 4vw, 38px);
-    color: white;
-    line-height: 1.2;
-    margin-bottom: 10px;
-  }
-  header p.sub {
-    color: #9999bb;
-    font-size: 13px;
-    font-weight: 300;
-    line-height: 1.6;
-    max-width: 500px;
-  }
-  .stats-bar {
-    margin-top: 20px;
-    display: flex;
-    gap: 24px;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-  .stat { font-size: 12px; font-weight: 300; color: #9999bb; }
-  .stat strong { color: var(--gold); font-weight: 400; }
-
-  /* ── QUIZ NAV BUTTON (header) ── */
-  .quiz-nav {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 9px 20px;
-    background: transparent;
-    border: 1.5px solid var(--gold);
-    border-radius: 8px;
-    color: var(--gold);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 400;
-    font-size: 13px;
-    text-decoration: none;
-    letter-spacing: 0.3px;
-    transition: background 0.2s, color 0.2s, transform 0.15s;
-    margin-left: auto;
-  }
-  .quiz-nav:hover {
-    background: var(--gold);
-    color: var(--ink);
-    transform: translateY(-1px);
-  }
-  .quiz-nav svg {
-    flex-shrink: 0;
-    transition: transform 0.2s;
-  }
-  .quiz-nav:hover svg {
-    transform: translateX(3px);
-  }
-
-  @media (max-width: 640px) {
-    .quiz-nav {
-      margin-left: 0;
-      margin-top: 4px;
-    }
-  }
-
-  /* ── QUIZ CTA BUTTON (in-section) ── */
-  .quiz-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 28px;
-    background: #e67e22;
-    border: none;
-    border-radius: 10px;
-    color: white;
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 500;
-    font-size: 14px;
-    text-decoration: none;
-    letter-spacing: 0.3px;
-    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-    margin-top: 14px;
-  }
-  .quiz-cta:hover {
-    background: #cf6d17;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(230, 126, 34, 0.35);
-  }
-  .quiz-cta svg {
-    flex-shrink: 0;
-    transition: transform 0.2s;
-  }
-  .quiz-cta:hover svg {
-    transform: translateX(4px);
-  }
-
-  /* ── MAIN ── */
-  main {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 36px 40px;
-  }
-
-  /* ── SEARCH ROW ── */
-  .search-row {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 28px;
-    align-items: center;
-  }
-  .search-wrap { position: relative; flex: 1; }
-  .search-wrap svg {
-    position: absolute; left: 14px; top: 50%;
-    transform: translateY(-50%);
-    color: var(--muted);
-    pointer-events: none;
-  }
-  #search {
-    width: 100%;
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    color: var(--ink);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
-    font-size: 14px;
-    padding: 10px 14px 10px 40px;
-    outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
-  }
-  #search:focus {
-    border-color: var(--gold);
-    box-shadow: 0 0 0 3px var(--gold-light);
-  }
-  #search::placeholder { color: var(--muted); }
-
-  .sort-select {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    color: var(--muted);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
-    font-size: 13px;
-    padding: 10px 14px;
-    outline: none;
-    cursor: pointer;
-  }
-  .sort-select:focus { border-color: var(--gold); }
-
-  /* ── SECTION HEADINGS ── */
-  .section {
-    margin-bottom: 36px;
-  }
-  .section-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 14px;
-  }
-  .section-pip {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-weight: 400;
-    font-size: 15px;
-    color: var(--ink);
-    white-space: nowrap;
-  }
-  .section-line {
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
-  .section-count {
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.05em;
-  }
-
-  /* ── GRID ── */
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-  }
-  @media (max-width: 900px)  { .grid { grid-template-columns: repeat(3, 1fr); } }
-  @media (max-width: 640px)  {
-    .grid { grid-template-columns: repeat(2, 1fr); }
-    header, main { padding-left: 20px; padding-right: 20px; }
-  }
-
-  /* ── CARD ── */
-  .card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-left: 5px solid var(--cat-color, var(--gold));
-    border-radius: 10px;
-    padding: 22px 18px;
-    text-decoration: none;
-    color: var(--ink);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-height: 80px;
-    position: relative;
-    overflow: hidden;
-    transition: box-shadow 0.15s, transform 0.15s, background 0.15s;
-    animation: fadeUp 0.35s ease both;
-  }
-  .card:hover {
-    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
-    transform: translateY(-3px);
-    background: var(--gold-light);
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(10px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .card-title {
-    font-size: 14px;
-    font-weight: 400;
-    color: var(--ink);
-    line-height: 1.45;
-    word-break: break-word;
-  }
-
-  /* ── STATES ── */
-  .state-msg {
-    text-align: center;
-    padding: 60px 20px;
-    color: var(--muted);
-  }
-  .state-msg .big { font-size: 40px; margin-bottom: 14px; }
-  .state-msg p    { font-size: 14px; font-weight: 300; line-height: 1.8; }
-  .state-msg code {
-    background: var(--cream);
-    border: 1px solid var(--border);
-    padding: 2px 6px; border-radius: 4px;
-    color: var(--ink); font-size: 12px;
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    text-align: center;
-    padding: 28px;
-    font-size: 11px;
-    font-weight: 300;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--muted);
-    border-top: 1px solid var(--border);
-    margin-top: 40px;
-  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{--ink:#1a1a2e;--paper:#fdf8f0;--cream:#f5ede0;--gold:#d4a017;--gold-light:#f5e6b8;--muted:#7a6a5a;--border:#d9cfc4;--card:#fff;--blue:#1a6b8a;--green:#26733b;--orange:#a65308;--purple:#6b4ca5}
+  body{font-family:'DM Sans',sans-serif;font-weight:300;background:var(--paper);color:var(--ink);min-height:100vh;padding-bottom:48px}
+  header{background:var(--ink);padding:32px 24px 28px;border-bottom:4px solid var(--gold);position:relative;overflow:hidden}
+  header:before{content:'';position:absolute;inset:0 0 0 auto;width:40%;background:repeating-linear-gradient(45deg,transparent,transparent 12px,rgba(212,160,23,.04) 12px,rgba(212,160,23,.04) 24px);pointer-events:none}
+  .header-inner,main,footer{max-width:1120px;margin:0 auto;position:relative}
+  .eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+  header h1{font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(28px,4vw,40px);color:#fff;line-height:1.2;margin-bottom:9px}
+  header .sub{font-size:13px;color:#aaaac2;line-height:1.7;max-width:650px}
+  .stats{display:flex;gap:22px;flex-wrap:wrap;margin-top:17px;font-size:12px;color:#aaaac2}.stats strong{color:var(--gold);font-weight:500}
+  main{padding:30px 24px 20px}
+  .topbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:24px}
+  .search-wrap{position:relative;flex:1;min-width:210px}.search-wrap svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
+  #search{width:100%;padding:11px 14px 11px 39px;background:#fff;border:1px solid var(--border);border-radius:9px;font:300 14px 'DM Sans',sans-serif;color:var(--ink);outline:none}
+  #search:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-light)}
+  .quiet-button,.back-button{font:400 13px 'DM Sans',sans-serif;color:var(--muted);background:#fff;border:1px solid var(--border);border-radius:9px;padding:10px 14px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:.15s}
+  .quiet-button:hover,.back-button:hover{border-color:var(--gold);color:var(--ink);background:var(--gold-light)}
+  .page-heading{display:flex;align-items:center;gap:12px;margin:6px 0 8px}.page-heading h2{font:400 clamp(23px,3vw,30px) 'Playfair Display',serif}.page-description{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:24px;max-width:750px}
+  .section{margin:28px 0 36px}.section-header{display:flex;align-items:center;gap:11px;margin-bottom:14px}.pip{width:9px;height:9px;border-radius:50%;flex:none}.section-title{font:400 17px 'Playfair Display',serif;white-space:nowrap}.section-line{height:1px;background:var(--border);flex:1}.count{font-size:11px;color:var(--muted)}
+  .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.grid.skills{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .card{--accent:var(--gold);background:var(--card);border:1px solid var(--border);border-left:5px solid var(--accent);border-radius:11px;padding:20px 18px;min-height:112px;color:var(--ink);text-decoration:none;display:flex;flex-direction:column;justify-content:space-between;gap:13px;transition:transform .16s,box-shadow .16s,background .16s;animation:fadeup .3s ease both}
+  .card:hover{transform:translateY(-3px);box-shadow:0 7px 22px #1a1a2e14;background:#fffaf0}.card .icon{font-size:23px;line-height:1}.card h3{font-size:15px;font-weight:500;line-height:1.45;overflow-wrap:anywhere}.card p{font-size:12px;line-height:1.55;color:var(--muted);margin-top:5px}.card .arrow{font-size:12px;color:var(--accent);font-weight:500;align-self:flex-end}.card.skill{min-height:155px}.card.main-card{min-height:170px;padding:22px}.card.main-card h3{font:400 22px 'Playfair Display',serif}.card.main-card p{font-size:13px}
+  .crumbs{font-size:12px;color:var(--muted);margin:0 0 16px}.crumbs a{color:var(--blue);text-decoration:none}.crumbs a:hover{text-decoration:underline}
+  .resource-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.resource{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--border);border-radius:9px;padding:15px 16px;text-decoration:none;color:var(--ink);min-width:0;transition:.15s}.resource:hover{border-color:var(--gold);background:#fffaf0;transform:translateY(-1px)}.resource .file-icon{width:35px;height:35px;display:grid;place-items:center;background:var(--cream);border-radius:8px;flex:none;font-size:17px}.resource .resource-name{font-size:14px;font-weight:500;line-height:1.4;overflow-wrap:anywhere}.resource .resource-note{font-size:11px;color:var(--muted);margin-top:4px}.resource .out{margin-left:auto;color:var(--muted);flex:none}
+  .empty{padding:38px 18px;text-align:center;color:var(--muted);background:#fff;border:1px dashed var(--border);border-radius:12px;font-size:14px;line-height:1.7}
+  .notice{font-size:12px;color:var(--muted);line-height:1.65;padding:12px 14px;background:var(--cream);border-radius:8px;margin-top:18px}
+  footer{text-align:center;padding:26px 20px 0;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--border);margin-top:38px}
+  .hidden{display:none!important}
+  @keyframes fadeup{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+  @media(max-width:850px){.grid.skills{grid-template-columns:repeat(2,minmax(0,1fr))}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(max-width:560px){header{padding:26px 20px 23px}main{padding:22px 18px}.grid,.grid.skills,.resource-list{grid-template-columns:1fr}.card.main-card{min-height:135px}.card.skill{min-height:125px}.topbar{align-items:stretch}.search-wrap{flex-basis:100%}.quiet-button{justify-content:center}}
 </style>
 </head>
 <body>
-
 <header>
   <div class="header-inner">
-    <p class="eyebrow">nargizayaxshibayeva.github.io / Classroom106</p>
-    <h1>Classroom Tools</h1>
-    <p class="sub">Interactive HTML resources for Grade 6 · Grade 8 IGCSE · Speaking &amp; Vocabulary activities</p>
-    <div class="stats-bar">
-      <div class="stat"><span id="file-count">Loading…</span></div>
-      <div class="stat">Updated: <strong id="last-updated">—</strong></div>
-    </div>
+    <p class="eyebrow">Nargiza Yaxshibayeva · Classroom106</p>
+    <h1 id="site-title">Classroom Tools</h1>
+    <p class="sub" id="site-subtitle">English learning resources for IELTS, IGCSE, Multi-Level, Lower Secondary, grade-level lessons and classroom games.</p>
+    <div class="stats"><span id="file-count"><strong>Loading…</strong></span><span>Updated: <strong id="last-updated">—</strong></span></div>
   </div>
 </header>
-
 <main>
-
-  <div class="search-row">
+  <div class="topbar">
     <div class="search-wrap">
-      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-      </svg>
-      <input id="search" type="text" placeholder="Filter tools…" autocomplete="off">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input id="search" type="search" placeholder="Search resources…" autocomplete="off" aria-label="Search resources">
     </div>
-    <select class="sort-select" id="sort">
-      <option value="alpha">A → Z</option>
-      <option value="recent">Newest</option>
-    </select>
+    <button class="quiet-button" id="home-button" type="button">⌂ Main menu</button>
   </div>
-
-  <div id="sections">
-    <div class="state-msg">
-      <div class="big">⏳</div>
-      <p>Fetching your tools from GitHub…</p>
-    </div>
-  </div>
+  <div id="app" aria-live="polite"><div class="empty">⏳ Loading your classroom resources from GitHub…</div></div>
+  <div class="notice" id="fallback-note">Existing HTML files that have not yet been assigned in the catalogue will remain available under <strong>Existing Classroom Tools</strong>. They will not be deleted or hidden.</div>
 </main>
-
 <footer>Presidential School · Jizzakh · Uzbekistan</footer>
-
 <script>
-const GITHUB_USER   = 'NargizaYaxshibayeva';
-const GITHUB_REPO   = 'Classroom106';
+'use strict';
+const GITHUB_USER = 'NargizaYaxshibayeva';
+const GITHUB_REPO = 'Classroom106';
 const GITHUB_BRANCH = 'main';
-const QUIZ_PAGE_URL = '';
+const ANALYTICS_URL = 'https://script.google.com/macros/s/AKfycby7JSgsyzPkg6B8F9czaUS6DfOzOVJzC-OGZc3EuvXSN_0jxEmsYvJfR7XpewCxl0SISA/exec';
 
-const PRETTY_NAMES = {
-  'Compare-game-Grade8.html':               'Compare Game · Grade 8',
-  'Compare-game-Staff.html':                'Compare Game · Staff',
-  'Compare_game-Grade-6.html':              'Compare Game · Grade 6',
-  'Passive-Builder.html':                   'Passive Voice Builder',
-  'Past-perfect-builder.html':              'Past Perfect Builder',
-  'Picker-Frog-Grd6.html':                  'Name Picker · Frog',
-  'Picker-Grd6-Mech.html':                  'Name Picker · Grade 6 Mech',
-  'Picker-Grd6.html':                       'Name Picker · Grade 6',
-  'Picker-Grd8Blue-Horror.html':            'Name Picker · Grade 8 Horror',
-  'Picker-Grd8Green.html':                  'Name Picker · Grade 8 Green',
-  'Picker-Unicorn.html':                    'Name Picker · Unicorn',
-  'Sentence-machine(2).html':               'Sentence Machine',
-  'Speaking_Scenario_Grade8BLUE.html':      'Speaking Scenarios · Grade 8 Blue',
-  'Speaking_Scenario_Grade8GREEN.html':     'Speaking Scenarios · Grade 8 Green',
-  'Team-challenge-Grade-8.html':            'Team Challenge · Grade 8',
-  'Thinking_prompts_all_grades.html':       'Thinking Prompts · All Grades',
-  'Thinking_prompts_grade6.html':           'Thinking Prompts · Grade 6',
-  'Vocab-Grade-6-unit-9.html':              'Vocabulary · Grade 6 Unit 9',
-  'Vocab-Grade-8-Unit-8.html':              'Vocabulary · Grade 8 Unit 8',
-  'Vocab-Grade-8-unit_9.html':              'Vocabulary · Grade 8 Unit 9',
-  'igcse-LISTENING-Nov-31-2023fixed.html':  'IGCSE Listening · Nov 2023',
-  'igcse-READING-June-11-2022fixed.html':   'IGCSE Reading · June 2022',
-  'igcse-READING-June-12-2021fixed.html':   'IGCSE Reading · June 2021',
-  'igcse-READING-June-12-2023fixed.html':   'IGCSE Reading · June 2023',
-  'MLR-Reading-AirConditioning-Part1.html': 'MLR Reading · Air Conditioning Part 1',
-  'jobs-showdown.html':                     'Jobs Showdown',
-  'WRITING-tool.html':                      'Writing Tool',
-  'ArticleChecker.html':                    'Article Checker',
-  'Grade-6-VOCAB-Mega-Match-1.html':        'Mega Match 1',
-  'Grade-6-VOCAB-Mega-Match-2.html':        'Mega Match 2',
-  'Grade-6-VOCAB-Mega-Match-3.html':        'Mega Match 3',
-  'Grade-8-Mega-Match-1.html':              'Mega Match 1',
-  'Grade-8-Mega-Match-2.html':              'Mega Match 2',
-  'Grade-8-Mega-Match-3.html':              'Mega Match 3',
+// MANUAL CATALOGUE: assign each exact filename to the intended area, skill and group.
+// Add future resources here after uploading them to the repository.
+const CATALOGUE = {
+  // IELTS Reading resources visible in the current repository screenshots.
+  'IELTS READING Passage 1 Discovering Purple.html': { area:'ielts', skill:'reading', group:'passages', title:'Passage 1 · Discovering Purple', description:'IELTS Academic Reading practice' },
+  'IELTS-READING-Pirates-Passage-2.html': { area:'ielts', skill:'reading', group:'passages', title:'Passage 2 · Pirates', description:'IELTS Academic Reading practice' },
+  'Passage 1 Discovering Purple (1).html': { area:'ielts', skill:'reading', group:'passages', title:'Passage 1 · Discovering Purple (copy)', description:'Existing copy of the reading resource' },
+  'grade5_unit1_vocabulary_learning.html': { area:'grade5', skill:'vocabulary', group:'activities', title:'Grade 5 · Unit 1 Vocabulary Learning' },
+  'grade5_unit2_vocabulary_learning (1).html': { area:'grade5', skill:'vocabulary', group:'activities', title:'Grade 5 · Unit 2 Vocabulary Learning' },
+  // Existing general classroom tools. These are kept accessible in the legacy library.
+  'WRITING-tool.html': { area:'existing', group:'writing', title:'Writing Tool' },
+  'ArticleChecker.html': { area:'existing', group:'writing', title:'Article Checker' },
+  'igcse-LISTENING-Nov-31-2023fixed.html': { area:'igcse', skill:'listening', group:'mock', title:'IGCSE Listening · Nov 2023' },
+  'igcse-READING-June-11-2022fixed.html': { area:'igcse', skill:'reading', group:'mock', title:'IGCSE Reading · June 2022' },
+  'igcse-READING-June-12-2021fixed.html': { area:'igcse', skill:'reading', group:'mock', title:'IGCSE Reading · June 2021' },
+  'igcse-READING-June-12-2023fixed.html': { area:'igcse', skill:'reading', group:'mock', title:'IGCSE Reading · June 2023' },
+  'MLR-Reading-AirConditioning-Part1.html': { area:'existing', group:'multilevel', title:'MLR Reading · Air Conditioning Part 1' },
+  'Speaking_Scenario_Grade8BLUE.html': { area:'existing', group:'speaking', title:'Speaking Scenarios · Grade 8 Blue' },
+  'Speaking_Scenario_Grade8GREEN.html': { area:'existing', group:'speaking', title:'Speaking Scenarios · Grade 8 Green' },
+  'Thinking_prompts_all_grades.html': { area:'discussion', skill:'allgrades', group:'prompts', title:'Thinking Prompts · All Grades' },
+  'Thinking_prompts_grade6.html': { area:'discussion', skill:'grade6', group:'prompts', title:'Thinking Prompts · Grade 6' },
+  'Compare-game-Grade8.html': { area:'existing', group:'grade8', title:'Compare Game · Grade 8' },
+  'Compare-game-Staff.html': { area:'existing', group:'existing', title:'Compare Game · Staff' },
+  'Compare_game-Grade-6.html': { area:'existing', group:'grade6', title:'Compare Game · Grade 6' },
+  'Passive-Builder.html': { area:'existing', group:'grammar', title:'Passive Voice Builder' },
+  'Past-perfect-builder.html': { area:'existing', group:'grammar', title:'Past Perfect Builder' },
+  'Picker-Frog-Grd6.html': { area:'pickers', skill:'other', group:'resources', title:'Name Picker · Frog' },
+  'Picker-Grd6-Mech.html': { area:'pickers', skill:'other', group:'resources', title:'Name Picker · Grade 6 Mech' },
+  'Picker-Grd6.html': { area:'pickers', skill:'other', group:'resources', title:'Name Picker · Grade 6' },
+  'Picker-Grd8Blue-Horror.html': { area:'pickers', skill:'other', group:'resources', title:'Name Picker · Grade 8 Blue Horror' },
+  'Picker-Grd8Green.html': { area:'pickers', skill:'other', group:'resources', title:'Name Picker · Grade 8 Green' },
+  'Picker-Unicorn.html': { area:'pickers', skill:'other', group:'resources', title:'Name Picker · Unicorn' },
+  'Sentence-machine(2).html': { area:'existing', group:'grammar', title:'Sentence Machine' },
+  'Team-challenge-Grade-8.html': { area:'existing', group:'grade8', title:'Team Challenge · Grade 8' },
+  'Vocab-Grade-6-unit-9.html': { area:'existing', group:'grade6', title:'Vocabulary · Grade 6 Unit 9' },
+  'Vocab-Grade-8-Unit-8.html': { area:'existing', group:'grade8', title:'Vocabulary · Grade 8 Unit 8' },
+  'Vocab-Grade-8-unit_9.html': { area:'existing', group:'grade8', title:'Vocabulary · Grade 8 Unit 9' },
+  'Grade-6-VOCAB-Mega-Match-1.html': { area:'existing', group:'grade6', title:'Mega Match 1 · Grade 6' },
+  'Grade-6-VOCAB-Mega-Match-2.html': { area:'existing', group:'grade6', title:'Mega Match 2 · Grade 6' },
+  'Grade-6-VOCAB-Mega-Match-3.html': { area:'existing', group:'grade6', title:'Mega Match 3 · Grade 6' },
+  'Grade-8-Mega-Match-1.html': { area:'existing', group:'grade8', title:'Mega Match 1 · Grade 8' },
+  'Grade-8-Mega-Match-2.html': { area:'existing', group:'grade8', title:'Mega Match 2 · Grade 8' },
+  'Grade-8-Mega-Match-3.html': { area:'existing', group:'grade8', title:'Mega Match 3 · Grade 8' },
+  'jobs-showdown.html': { area:'existing', group:'discussion', title:'Jobs Showdown' },
+  'brand_names_modal_verbs_quiz.html': { area:'existing', group:'grade7', title:'Brand Names · Modal Verbs Quiz' }
 };
 
-function prettyName(filename) {
-  if (PRETTY_NAMES[filename]) return PRETTY_NAMES[filename];
-  return filename
-    .replace(/\.html$/i, '')
-    .replace(/[-_]/g, ' ')
-    .replace(/\b\w/g, c => c.toUpperCase());
-}
-
-// ── Categories: tested in order, first match wins
-const CATEGORIES = [
-  {
-    key: 'igcse',
-    label: 'IGCSE',
-    color: '#c0392b',
-    test: (f, p) => (/igcse/i.test(f) && !/writing/i.test(f)) || /^MLR-/i.test(f)
-  },
-  {
-    key: 'ielts',
-    label: 'IELTS Reading',
-    color: '#1a6b8a',
-    test: (f, p) => /ielts/i.test(f)
-  },
-  {
-    key: 'writing',
-    label: 'Writing',
-    color: '#b5560a',
-    order: ['WRITING-tool.html', 'ArticleChecker.html'],
-    test: (f, p) => ['WRITING-tool.html', 'ArticleChecker.html'].includes(f)
-  },
-  {
-    key: 'quizzes',
-    label: 'Quizzes',
-    color: '#e67e22',
-    test: (f, p) => /^quiz/i.test(f)
-  },
-  {
-    key: 'pickers',
-    label: 'Name Pickers',
-    color: '#6a1599',
-    test: (f, p) => /picker/i.test(f)
-  },
-  {
-    key: 'discussion',
-    label: 'Discussion',
-    color: '#0e7490',
-    test: (f, p) => /thinking|think/i.test(f)
-  },
-  {
-    key: 'grade6',
-    label: 'Grade 6',
-    color: '#2e7d32',
-    test: (f, p) => /grade.?6|grade-6/i.test(f) || /grade 6/i.test(p)
-  },
-  {
-    key: 'grade8',
-    label: 'Grade 8',
-    color: '#1565c0',
-    test: (f, p) => /grade.?8|grade-8/i.test(f) || /grade 8/i.test(p)
-  },
+const CORE_AREA_KEYS = ['ielts','multilevel','lower'];
+const EXTRA_AREA_KEYS = ['igcse','discussion','pickers'];
+const GRADE_AREA_KEYS = ['grade5','grade6','grade7','grade8','grade9','grade10','grade11'];
+const AREAS = {
+  ielts: {title:'IELTS Preparation', short:'IELTS', color:'#1a6b8a', icon:'📘', description:'Build each IELTS skill separately, practise individual parts and complete full mock tests.', skills:['listening','reading','writing','speaking']},
+  multilevel: {title:'Multi-Level Test', short:'Multi-Level', color:'#26733b', icon:'🎯', description:'Prepare for the four skills with focused practice and full test simulations.', skills:['listening','reading','writing','speaking']},
+  lower: {title:'Lower Secondary', short:'Lower Secondary', color:'#a65308', icon:'🎓', description:'Organise lower-secondary English resources by skill, activity and level.', skills:['listening','reading','writing','speaking']},
+  igcse: {title:'IGCSE', short:'IGCSE', color:'#c0392b', icon:'📝', description:'A dedicated IGCSE library for Listening, Reading, Writing and Speaking. More resources can be added later.', skills:['listening','reading','writing','speaking']},
+  discussion: {title:'Discussion & Critical Thinking', short:'Discussion', color:'#0e7490', icon:'💡', description:'Discussion prompts, debates, reasoning tasks and speaking activities organised by grade.', skills:['allgrades','grade5','grade6','grade7','grade8','grade9','grade10','grade11']},
+  pickers: {title:'Name Picker & Fun Games', short:'Name Picker', color:'#6b4ca5', icon:'🎲', description:'Fun random name-picking activities and classroom games: movies, games, cartoon characters, school subjects and more.', skills:['movie','game','cartoon','subjects','other']},
+  grade5: {title:'Grade 5', short:'Grade 5', color:'#2e7d32', icon:'📗', description:'A dedicated library for Grade 5: skill practice, vocabulary, grammar, discussion and classroom games.', skills:['listening','reading','writing','speaking','vocabulary','grammar','discussion','games']},
+  grade6: {title:'Grade 6', short:'Grade 6', color:'#2e7d32', icon:'📗', description:'A dedicated library for Grade 6: skill practice, vocabulary, grammar, discussion and classroom games.', skills:['listening','reading','writing','speaking','vocabulary','grammar','discussion','games']},
+  grade7: {title:'Grade 7', short:'Grade 7', color:'#28784a', icon:'📘', description:'A dedicated library for Grade 7: skill practice, vocabulary, grammar, discussion and classroom games.', skills:['listening','reading','writing','speaking','vocabulary','grammar','discussion','games']},
+  grade8: {title:'Grade 8', short:'Grade 8', color:'#1565c0', icon:'📘', description:'A dedicated library for Grade 8: skill practice, vocabulary, grammar, discussion and classroom games.', skills:['listening','reading','writing','speaking','vocabulary','grammar','discussion','games']},
+  grade9: {title:'Grade 9', short:'Grade 9', color:'#1565c0', icon:'📙', description:'A dedicated library for Grade 9: skill practice, vocabulary, grammar, discussion and classroom games.', skills:['listening','reading','writing','speaking','vocabulary','grammar','discussion','games']},
+  grade10: {title:'Grade 10', short:'Grade 10', color:'#6b4ca5', icon:'📕', description:'A dedicated library for Grade 10: skill practice, vocabulary, grammar, discussion and classroom games.', skills:['listening','reading','writing','speaking','vocabulary','grammar','discussion','games']},
+  grade11: {title:'Grade 11', short:'Grade 11', color:'#8b4513', icon:'🎓', description:'A dedicated library for Grade 11: skill practice, vocabulary, grammar, discussion and classroom games.', skills:['listening','reading','writing','speaking','vocabulary','grammar','discussion','games']}
+};
+const SKILLS = {
+  listening:{title:'Listening',icon:'🎧',color:'#247c8e',description:'Listen, practise question types and check your understanding.',items:[['part1','Part 1'],['part2','Part 2'],['part3','Part 3'],['part4','Part 4'],['mock','Full Listening Mock']]},
+  reading:{title:'Reading',icon:'📖',color:'#1a6b8a',description:'Work through individual passages or practise under full-test conditions.',items:[['passage1','Passage 1'],['passage2','Passage 2'],['passage3','Passage 3'],['mock','Full Reading Mock']]},
+  writing:{title:'Writing',icon:'✍️',color:'#b5560a',description:'Practise each writing task separately before completing a full mock.',items:[['task1','Task 1'],['task2','Task 2'],['mock','Full Writing Mock']]},
+  speaking:{title:'Speaking',icon:'🎙️',color:'#6b4ca5',description:'Practise individual speaking parts or complete a full speaking mock.',items:[['part1','Part 1'],['part2','Part 2'],['part3','Part 3'],['mock','Full Speaking Mock']]},
+  vocabulary:{title:'Vocabulary',icon:'🔤',color:'#2e7d32',description:'Vocabulary practice, matching activities, quizzes and unit review.',items:[['activities','Vocabulary Activities'],['quizzes','Vocabulary Quizzes'],['revision','Revision & Review']]},
+  grammar:{title:'Grammar',icon:'🧩',color:'#a65308',description:'Grammar practice, interactive builders and quizzes.',items:[['activities','Grammar Activities'],['quizzes','Grammar Quizzes'],['revision','Revision & Review']]},
+  discussion:{title:'Discussion',icon:'💬',color:'#0e7490',description:'Speaking prompts, pair discussions, debates and critical-thinking tasks.',items:[['prompts','Discussion Prompts'],['debates','Debates & Opinions'],['activities','Speaking Activities'],['projects','Projects & Critical Thinking']]},
+  games:{title:'Classroom Games',icon:'🎮',color:'#6b4ca5',description:'Interactive games and fun activities for classroom use.',items:[['games','Games & Challenges'],['team','Team Challenges'],['revision','Revision Games']]},
+  allgrades:{title:'All Grades',icon:'💡',color:'#0e7490',description:'Discussion and critical-thinking resources suitable for multiple grades.',items:[['prompts','Discussion Prompts'],['debates','Debates & Opinions'],['activities','Speaking Activities']]},
+  grade5:{title:'Grade 5 Discussion',icon:'📗',color:'#2e7d32',description:'Discussion prompts and thinking activities for Grade 5.',items:[['prompts','Discussion Prompts'],['debates','Debates & Opinions'],['activities','Speaking Activities']]},
+  grade6:{title:'Grade 6 Discussion',icon:'📗',color:'#2e7d32',description:'Discussion prompts and thinking activities for Grade 6.',items:[['prompts','Discussion Prompts'],['debates','Debates & Opinions'],['activities','Speaking Activities']]},
+  grade7:{title:'Grade 7 Discussion',icon:'📘',color:'#28784a',description:'Discussion prompts and thinking activities for Grade 7.',items:[['prompts','Discussion Prompts'],['debates','Debates & Opinions'],['activities','Speaking Activities']]},
+  grade8:{title:'Grade 8 Discussion',icon:'📘',color:'#1565c0',description:'Discussion prompts and thinking activities for Grade 8.',items:[['prompts','Discussion Prompts'],['debates','Debates & Opinions'],['activities','Speaking Activities']]},
+  grade9:{title:'Grade 9 Discussion',icon:'📙',color:'#1565c0',description:'Discussion prompts and thinking activities for Grade 9.',items:[['prompts','Discussion Prompts'],['debates','Debates & Opinions'],['activities','Speaking Activities']]},
+  grade10:{title:'Grade 10 Discussion',icon:'📕',color:'#6b4ca5',description:'Discussion prompts and thinking activities for Grade 10.',items:[['prompts','Discussion Prompts'],['debates','Debates & Opinions'],['activities','Speaking Activities']]},
+  grade11:{title:'Grade 11 Discussion',icon:'🎓',color:'#8b4513',description:'Discussion prompts and thinking activities for Grade 11.',items:[['prompts','Discussion Prompts'],['debates','Debates & Opinions'],['activities','Speaking Activities']]},
+  movie:{title:'Movie Name Picker',icon:'🎬',color:'#6b4ca5',description:'Randomly pick student names for movie-themed classroom activities.',items:[['resources','Movie Picker Activities']]},
+  game:{title:'Game Name Picker',icon:'🎮',color:'#6b4ca5',description:'Random name-picking activities for classroom games.',items:[['resources','Game Picker Activities']]},
+  cartoon:{title:'Cartoon Character Picker',icon:'🐱',color:'#6b4ca5',description:'Fun cartoon-character themed name-picking activities.',items:[['resources','Cartoon Character Activities']]},
+  subjects:{title:'School Subjects Picker',icon:'📚',color:'#6b4ca5',description:'Pick student names for subject-themed activities and challenges.',items:[['resources','School Subject Activities']]},
+  other:{title:'Other Name Pickers',icon:'🎲',color:'#6b4ca5',description:'Existing name pickers and other random-selection tools.',items:[['resources','Other Name Pickers']]}
+};
+const GRADE_SKILL_ITEMS = {
+  listening:[['activities','Listening Activities'],['assessments','Listening Assessments']],
+  reading:[['texts','Reading Texts & Comprehension'],['activities','Reading Activities'],['assessments','Reading Assessments']],
+  writing:[['activities','Writing Tasks & Activities'],['assessments','Writing Assessments']],
+  speaking:[['activities','Speaking Activities'],['presentations','Presentations & Talks']],
+  vocabulary:[['activities','Vocabulary Activities'],['quizzes','Vocabulary Quizzes'],['revision','Revision & Review']],
+  grammar:[['activities','Grammar Activities'],['quizzes','Grammar Quizzes'],['revision','Revision & Review']],
+  discussion:[['prompts','Discussion Prompts'],['debates','Debates & Opinions'],['activities','Critical-Thinking Activities']],
+  games:[['games','Classroom Games'],['team','Team Challenges'],['revision','Revision Games']]
+};
+const EXISTING_GROUPS = [
+  ['multilevel','Multi-Level / MLR','🎯'],['writing','Writing Tools','✍️'],['speaking','Speaking','🎙️'],['grammar','Grammar Tools','🔤'],['grade7','Grade 7','🎓'],['grade6','Grade 6','📗'],['grade8','Grade 8','📘'],['existing','Other Classroom Tools','🧰']
 ];
-const FALLBACK = { key: 'general', label: 'General', color: '#7a6a5a' };
+let allFiles=[];
+let currentRoute={area:'home'};
+let searchTerm='';
 
-function classify(filename) {
-  const p = prettyName(filename);
-  for (const cat of CATEGORIES) {
-    if (cat.test(filename, p)) return cat;
-  }
-  return FALLBACK;
+function prettyName(filename){
+  const explicit=CATALOGUE[filename];
+  if(explicit?.title)return explicit.title;
+  return filename.replace(/\.html?$/i,'').replace(/[-_]/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
 }
-
-let allFiles = [];
-
-async function loadFiles() {
-  const url = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/?ref=${GITHUB_BRANCH}`;
-  try {
-    const res = await fetch(url, { headers: { 'Accept': 'application/vnd.github.v3+json' } });
-    if (!res.ok) throw new Error(`GitHub API ${res.status}`);
-    const data = await res.json();
-
-    allFiles = data
-      .filter(f => f.type === 'file' && f.name.toLowerCase().endsWith('.html') && f.name.toLowerCase() !== 'index.html')
-      .map(f => ({ name: f.name, url: `https://${GITHUB_USER}.github.io/${GITHUB_REPO}/${f.name}` }));
-
-    document.getElementById('file-count').innerHTML =
-      `<strong>${allFiles.length}</strong> tool${allFiles.length !== 1 ? 's' : ''} available`;
-    document.getElementById('last-updated').textContent =
-      new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
-
-    renderSections(allFiles);
-  } catch (err) {
-    document.getElementById('sections').innerHTML = `
-      <div class="state-msg">
-        <div class="big">⚠️</div>
-        <p>Couldn't load files from GitHub.<br>
-        Check the repo is public and the branch is <code>${GITHUB_BRANCH}</code>.<br><br>
-        Error: ${err.message}</p>
-      </div>`;
-    document.getElementById('file-count').textContent = 'Could not load';
-  }
+function safeText(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function routeFromHash(){
+  const parts=location.hash.replace(/^#\/?/,'').split('/').filter(Boolean);
+  if(!parts.length)return {area:'home'};
+  if(parts[0]==='existing')return {area:'existing'};
+  if(AREAS[parts[0]])return {area:parts[0],skill:parts[1]||null,group:parts[2]||null};
+  return {area:'home'};
 }
-
-function renderSections(files) {
-  const container = document.getElementById('sections');
-
-  if (!files.length) {
-    container.innerHTML = `<div class="state-msg"><div class="big">🔍</div><p>No tools match your search.</p></div>`;
-    return;
-  }
-
-  const RENDER_ORDER = ['igcse', 'ielts', 'writing', 'discussion', 'grade6', 'grade8', 'quizzes', FALLBACK.key, 'pickers'];
-  const groups = new Map();
-  RENDER_ORDER.forEach(key => {
-    const cat = CATEGORIES.find(c => c.key === key) || FALLBACK;
-    groups.set(key, { cat, files: [] });
-  });
-
-  files.forEach(f => {
-    const cat = classify(f.name);
-    groups.get(cat.key).files.push(f);
-  });
-
-  // Sort within each group
-  for (const { cat, files: catFiles } of groups.values()) {
-    if (cat.order) {
-      catFiles.sort((a, b) => {
-        const ai = cat.order.indexOf(a.name);
-        const bi = cat.order.indexOf(b.name);
-        const an = ai === -1 ? 999 : ai;
-        const bn = bi === -1 ? 999 : bi;
-        return an - bn;
-      });
-    } else if (document.getElementById('sort').value === 'alpha') {
-      catFiles.sort((a, b) => prettyName(a.name).localeCompare(prettyName(b.name)));
-    }
-  }
-
-  let html = '';
-  let delay = 0;
-  for (const { cat, files: catFiles } of groups.values()) {
-    if (!catFiles.length) continue;
-    html += `
-      <div class="section">
-        <div class="section-header">
-          <div class="section-pip" style="background:${cat.color}"></div>
-          <div class="section-title">${cat.label}</div>
-          <div class="section-line"></div>
-          <div class="section-count">${catFiles.length}</div>
-        </div>
-        <div class="grid">
-          ${catFiles.map(f => `
-            <a class="card" href="${f.url}" target="_blank" rel="noopener"
-               style="--cat-color:${cat.color}; animation-delay:${delay++ * 35}ms">
-              <div class="card-title">${prettyName(f.name)}</div>
-            </a>`).join('')}
-        </div>
-      </div>`;
-  }
-
-  container.innerHTML = html;
+function go(route){location.hash='/'+route.filter(Boolean).join('/');}
+function fileUrl(file){return `https://${GITHUB_USER}.github.io/${GITHUB_REPO}/${encodeURIComponent(file.name).replace(/%2F/gi,'/')}`;}
+function isVisible(file){const text=(prettyName(file.name)+' '+file.name).toLowerCase();return !searchTerm||text.includes(searchTerm);}
+function card({title,description='',icon='📄',color='#d4a017',href,kind='card'}){
+ return `<a class="${kind}" href="${href}" style="--accent:${color}" data-route="${href.startsWith('#')?'yes':'no'}"><div><div class="icon">${icon}</div><h3>${safeText(title)}</h3>${description?`<p>${safeText(description)}</p>`:''}</div><span class="arrow">${href.startsWith('#')?'Explore →':'Open resource ↗'}</span></a>`;
 }
-
-function filtered() {
-  const q = document.getElementById('search').value.toLowerCase().trim();
-  return allFiles.filter(f =>
-    !q || f.name.toLowerCase().includes(q) || prettyName(f.name).toLowerCase().includes(q)
-  );
+function section(title,color,content,count=''){
+ return `<section class="section"><div class="section-header"><span class="pip" style="background:${color}"></span><h2 class="section-title">${safeText(title)}</h2><span class="section-line"></span>${count!==''?`<span class="count">${count}</span>`:''}</div>${content}</section>`;
 }
-
-document.getElementById('search').addEventListener('input', () => renderSections(filtered()));
-document.getElementById('sort').addEventListener('change', () => renderSections(filtered()));
-
+function resourceCards(files){
+ if(!files.length)return '<div class="empty">No resources have been assigned here yet. Upload an HTML activity, then add its exact filename to the manual catalogue in <code>index.html</code>.</div>';
+ return `<div class="resource-list">${files.map(f=>{const meta=CATALOGUE[f.name]||{};return `<a class="resource" href="${fileUrl(f)}" target="_blank" rel="noopener" data-file="${safeText(f.name)}"><span class="file-icon">📄</span><span style="min-width:0;flex:1"><span class="resource-name">${safeText(meta.title||prettyName(f.name))}</span><span class="resource-note">${safeText(meta.description||f.name)}</span></span><span class="out">↗</span></a>`;}).join('')}</div>`;
+}
+function filesFor(area,skill,group){
+ return allFiles.filter(f=>{const m=CATALOGUE[f.name];return m&&m.area===area&&m.skill===skill&&(!group||m.group===group)&&isVisible(f);});
+}
+function renderHome(){
+ const makeCards=(keys)=>keys.map(key=>{const a=AREAS[key];return card({title:a.title,description:a.description,icon:a.icon,color:a.color,href:`#/${key}`,kind:'card main-card'}).replace('class="card main-card"','class="card main-card"');}).join('');
+ const matching=allFiles.filter(isVisible);
+ const uncatalogued=matching.filter(f=>!CATALOGUE[f.name]);
+ const existingCount=matching.filter(f=>(CATALOGUE[f.name]||{}).area==='existing').length+uncatalogued.length;
+ return `<div class="page-heading"><h2>Choose your learning area</h2></div><p class="page-description">Choose an exam-preparation area, a grade-level library, discussion activities or a fun name picker. Each section is ready for you to add resources over time.</p>`+
+ section('Exam & Skills Preparation','#1a6b8a',`<div class="grid">${makeCards(CORE_AREA_KEYS)}</div>`)+
+ section('Specialist Sections','#6b4ca5',`<div class="grid">${makeCards(EXTRA_AREA_KEYS)}</div>`)+
+ section('Grade-Level Resources','#2e7d32',`<div class="grid">${makeCards(GRADE_AREA_KEYS)}</div>`)+
+ section('Existing Classroom Tools','#7a6a5a',`<div class="grid">${card({title:'Browse all existing tools',description:`${existingCount} resources currently available`,icon:'🧰',color:'#7a6a5a',href:'#/existing',kind:'card main-card'})}</div>`,existingCount);
+}
+function renderArea(areaKey){
+ const a=AREAS[areaKey];
+ const skillCards=a.skills.map(sk=>{const s=SKILLS[sk];const n=allFiles.filter(f=>{const m=CATALOGUE[f.name];return m&&m.area===areaKey&&m.skill===sk;}).length;return card({title:s.title,description:s.description+(n?` ${n} assigned resource${n===1?'':'s'}.`:''),icon:s.icon,color:s.color,href:`#/${areaKey}/${sk}`,kind:'card skill'});}).join('');
+ return `<div class="crumbs"><a href="#/">Main menu</a> / ${safeText(a.title)}</div><div class="page-heading"><h2>${a.icon} ${safeText(a.title)}</h2></div><p class="page-description">${safeText(a.description)} Select a skill to see its practice sections.</p><div class="grid skills">${skillCards}</div>`;
+}
+function renderSkill(areaKey,skillKey,groupKey){
+ const a=AREAS[areaKey],s=SKILLS[skillKey];if(!a||!s)return renderHome();
+ const base=`<div class="crumbs"><a href="#/">Main menu</a> / <a href="#/${areaKey}">${safeText(a.title)}</a> / ${safeText(s.title)}</div><div class="page-heading"><h2>${s.icon} ${safeText(s.title)}</h2></div><p class="page-description">${safeText(s.description)}</p>`;
+ if(groupKey){
+   const itemList=(areaKey.startsWith('grade')&&GRADE_SKILL_ITEMS[skillKey])?GRADE_SKILL_ITEMS[skillKey]:s.items;
+   const groupLabel=(itemList.find(x=>x[0]===groupKey)||[groupKey,groupKey])[1];
+   const items=filesFor(areaKey,skillKey,groupKey);
+   return base+`<div class="page-heading"><h2 style="font-size:22px">${safeText(groupLabel)}</h2></div>${resourceCards(items)}`;
+ }
+ const items=(areaKey.startsWith('grade')&&GRADE_SKILL_ITEMS[skillKey])?GRADE_SKILL_ITEMS[skillKey]:s.items;
+ const groups=items.map(([key,label])=>{
+   const files=filesFor(areaKey,skillKey,key);
+   // Keep requested categories visible even before a file is uploaded.
+   return card({title:label,description:files.length?`${files.length} resource${files.length===1?'':'s'} available`:'Ready for resources to be added',icon:key==='mock'?'🧪':s.icon,color:s.color,href:`#/${areaKey}/${skillKey}/${key}`,kind:'card skill'});
+ }).join('');
+ const directlyAssigned=allFiles.filter(f=>{const m=CATALOGUE[f.name];return m&&m.area===areaKey&&m.skill===skillKey&&isVisible(f);});
+ let html=base+`<div class="grid skills">${groups}</div>`;
+ if(directlyAssigned.length){html+=section('All assigned '+s.title+' resources',s.color,resourceCards(directlyAssigned),directlyAssigned.length);}
+ if(areaKey==='ielts'&&skillKey==='reading'){
+   const legacy=allFiles.filter(f=>/ielts/i.test(f.name)&&!CATALOGUE[f.name]&&isVisible(f));
+   if(legacy.length)html+=section('Other existing IELTS files',s.color,resourceCards(legacy),legacy.length);
+ }
+ return html;
+}
+function renderExisting(){
+ const known=allFiles.filter(f=>(CATALOGUE[f.name]||{}).area==='existing'&&isVisible(f));
+ const unknown=allFiles.filter(f=>!CATALOGUE[f.name]&&isVisible(f));
+ let html=`<div class="crumbs"><a href="#/">Main menu</a> / Existing Classroom Tools</div><div class="page-heading"><h2>Existing Classroom Tools</h2></div><p class="page-description">This library keeps your current resources available while you gradually assign them to the new catalogue. Nothing is removed by this redesign.</p>`;
+ EXISTING_GROUPS.forEach(([key,label,icon])=>{
+   const groupFiles=known.filter(f=>(CATALOGUE[f.name]||{}).group===key);
+   if(groupFiles.length)html+=section(label,'#7a6a5a',resourceCards(groupFiles),groupFiles.length);
+ });
+ if(unknown.length)html+=section('Not yet assigned','#d4a017',resourceCards(unknown),unknown.length);
+ if(!known.length&&!unknown.length)html+='<div class="empty">No resources match your search.</div>';
+ return html;
+}
+function render(){
+ currentRoute=routeFromHash();
+ const app=document.getElementById('app');
+ document.getElementById('fallback-note').classList.toggle('hidden',currentRoute.area!=='home'&&currentRoute.area!=='existing');
+ let html;
+ if(currentRoute.area==='home')html=renderHome();
+ else if(currentRoute.area==='existing')html=renderExisting();
+ else if(!currentRoute.skill)html=renderArea(currentRoute.area);
+ else html=renderSkill(currentRoute.area,currentRoute.skill,currentRoute.group);
+ app.innerHTML=html;
+ document.getElementById('home-button').textContent=currentRoute.area==='home'?'⌂ Main menu':'← Main menu';
+ document.getElementById('site-title').textContent=currentRoute.area==='home'?'Classroom Tools':currentRoute.area==='existing'?'Existing Classroom Tools':AREAS[currentRoute.area]?.title||'Classroom Tools';
+ document.getElementById('site-subtitle').textContent=currentRoute.area==='home'?'English learning resources for IELTS, IGCSE, Multi-Level, Lower Secondary, grade-level lessons and classroom games.':'Classroom106 · Interactive learning resources';
+}
+async function loadFiles(){
+ try{
+   const url=`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/?ref=${GITHUB_BRANCH}`;
+   const res=await fetch(url,{headers:{Accept:'application/vnd.github.v3+json'}});
+   if(!res.ok)throw new Error(`GitHub API returned ${res.status}`);
+   const data=await res.json();
+   allFiles=data.filter(f=>f.type==='file'&&/\.html?$/i.test(f.name)&&!/^index\.html$/i.test(f.name)).map(f=>({name:f.name}));
+   document.getElementById('file-count').innerHTML=`<strong>${allFiles.length}</strong> HTML resources available`;
+   document.getElementById('last-updated').textContent=new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
+   render();
+ }catch(err){
+   document.getElementById('file-count').textContent='Could not load resources';
+   document.getElementById('app').innerHTML=`<div class="empty">We couldn't load the file list from GitHub. Check that the repository <strong>${GITHUB_USER}/${GITHUB_REPO}</strong> is public and that the branch is <strong>${GITHUB_BRANCH}</strong>.<br><br>${safeText(err.message)}<br><br>The navigation is ready, but resources need the GitHub file list to load.</div>`;
+ }
+}
+document.getElementById('search').addEventListener('input',e=>{searchTerm=e.target.value.toLowerCase().trim();render();});
+document.getElementById('home-button').addEventListener('click',()=>go([]));
+window.addEventListener('hashchange',render);
+document.addEventListener('click',e=>{
+ const link=e.target.closest('a[data-file]');if(!link)return;
+ const file=link.getAttribute('data-file');
+ if(!file)return;
+ try{const img=new Image();img.src=ANALYTICS_URL+'?tool='+encodeURIComponent(file)+'&page=school';}catch(_){/* Analytics must never block opening a resource. */}
+});
 loadFiles();
-</script>
- <script>
-// ── ANALYTICS: log tool clicks to Google Sheet ──
-(function() {
-  const ANALYTICS_URL = 'https://script.google.com/macros/s/AKfycby7JSgsyzPkg6B8F9czaUS6DfOzOVJzC-OGZc3EuvXSN_0jxEmsYvJfR7XpewCxl0SISA/exec';
-  document.addEventListener('click', function(e) {
-    // Find the closest link that was clicked
-    var link = e.target.closest('a[href]');
-    if (!link) return;
-
-    var href = link.getAttribute('href');
-
-    // Only track clicks to .html files (your tools)
-    if (!href || !href.toLowerCase().endsWith('.html')) return;
-
-    // Extract just the filename
-    var toolName = href.split('/').pop();
-
-    // Send the log (fire-and-forget, doesn't slow anything down)
-    var img = new Image();
-    img.src = ANALYTICS_URL
-      + '?tool=' + encodeURIComponent(toolName)
-      + '&page=school';
-  });
-})();
 </script>
 </body>
 </html>
