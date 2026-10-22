@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THINK A2 Workbook 1 — Unit 2: Money and How to Spend It</title>
+<style>
+:root{--ink:#19243b;--muted:#66728a;--paper:#f6f8fc;--card:#fff;--line:#dce3ef;--blue:#3156c9;--blue2:#eaf0ff;--green:#16825d;--red:#c23d4b;--gold:#9a6900}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+header{background:linear-gradient(120deg,#17284e,#3156c9);color:white;padding:28px 18px 24px}header .wrap,main{max-width:1050px;margin:auto}
+.eyebrow{text-transform:uppercase;letter-spacing:.13em;font-size:.78rem;font-weight:800;opacity:.85}
+h1{margin:.35rem 0;font-size:clamp(1.7rem,4vw,2.5rem);line-height:1.15}header p{margin:.6rem 0 0;max-width:760px;color:#e8edff}
+main{padding:20px 16px 55px}.toprow{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:18px}
+.timerbox,.progressbox{background:white;border:1px solid var(--line);border-radius:14px;padding:12px 16px;box-shadow:0 3px 12px #152b5510}
+.timerbox strong{font-size:1.35rem;font-variant-numeric:tabular-nums}.timerbox button{margin-left:8px}
+.progress{height:8px;background:#e8edf6;border-radius:99px;overflow:hidden;margin-top:7px;min-width:180px}.progress span{display:block;height:100%;width:0;background:var(--blue);transition:width .2s}
+nav{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 20px}nav button{border:1px solid var(--line);background:#fff;color:var(--ink);padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700}nav button.active{background:var(--blue);border-color:var(--blue);color:white}
+section.panel{display:none;background:white;border:1px solid var(--line);border-radius:18px;padding:clamp(16px,3vw,28px);box-shadow:0 6px 20px #152b5509}section.panel.active{display:block}
+h2{margin:0 0 6px;font-size:1.5rem}h3{margin:0 0 8px} .sub{color:var(--muted);margin:0 0 20px}
+.grid{display:block}
+.flash{width:100%;max-width:680px;min-height:300px;margin:0 auto;border:1px solid var(--line);border-radius:18px;padding:clamp(20px,5vw,36px);display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(150deg,#fff,#f8faff);box-shadow:0 8px 24px #152b5510}
+.flash-front{min-height:190px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.flash-front .word{font-size:clamp(1.6rem,5vw,2.25rem);margin:18px 0}
+.flash-back{margin-top:20px;padding:16px;background:#f2f6ff;border:1px solid #dce6ff;border-radius:12px}
+.card-controls{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;max-width:680px;margin:14px auto 0}
+.card-counter{font-weight:800;color:var(--muted);font-variant-numeric:tabular-nums}
+.card-progress{height:7px;background:#e8edf6;border-radius:99px;overflow:hidden;max-width:680px;margin:12px auto}
+.card-progress span{display:block;height:100%;width:0;background:var(--blue);transition:width .2s}
+.flash .tag{align-self:center}
+.flash .example{border-top:1px dashed #cdd8ee}
+.tag{font-size:.75rem;font-weight:800;color:var(--blue);text-transform:uppercase;letter-spacing:.07em}.word{font-size:1.3rem;font-weight:850;margin:6px 0}.definition{color:#34425d}.example{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);font-size:.94rem;color:#53617b}.example b{color:var(--ink)}
+button,.btn{font:inherit}button{cursor:pointer}.primary,.secondary{border:0;border-radius:10px;padding:10px 15px;font-weight:750}.primary{background:var(--blue);color:white}.secondary{background:var(--blue2);color:var(--blue)}button:disabled{opacity:.5;cursor:not-allowed}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.question{border:1px solid var(--line);border-radius:13px;padding:15px;margin:12px 0}.question p{margin:0 0 10px;font-weight:700}.options{display:grid;gap:8px}.options label{display:flex;gap:9px;align-items:flex-start;border:1px solid #e5eaf3;padding:9px 11px;border-radius:9px;cursor:pointer}.options label:hover{background:#f7f9ff}.options input{margin-top:5px;accent-color:var(--blue)}
+.feedback{margin-top:9px;font-size:.94rem;font-weight:650}.good{color:var(--green)}.bad{color:var(--red)}.neutral{color:var(--muted)}
+textarea,input[type=text]{width:100%;padding:11px 12px;border:1px solid #cbd5e5;border-radius:9px;font:inherit;color:var(--ink);background:white}textarea{min-height:70px;resize:vertical}.sentence{border:1px solid var(--line);padding:15px;border-radius:13px;margin:12px 0}.sentence .prompt{font-weight:750;margin-bottom:8px}.small{font-size:.88rem;color:var(--muted)}.result{display:none;margin-top:18px;padding:16px;border-radius:12px;background:#f0f5ff;border:1px solid #d4e0ff}.result.show{display:block}.scoreline{font-size:1.2rem;font-weight:850}.reviewitem{padding:10px 0;border-bottom:1px solid #dce5f7}.pill{display:inline-block;border-radius:99px;padding:3px 9px;font-size:.78rem;font-weight:800;background:#eef2fa;color:#4b5a75}.notice{background:#fff8e7;border:1px solid #f1dfae;border-radius:12px;padding:12px 14px;color:#6f5100;margin:14px 0}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:20px}
+@media(max-width:560px){.timerbox,.progressbox{width:100%}.progress{min-width:0}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<div class="eyebrow">Cambridge THINK Workbook 1 · A2</div>
+<h1>Unit 2: Money and How to Spend It</h1>
+<p>Learn the vocabulary first, test what you remember, write five sentences, and revise the unit grammar. Your work is checked at the end with scores and practical advice.</p>
+</div></header>
+<main>
+<div class="toprow">
+  <div class="timerbox"><span class="small">Suggested time</span><br><strong id="clock">25:00</strong> <button class="secondary" id="timerBtn" type="button">Start timer</button></div>
+  <div class="progressbox"><strong id="progressText">0 of 4 sections completed</strong><div class="progress"><span id="progressBar"></span></div><span class="small">Your answers stay in this browser tab until you leave or refresh.</span></div>
+</div>
+<nav aria-label="Activity sections">
+<button class="active" data-tab="learn">1. Learn vocabulary</button>
+<button data-tab="vocab">2. Vocabulary quiz</button>
+<button data-tab="writing">3. Write sentences</button>
+<button data-tab="grammar">4. Grammar review</button>
+<button data-tab="finish">5. Results & advice</button>
+</nav>
+
+<section class="panel active" id="learn">
+<h2>1. Vocabulary cards</h2><p class="sub">Read the meaning and example. These cards are based on the Unit 2 “Money and How to Spend It” vocabulary pages in your THINK Workbook.</p>
+<div class="grid" id="cards"></div>
+<div class="card-progress" aria-label="Vocabulary card progress"><span id="cardProgressBar"></span></div>
+<div class="card-controls">
+  <button class="secondary" id="prevCard" type="button">← Previous</button>
+  <span class="card-counter" id="cardCounter" aria-live="polite">Card 1 of 28</span>
+  <button class="secondary" id="revealCard" type="button">Show definition &amp; example</button>
+  <button class="primary" id="nextCard" type="button">Next card →</button>
+</div>
+<p class="small" style="text-align:center;margin-top:12px">You can move backwards and forwards through every card. The last card is not the end of the activity until you choose to continue.</p>
+<div class="actions"><button class="primary" id="learnDone">I've studied these — continue</button></div>
+</section>
+
+<section class="panel" id="vocab">
+<h2>2. Vocabulary quiz</h2><p class="sub">Choose the best answer for each question. Read the whole sentence before choosing.</p>
+<div id="vocabQuestions"></div>
+<div class="actions"><button class="primary" id="checkVocab">Check vocabulary answers</button><button class="secondary" id="resetVocab">Try again</button></div>
+<div id="vocabResult" class="result" aria-live="polite"></div>
+</section>
+
+<section class="panel" id="writing">
+<h2>3. Write five sentences</h2><p class="sub">Write your own complete sentences. Use the grammar in brackets. Try to use Unit 1 vocabulary too.</p>
+<div class="notice">Your sentences are checked automatically for common grammar patterns and useful vocabulary. This is a classroom practice checker, not a full AI or teacher assessment, so it may miss some errors or flag a sentence that is actually acceptable.</div>
+<div id="writingPrompts"></div>
+<div class="actions"><button class="primary" id="checkWriting">Check my sentences</button><button class="secondary" id="clearWriting">Clear answers</button></div>
+<div id="writingResult" class="result" aria-live="polite"></div>
+</section>
+
+<section class="panel" id="grammar">
+<h2>4. Grammar review</h2><p class="sub">Review Unit 2: present continuous, present simple vs. present continuous, verbs of perception, and buying things in a shop.</p>
+<div id="grammarQuestions"></div>
+<div class="actions"><button class="primary" id="checkGrammar">Check grammar answers</button><button class="secondary" id="resetGrammar">Try again</button></div>
+<div id="grammarResult" class="result" aria-live="polite"></div>
+</section>
+
+<section class="panel" id="finish">
+<h2>5. Results & advice</h2><p class="sub">Finish the vocabulary quiz, sentence writing and grammar review, then check this page for your summary.</p>
+<div id="finalSummary"><p class="neutral">Your results will appear here after you check your activities.</p></div>
+<div class="actions"><button class="primary" id="finishBtn">Show my final report</button><button class="secondary" id="printBtn">Print / save as PDF</button></div>
+</section>
+</main>
+<footer>THINK A2 Workbook 1 · Unit 2: Money and How to Spend It · Independent practice</footer>
+
+<script>
+const vocab = [
+["shop","a place where you can buy something","I bought a notebook at the bookshop."],
+["bookshop","a shop that sells books","Let's go to the bookshop to buy a dictionary."],
+["clothes shop","a shop that sells clothes","She found a jacket in the clothes shop."],
+["sports shop","a shop that sells sports equipment and clothes","He bought football boots at the sports shop."],
+["supermarket","a large shop that sells food and many everyday things","We get milk and fruit at the supermarket."],
+["department store","a large shop divided into sections selling different kinds of things","You can buy clothes and household items in a department store."],
+["market","a place where people buy and sell goods, often from stalls","We bought fresh fruit at the market."],
+["price","the amount of money something costs","The price of this T-shirt is £12."],
+["cheap","costing little money","This pen is cheap, so I'll buy two."],
+["expensive","costing a lot of money","That laptop is too expensive for me."],
+["try on","put on clothes to see if they fit or look good","Can I try on this jacket, please?"],
+["fit","be the right size or shape for someone","These shoes don't fit me."],
+["suit","look good on someone","That blue shirt suits you."],
+["buy","get something by paying money for it","I want to buy a new school bag."],
+["spend money","use money to pay for things","I try not to spend all my pocket money."],
+["save money","keep money instead of spending it","She's saving money for a bicycle."],
+["afford","have enough money to pay for something","I can't afford that expensive phone."],
+["cash","money in coins or notes","Can I pay in cash?"],
+["credit card","a bank card used to pay for things using credit","Dad paid for the shoes with a credit card."],
+["receipt","a piece of paper showing what you bought and paid","Keep the receipt in case you need to return it."],
+["size","how big or small something is, especially clothes","Do you have this T-shirt in a smaller size?"],
+["fashionable","popular or in the current style","Those trainers are fashionable this year."],
+["comfortable","making you feel physically relaxed","These shoes are comfortable for walking."],
+["look for","try to find something","I'm looking for a warm coat."],
+["pay for","give money in exchange for something","I'll pay for the sandwiches."],
+["How much is it?","a question asking about the price of one thing","Excuse me, how much is this notebook?"],
+["How much are they?","a question asking about the price of plural items","How much are these trainers?"],
+["I'll take it.","a phrase used to say you decide to buy something","The jacket fits perfectly. I'll take it."]
+];
+const vq = [
+{q:"Which shop usually sells books?",o:["bookshop","sports shop","clothes shop"],a:0,why:"A bookshop sells books."},
+{q:"A thing costs a lot of money. It is ___.",o:["cheap","expensive","comfortable"],a:1,why:"Expensive means costing a lot of money."},
+{q:"What does ‘try on’ mean?",o:["pay for something","put on clothes to see if they fit","look for a shop"],a:1,why:"You try on clothes before deciding whether to buy them."},
+{q:"Which word means ‘have enough money to pay for something’?",o:["afford","suit","save"],a:0,why:"If you can afford something, you have enough money for it."},
+{q:"You buy something and the shop gives you a paper showing what you paid. It is a ___.",o:["size","receipt","price"],a:1,why:"A receipt shows what you bought and paid."},
+{q:"Choose the correct question about one item.",o:["How much is it?","How much are it?","How many is it?"],a:0,why:"Use ‘How much is it?’ for one item."},
+{q:"Choose the correct question about shoes.",o:["How much is they?","How much are they?","How many are they cost?"],a:1,why:"Shoes are plural, so ask ‘How much are they?’"},
+{q:"Which phrase means ‘keep money instead of spending it’?",o:["spend money","pay for","save money"],a:2,why:"Saving money means keeping it for later."},
+{q:"The trainers are the right size for me. They ___.",o:["fit me","afford me","receipt me"],a:0,why:"Clothes or shoes fit you when they are the right size."},
+{q:"The colour and style look good on you. It ___ you.",o:["fits","suits","costs"],a:1,why:"We say a colour or style suits someone."},
+{q:"Where would you most likely buy football boots?",o:["sports shop","bookshop","supermarket"],a:0,why:"A sports shop sells sports equipment and clothing."},
+{q:"A customer decides to buy an item and says:",o:["I'll take it.","I'll save it.","I'll fit it."],a:0,why:"‘I'll take it’ is a natural way to say you want to buy it."}
+];
+const gq = [
+{q:"Look! She ___ a new jacket.",o:["tries on","is trying on","try on"],a:1,why:"Use the present continuous for an action happening now: is + verb-ing."},
+{q:"We ___ for a new school bag at the moment.",o:["look","are looking","looks"],a:1,why:"‘At the moment’ often signals the present continuous."},
+{q:"My brother usually ___ his clothes online.",o:["buys","is buying","buying"],a:0,why:"Use the present simple for routines and habits."},
+{q:"I ___ this jumper. It feels very soft.",o:["am liking","like","likes"],a:1,why:"Like is a verb of perception/state that is not normally used in the continuous form here."},
+{q:"Listen! The shop assistant ___ to a customer.",o:["talks","is talking","talk"],a:1,why:"Use present continuous for an action happening now."},
+{q:"Choose the correct sentence.",o:["I wear my new coat today because it is cold.","I'm wearing my new coat today because it is cold.","I wearing my new coat today because it is cold."],a:1,why:"A temporary action or situation around now can use the present continuous."},
+{q:"These shoes ___ comfortable.",o:["are feeling","feel","feels"],a:1,why:"Feel is a verb of perception and is usually used in the present simple to describe a sensation."},
+{q:"At weekends, my parents ___ at the local market.",o:["are shopping","shop","shops"],a:1,why:"Use the present simple for a repeated routine."},
+{q:"Why ___ you ___ that expensive jacket? You don't need it.",o:["do / buy","are / buying","are / buy"],a:1,why:"Use am/is/are + verb-ing for an action happening now."},
+{q:"This soup ___ delicious.",o:["is tasting","tastes","taste"],a:1,why:"Taste is a perception verb when describing flavour, so use the present simple."},
+{q:"Which sentence describes a habit?",o:["I'm buying a shirt right now.","She is trying on a coat.","He usually saves part of his pocket money."],a:2,why:"‘Usually saves’ describes a repeated habit."},
+{q:"Choose the correct negative present continuous form.",o:["They aren't paying by card.","They don't paying by card.","They not are paying by card."],a:0,why:"Negative present continuous: am/is/are + not + verb-ing."},
+{q:"The shop assistant ___ the price at the moment.",o:["checks","is checking","check"],a:1,why:"‘At the moment’ describes something happening now."},
+{q:"Choose the correct present simple question about a routine.",o:["Does she often shop online?","Is she often shop online?","Does she often shops online?"],a:0,why:"Use Does + subject + base verb in present-simple questions."}
+];
+const prompts = [
+{label:"Present continuous — describe what someone is doing in a shop right now.",hint:"Use am/is/are + verb-ing.",checks:["continuous"]},
+{label:"Present simple — write about where you usually buy something.",hint:"Write about a habit or routine.",checks:["present"]},
+{label:"Present simple vs. present continuous — compare a usual habit with what is happening today.",hint:"You can use usually and today / at the moment.",checks:["contrast"]},
+{label:"Verbs of perception — describe how something looks, feels, smells, sounds or tastes.",hint:"For example: The jacket feels soft. Use the present simple for a perception.",checks:["perception"]},
+{label:"Shopping conversation — write two short sentences: ask the price and decide to buy the item.",hint:"Use ‘How much is/are …?’ and ‘I'll take it.’",checks:["shopping"]}
+];
+let completed={learn:false,vocab:false,writing:false,grammar:false};
+let scores={vocab:null,grammar:null,writing:null}; let vocabReview=[],grammarReview=[],writingReview=[];
+const $=id=>document.getElementById(id);
+let currentCard=0, cardRevealed=false;
+function renderCards(){
+  const v=vocab[currentCard];
+  $("cards").innerHTML=`<article class="flash">
+    <div class="tag">UNIT 1 VOCABULARY</div>
+    <div class="flash-front">
+      <div class="small">Think about the meaning before revealing it.</div>
+      <div class="word">${v[0]}</div>
+      <div class="small">Try to explain this phrase in your own words.</div>
+    </div>
+    ${cardRevealed?`<div class="flash-back"><div class="tag">Definition</div><div class="definition">${v[1]}</div><div class="example"><b>Example:</b> ${v[2]}</div></div>`:""}
+  </article>`;
+  $("cardCounter").textContent=`Card ${currentCard+1} of ${vocab.length}`;
+  $("cardProgressBar").style.width=((currentCard+1)/vocab.length*100)+"%";
+  $("prevCard").disabled=currentCard===0;
+  $("nextCard").textContent=currentCard===vocab.length-1?"Last card ✓":"Next card →";
+  $("revealCard").textContent=cardRevealed?"Hide definition & example":"Show definition & example";
+}
+$("prevCard").onclick=()=>{if(currentCard>0){currentCard--;cardRevealed=false;renderCards();}};
+$("nextCard").onclick=()=>{if(currentCard<vocab.length-1){currentCard++;cardRevealed=false;renderCards();}else{$("learnDone").focus();}};
+$("revealCard").onclick=()=>{cardRevealed=!cardRevealed;renderCards();};
+function renderQuestions(id,arr,prefix){$(id).innerHTML=arr.map((x,i)=>`<div class="question" id="${prefix}q${i}"><p>${i+1}. ${x.q}</p><div class="options">${x.o.map((o,j)=>`<label><input type="radio" name="${prefix}${i}" value="${j}"> <span>${o}</span></label>`).join("")}</div><div class="feedback" id="${prefix}f${i}"></div></div>`).join("");}
+function renderPrompts(){$("writingPrompts").innerHTML=prompts.map((p,i)=>`<div class="sentence"><div class="tag">Sentence ${i+1}</div><div class="prompt">${p.label}</div><p class="small">${p.hint}</p><textarea id="s${i}" maxlength="350" placeholder="Write your sentence here..."></textarea><div class="feedback" id="sf${i}"></div></div>`).join("");}
+function markDone(k){completed[k]=true;updateProgress();}
+function updateProgress(){let n=Object.values(completed).filter(Boolean).length;$("progressText").textContent=`${n} of 4 sections completed`;$("progressBar").style.width=(n/4*100)+"%";}
+function switchTab(tab){document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("active",b.dataset.tab===tab));document.querySelectorAll("section.panel").forEach(s=>s.classList.toggle("active",s.id===tab));if(tab==="finish")showFinal();}
+document.querySelectorAll("nav button").forEach(b=>b.addEventListener("click",()=>switchTab(b.dataset.tab)));
+$("learnDone").onclick=()=>{markDone("learn");switchTab("vocab");};
+function checkMCQ(arr,prefix,resultId,key){let score=0,review=[];arr.forEach((x,i)=>{let sel=document.querySelector(`input[name="${prefix}${i}"]:checked`);let fb=$(`${prefix}f${i}`);if(sel&&Number(sel.value)===x.a){score++;fb.className="feedback good";fb.textContent="Correct. "+x.why;}else{fb.className="feedback bad";fb.textContent=(sel?"Not quite. ":"No answer. ")+`Correct answer: ${x.o[x.a]}. `+x.why;review.push({q:x.q,correct:x.o[x.a],why:x.why});}});scores[key]=score;return {score,total:arr.length,review};}
+$("checkVocab").onclick=()=>{let r=checkMCQ(vq,"v","vocabResult","vocab");vocabReview=r.review;markDone("vocab");$("vocabResult").classList.add("show");$("vocabResult").innerHTML=`<div class="scoreline">Vocabulary score: ${r.score}/${r.total}</div><p>${r.score===r.total?"Excellent — you remembered all the answers.":"Review the corrections below, then try the quiz again if you want to improve your score."}</p>`;};
+$("resetVocab").onclick=()=>{renderQuestions("vocabQuestions",vq,"v");$("vocabResult").classList.remove("show");scores.vocab=null;completed.vocab=false;updateProgress();};
+$("checkGrammar").onclick=()=>{let r=checkMCQ(gq,"g","grammarResult","grammar");grammarReview=r.review;markDone("grammar");$("grammarResult").classList.add("show");$("grammarResult").innerHTML=`<div class="scoreline">Grammar score: ${r.score}/${r.total}</div><p>${r.score>=10?"Strong work — check any feedback above.":"Study the explanations beside your answers. Pay special attention to present-simple endings, negatives, questions, and verb-ing."}</p>`;};
+$("resetGrammar").onclick=()=>{renderQuestions("grammarQuestions",gq,"g");$("grammarResult").classList.remove("show");scores.grammar=null;completed.grammar=false;updateProgress();};
+function analyzeSentence(s,i){let tips=[],good=[],low=s.toLowerCase().trim();if(!low)return {status:"empty",tips:["Please write a sentence before checking."],score:0};
+if(!/[.!?]$/.test(s.trim()))tips.push("Add an ending punctuation mark (., ? or !).");
+if(s.trim().split(/\s+/).length<4)tips.push("Try writing a fuller sentence with a subject and a verb.");
+if(i===0){if(/\b(am|is|are)\b/.test(low)&&/\b\w+ing\b/.test(low))good.push("Good: this looks like a present-continuous sentence.");else tips.push("Use am/is/are + verb-ing for an action happening now (e.g. ‘She is trying on a coat’).");}
+if(i===1){if(/\b(usually|often|always|sometimes|every day|at weekends|never|rarely)\b/.test(low))good.push("Good: you included a routine or frequency clue.");if(/\b(i|you|we|they)\s+\w+\b/.test(low)||/\b(he|she|it)\s+\w+s\b/.test(low))good.push("Check that your present-simple verb agrees with the subject.");else tips.push("Use the present simple for routines. Remember -s/-es with he/she/it.");}
+if(i===2){if(/\b(usually|often|always|every day|at weekends)\b/.test(low)&&/\b(today|now|at the moment|right now|this week)\b/.test(low))good.push("Good: you contrasted a routine with a situation happening around now.");else tips.push("Try to include a routine marker (usually/every day) and a now marker (today/at the moment).");if(/\b(am|is|are)\s+\w+ing\b/.test(low))good.push("I can see a present-continuous form.");}
+if(i===3){if(/\b(looks|look|feels|feel|smells|smell|sounds|sound|tastes|taste)\b/.test(low))good.push("Good: you used a verb of perception.");else tips.push("Use a perception verb such as looks, feels, smells, sounds or tastes.");if(/\b(is feeling|are feeling|is tasting|are tasting|is smelling|are smelling)\b/.test(low))tips.push("When describing a sensation or quality, use the present simple: ‘It feels soft’, ‘It tastes sweet’.");}
+if(i===4){if(/\bhow much\b/.test(low)&&/\b(is|are)\b/.test(low))good.push("Good: you used a price question pattern.");else tips.push("Include a price question such as ‘How much is this…?’ or ‘How much are these…?’");if(/\bi'll take it\b|\bi will take it\b/.test(low))good.push("Good: ‘I'll take it’ is a natural shopping phrase.");else tips.push("Include ‘I'll take it’ to show that you have decided to buy the item.");}
+if(/\bdoesn't\s+\w+s\b/.test(low))tips.push("After doesn't, use the base verb: ‘doesn't cost’, not ‘doesn't costs’.");
+if(/\b(he|she|it)\s+(buy|shop|cost|fit|look|feel|taste|smell|sound)\b/.test(low))tips.push("For he/she/it in the present simple, remember -s/-es (buys, shops, costs, fits).");
+if(!tips.length)tips.push("No obvious issue was detected by the quick checker. Read your sentence aloud to check that it makes sense.");
+return {status:tips.some(t=>t.startsWith("Please"))?"empty":(good.length>0&&tips.length<=2?"check":"review"),tips,good,score:Math.max(0,2-tips.length)};}
+$("checkWriting").onclick=()=>{writingReview=[];let total=0;prompts.forEach((p,i)=>{let s=$("s"+i).value.trim(),r=analyzeSentence(s,i),fb=$("sf"+i);if(r.status==="empty"){fb.className="feedback bad";fb.textContent=r.tips.join(" ");}else{total+=r.score;fb.className="feedback "+(r.status==="check"?"good":"bad");fb.innerHTML=(r.good||[]).map(x=>"✓ "+x).concat(r.tips.map(x=>"• "+x)).join("<br>");}writingReview.push({prompt:p.label,text:s,feedback:[...(r.good||[]),...r.tips],status:r.status});});scores.writing=total;markDone("writing");$("writingResult").classList.add("show");$("writingResult").innerHTML=`<div class="scoreline">Sentence check: ${writingReview.filter(x=>x.text).length}/5 completed</div><p>Read each comment below the sentences. The checker looks for common patterns; it cannot fully judge meaning, every grammar error, or whether a sentence sounds natural.</p><p>${writingReview.some(x=>!x.text)?"You still have empty answers. Complete all five sentences for full practice.":"All five sentences have been checked. Use the feedback to edit your work."}</p>`;};
+$("clearWriting").onclick=()=>{renderPrompts();$("writingResult").classList.remove("show");scores.writing=null;completed.writing=false;updateProgress();};
+function showFinal(){let items=[];if(scores.vocab!==null)items.push(`<div class="reviewitem"><b>Vocabulary:</b> ${scores.vocab}/${vq.length}. ${scores.vocab>=8?"Good recall.": "Review shop and clothing vocabulary, prices, and shopping phrases."}</div>`);else items.push(`<div class="reviewitem"><b>Vocabulary:</b> Not checked yet.</div>`);if(scores.grammar!==null)items.push(`<div class="reviewitem"><b>Grammar:</b> ${scores.grammar}/${gq.length}. ${scores.grammar>=10?"Very good.": "Review the feedback for the grammar points you missed."}</div>`);else items.push(`<div class="reviewitem"><b>Grammar:</b> Not checked yet.</div>`);if(scores.writing!==null){items.push(`<div class="reviewitem"><b>Writing:</b> ${writingReview.filter(x=>x.text).length}/5 sentences submitted. The automatic checker has given sentence-by-sentence feedback.</div>`);writingReview.forEach((x,i)=>{if(x.text)items.push(`<div class="reviewitem"><b>Sentence ${i+1}:</b> ${escapeHtml(x.text)}<br><span class="small">${escapeHtml(x.feedback.join(" "))}</span></div>`);});}else items.push(`<div class="reviewitem"><b>Writing:</b> Not checked yet.</div>`);let tips=[];if(scores.vocab!==null&&scores.vocab<8)tips.push("Revise shop types, clothes and shopping phrases, price questions, and words such as afford, receipt, fit and suit.");if(scores.grammar!==null&&scores.grammar<10)tips.push("Revise present continuous forms, present simple for routines, present simple vs. present continuous, and perception verbs such as feel, look, taste and smell.");if(scores.writing!==null&&writingReview.some(x=>x.status==="review"))tips.push("Edit any sentence marked for review. Check subject–verb agreement, word order, punctuation and the required grammar point.");if(!tips.length)tips.push("Keep practising by saying your sentences aloud and writing new examples with different hobbies.");$("finalSummary").innerHTML=`<div class="scoreline">Your Unit 1 report</div>${items.join("")}<h3 style="margin-top:18px">What to revise next</h3><ul>${tips.map(t=>`<li>${escapeHtml(t)}</li>`).join("")}</ul><p class="small">Note: sentence feedback is generated locally using rule-based checks. For a full assessment of meaning and naturalness, your teacher should review the sentences too.</p>`;}
+$("finishBtn").onclick=showFinal;$("printBtn").onclick=()=>window.print();
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+let seconds=25*60, timer=null;function drawClock(){let m=Math.floor(seconds/60),s=seconds%60;$("clock").textContent=String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");}
+$("timerBtn").onclick=()=>{if(timer){clearInterval(timer);timer=null;$("timerBtn").textContent="Resume timer";return;}if(seconds<=0)seconds=25*60;timer=setInterval(()=>{seconds--;drawClock();if(seconds<=0){clearInterval(timer);timer=null;$("timerBtn").textContent="Restart timer";alert("Suggested practice time is over. Finish your answers carefully.");}},1000);$("timerBtn").textContent="Pause timer";};
+renderCards();renderQuestions("vocabQuestions",vq,"v");renderPrompts();renderQuestions("grammarQuestions",gq,"g");drawClock();
+</script>
+</body>
+</html>
