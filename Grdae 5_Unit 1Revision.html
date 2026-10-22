@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THINK A2 Workbook 1 — Unit 1: Having Fun</title>
+<style>
+:root{--ink:#19243b;--muted:#66728a;--paper:#f6f8fc;--card:#fff;--line:#dce3ef;--blue:#3156c9;--blue2:#eaf0ff;--green:#16825d;--red:#c23d4b;--gold:#9a6900}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+header{background:linear-gradient(120deg,#17284e,#3156c9);color:white;padding:28px 18px 24px}header .wrap,main{max-width:1050px;margin:auto}
+.eyebrow{text-transform:uppercase;letter-spacing:.13em;font-size:.78rem;font-weight:800;opacity:.85}
+h1{margin:.35rem 0;font-size:clamp(1.7rem,4vw,2.5rem);line-height:1.15}header p{margin:.6rem 0 0;max-width:760px;color:#e8edff}
+main{padding:20px 16px 55px}.toprow{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:18px}
+.timerbox,.progressbox{background:white;border:1px solid var(--line);border-radius:14px;padding:12px 16px;box-shadow:0 3px 12px #152b5510}
+.timerbox strong{font-size:1.35rem;font-variant-numeric:tabular-nums}.timerbox button{margin-left:8px}
+.progress{height:8px;background:#e8edf6;border-radius:99px;overflow:hidden;margin-top:7px;min-width:180px}.progress span{display:block;height:100%;width:0;background:var(--blue);transition:width .2s}
+nav{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 20px}nav button{border:1px solid var(--line);background:#fff;color:var(--ink);padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700}nav button.active{background:var(--blue);border-color:var(--blue);color:white}
+section.panel{display:none;background:white;border:1px solid var(--line);border-radius:18px;padding:clamp(16px,3vw,28px);box-shadow:0 6px 20px #152b5509}section.panel.active{display:block}
+h2{margin:0 0 6px;font-size:1.5rem}h3{margin:0 0 8px} .sub{color:var(--muted);margin:0 0 20px}
+.grid{display:block}
+.flash{width:100%;max-width:680px;min-height:300px;margin:0 auto;border:1px solid var(--line);border-radius:18px;padding:clamp(20px,5vw,36px);display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(150deg,#fff,#f8faff);box-shadow:0 8px 24px #152b5510}
+.flash-front{min-height:190px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.flash-front .word{font-size:clamp(1.6rem,5vw,2.25rem);margin:18px 0}
+.flash-back{margin-top:20px;padding:16px;background:#f2f6ff;border:1px solid #dce6ff;border-radius:12px}
+.card-controls{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;max-width:680px;margin:14px auto 0}
+.card-counter{font-weight:800;color:var(--muted);font-variant-numeric:tabular-nums}
+.card-progress{height:7px;background:#e8edf6;border-radius:99px;overflow:hidden;max-width:680px;margin:12px auto}
+.card-progress span{display:block;height:100%;width:0;background:var(--blue);transition:width .2s}
+.flash .tag{align-self:center}
+.flash .example{border-top:1px dashed #cdd8ee}
+.tag{font-size:.75rem;font-weight:800;color:var(--blue);text-transform:uppercase;letter-spacing:.07em}.word{font-size:1.3rem;font-weight:850;margin:6px 0}.definition{color:#34425d}.example{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);font-size:.94rem;color:#53617b}.example b{color:var(--ink)}
+button,.btn{font:inherit}button{cursor:pointer}.primary,.secondary{border:0;border-radius:10px;padding:10px 15px;font-weight:750}.primary{background:var(--blue);color:white}.secondary{background:var(--blue2);color:var(--blue)}button:disabled{opacity:.5;cursor:not-allowed}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.question{border:1px solid var(--line);border-radius:13px;padding:15px;margin:12px 0}.question p{margin:0 0 10px;font-weight:700}.options{display:grid;gap:8px}.options label{display:flex;gap:9px;align-items:flex-start;border:1px solid #e5eaf3;padding:9px 11px;border-radius:9px;cursor:pointer}.options label:hover{background:#f7f9ff}.options input{margin-top:5px;accent-color:var(--blue)}
+.feedback{margin-top:9px;font-size:.94rem;font-weight:650}.good{color:var(--green)}.bad{color:var(--red)}.neutral{color:var(--muted)}
+textarea,input[type=text]{width:100%;padding:11px 12px;border:1px solid #cbd5e5;border-radius:9px;font:inherit;color:var(--ink);background:white}textarea{min-height:70px;resize:vertical}.sentence{border:1px solid var(--line);padding:15px;border-radius:13px;margin:12px 0}.sentence .prompt{font-weight:750;margin-bottom:8px}.small{font-size:.88rem;color:var(--muted)}.result{display:none;margin-top:18px;padding:16px;border-radius:12px;background:#f0f5ff;border:1px solid #d4e0ff}.result.show{display:block}.scoreline{font-size:1.2rem;font-weight:850}.reviewitem{padding:10px 0;border-bottom:1px solid #dce5f7}.pill{display:inline-block;border-radius:99px;padding:3px 9px;font-size:.78rem;font-weight:800;background:#eef2fa;color:#4b5a75}.notice{background:#fff8e7;border:1px solid #f1dfae;border-radius:12px;padding:12px 14px;color:#6f5100;margin:14px 0}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:20px}
+@media(max-width:560px){.timerbox,.progressbox{width:100%}.progress{min-width:0}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<div class="eyebrow">Cambridge THINK Workbook 1 · A2</div>
+<h1>Unit 1: Having Fun</h1>
+<p>Learn the vocabulary first, test what you remember, write five sentences, and revise the unit grammar. Your work is checked at the end with scores and practical advice.</p>
+</div></header>
+<main>
+<div class="toprow">
+  <div class="timerbox"><span class="small">Suggested time</span><br><strong id="clock">25:00</strong> <button class="secondary" id="timerBtn" type="button">Start timer</button></div>
+  <div class="progressbox"><strong id="progressText">0 of 4 sections completed</strong><div class="progress"><span id="progressBar"></span></div><span class="small">Your answers stay in this browser tab until you leave or refresh.</span></div>
+</div>
+<nav aria-label="Activity sections">
+<button class="active" data-tab="learn">1. Learn vocabulary</button>
+<button data-tab="vocab">2. Vocabulary quiz</button>
+<button data-tab="writing">3. Write sentences</button>
+<button data-tab="grammar">4. Grammar review</button>
+<button data-tab="finish">5. Results & advice</button>
+</nav>
+
+<section class="panel active" id="learn">
+<h2>1. Vocabulary cards</h2><p class="sub">Read the meaning and example. These cards are based on the Unit 1 “Having Fun” vocabulary pages in your THINK Workbook.</p>
+<div class="grid" id="cards"></div>
+<div class="card-progress" aria-label="Vocabulary card progress"><span id="cardProgressBar"></span></div>
+<div class="card-controls">
+  <button class="secondary" id="prevCard" type="button">← Previous</button>
+  <span class="card-counter" id="cardCounter" aria-live="polite">Card 1 of 23</span>
+  <button class="secondary" id="revealCard" type="button">Show definition &amp; example</button>
+  <button class="primary" id="nextCard" type="button">Next card →</button>
+</div>
+<p class="small" style="text-align:center;margin-top:12px">You can move backwards and forwards through every card. The last card is not the end of the activity until you choose to continue.</p>
+<div class="actions"><button class="primary" id="learnDone">I've studied these — continue</button></div>
+</section>
+
+<section class="panel" id="vocab">
+<h2>2. Vocabulary quiz</h2><p class="sub">Choose the best answer for each question. Read the whole sentence before choosing.</p>
+<div id="vocabQuestions"></div>
+<div class="actions"><button class="primary" id="checkVocab">Check vocabulary answers</button><button class="secondary" id="resetVocab">Try again</button></div>
+<div id="vocabResult" class="result" aria-live="polite"></div>
+</section>
+
+<section class="panel" id="writing">
+<h2>3. Write five sentences</h2><p class="sub">Write your own complete sentences. Use the grammar in brackets. Try to use Unit 1 vocabulary too.</p>
+<div class="notice">Your sentences are checked automatically for common grammar patterns and useful vocabulary. This is a classroom practice checker, not a full AI or teacher assessment, so it may miss some errors or flag a sentence that is actually acceptable.</div>
+<div id="writingPrompts"></div>
+<div class="actions"><button class="primary" id="checkWriting">Check my sentences</button><button class="secondary" id="clearWriting">Clear answers</button></div>
+<div id="writingResult" class="result" aria-live="polite"></div>
+</section>
+
+<section class="panel" id="grammar">
+<h2>4. Grammar review</h2><p class="sub">Review Unit 1: present simple, questions and negatives, like + -ing, and adverbs of frequency.</p>
+<div id="grammarQuestions"></div>
+<div class="actions"><button class="primary" id="checkGrammar">Check grammar answers</button><button class="secondary" id="resetGrammar">Try again</button></div>
+<div id="grammarResult" class="result" aria-live="polite"></div>
+</section>
+
+<section class="panel" id="finish">
+<h2>5. Results & advice</h2><p class="sub">Finish the vocabulary quiz, sentence writing and grammar review, then check this page for your summary.</p>
+<div id="finalSummary"><p class="neutral">Your results will appear here after you check your activities.</p></div>
+<div class="actions"><button class="primary" id="finishBtn">Show my final report</button><button class="secondary" id="printBtn">Print / save as PDF</button></div>
+</section>
+</main>
+<footer>THINK A2 Workbook 1 · Unit 1: Having Fun · Independent practice</footer>
+
+<script>
+const vocab = [
+["play an instrument","make music using an instrument","I play an instrument after school."],
+["play online games","play games on the internet","My brother plays online games at the weekend."],
+["play football","play the team sport called football","We play football on Fridays."],
+["write a blog","write posts for a website regularly","I write a blog about my hobbies."],
+["take photographs","use a camera or phone to make pictures","She takes photographs of birds."],
+["do crosswords","complete word puzzles","My dad does crosswords in the evening."],
+["collect things","keep items because you are interested in them","I collect stamps and postcards."],
+["be in a club","belong to a group with a shared activity","I'm in a chess club."],
+["keep a pet","look after an animal at home","They keep a pet rabbit."],
+["make videos","record moving pictures","He makes videos about football."],
+["have fun / have a good time","enjoy yourself","We have fun when we play together."],
+["have a rest","stop activity for a short time to relax","I have a rest after doing my homework."],
+["have dinner","eat the main evening meal","We have dinner at seven o'clock."],
+["have a shower","wash your body under a shower","I have a shower in the morning."],
+["have a problem","have a difficulty or something that is wrong","Do you have a problem with this exercise?"],
+["have time","have enough time to do something","I don't have time to watch TV in the morning."],
+["relax","rest and become less tired or worried","Listening to music helps me relax."],
+["tidy","neat and in the correct place","My bedroom is tidy."],
+["busy","having a lot to do","I'm busy, so I can't help right now."],
+["strange","unusual or surprising","Bird-watching may seem like a strange hobby."],
+["positive","hopeful and thinking about good things","I feel positive about my English test."],
+["can't stand","strongly dislike something","I can't stand getting up late on school days."],
+["always / usually / often / sometimes / occasionally / rarely / never","adverbs that tell us how often something happens","I usually read, but I rarely play online games."]
+];
+const vq = [
+{q:"Which phrase means ‘write posts for a website regularly’?",o:["keep a pet","write a blog","do crosswords"],a:1,why:"A blog is an online page or site where someone regularly writes posts."},
+{q:"Choose the correct phrase: ‘My aunt takes photos with her camera. She ___ of nature.’",o:["takes photographs","makes a rest","has a blog"],a:0,why:"The workbook phrase is ‘take photographs’."},
+{q:"Which phrase completes the sentence? ‘I'm tired. I want to ___ for ten minutes.’",o:["have a problem","have a rest","have dinner"],a:1,why:"We say ‘have a rest’ when we stop and relax for a short time."},
+{q:"‘I can't stand doing crosswords.’ What does ‘can't stand’ mean?",o:["really enjoy","strongly dislike","do every day"],a:1,why:"‘Can't stand’ means strongly dislike."},
+{q:"Choose the best word: ‘Sorry, I'm too ___ to help you now.’",o:["tidy","busy","positive"],a:1,why:"‘Busy’ means having a lot to do."},
+{q:"Which is an adverb of frequency?",o:["strange","hobby","usually"],a:2,why:"‘Usually’ tells us how often something happens."},
+{q:"Choose the correct phrase: ‘We ___ when we play games together.’",o:["have fun","make fun","do fun"],a:0,why:"The natural phrase is ‘have fun’."},
+{q:"Which phrase means ‘look after an animal at home’?",o:["keep a pet","collect things","make videos"],a:0,why:"We say ‘keep a pet’."},
+{q:"Choose the best word: ‘My room isn't messy. It's very ___.’",o:["tidy","busy","strange"],a:0,why:"‘Tidy’ means neat and in the correct place."},
+{q:"Choose the natural phrase: ‘I ___ stamps because I find them interesting.’",o:["collect","do","take"],a:0,why:"We ‘collect things’, for example stamps or autographs."}
+];
+const gq = [
+{q:"My sister ___ an instrument after school.",o:["play","plays","playing"],a:1,why:"In the present simple, he/she/it takes -s: plays."},
+{q:"We ___ online games on weekdays.",o:["don't play","doesn't play","aren't play"],a:0,why:"Use don't + base verb with I/you/we/they."},
+{q:"___ your friend write a blog?",o:["Do","Does","Is"],a:1,why:"Use Does with he/she/it; the main verb stays in the base form."},
+{q:"He ___ doing crosswords because he thinks they are boring.",o:["don't like","doesn't likes","doesn't like"],a:2,why:"Negative present simple: doesn't + base verb."},
+{q:"I enjoy ___ photographs of birds.",o:["take","taking","to taking"],a:1,why:"Use like/love/enjoy/hate + verb-ing in this unit's pattern."},
+{q:"Choose the correct sentence.",o:["She like playing football.","She likes playing football.","She likes play football."],a:1,why:"She likes + verb-ing."},
+{q:"Choose the best position for the adverb: ‘I am late for school.’ (never)",o:["I never am late for school.","I am never late for school.","I am late never for school."],a:1,why:"With ‘be’, the adverb of frequency usually comes after am/is/are."},
+{q:"Choose the correct sentence.",o:["They usually collect stamps.","They collect usually stamps.","Usually they collects stamps."],a:0,why:"With most verbs, the adverb usually comes before the main verb."},
+{q:"How ___ do you play football? — Often.",o:["many","often","much"],a:1,why:"Ask about frequency with ‘How often…?’"},
+{q:"Which sentence is a correct present-simple question?",o:["Where you live?","Where do you live?","Where does you live?"],a:1,why:"Use question word + do/does + subject + base verb."},
+{q:"My brother rarely ___ videos.",o:["make","makes","making"],a:1,why:"My brother = he, so use makes."},
+{q:"I hate ___ up early on Sundays.",o:["get","getting","gets"],a:1,why:"Hate + verb-ing."}
+];
+const prompts = [
+{label:"Present simple — write about a hobby you do regularly.",hint:"Example structure: I ... every ... .",checks:["present"]},
+{label:"Present simple negative — write one thing you don't do.",hint:"Use don't / doesn't + base verb.",checks:["negative"]},
+{label:"Present simple question — ask someone about a hobby.",hint:"Use Do/Does + subject + base verb?",checks:["question"]},
+{label:"like + -ing — write about something you like or dislike doing.",hint:"Use like/love/enjoy/hate + verb-ing.",checks:["ing"]},
+{label:"Adverb of frequency — describe how often you do an activity.",hint:"Use always, usually, often, sometimes, occasionally, rarely or never.",checks:["frequency"]}
+];
+let completed={learn:false,vocab:false,writing:false,grammar:false};
+let scores={vocab:null,grammar:null,writing:null}; let vocabReview=[],grammarReview=[],writingReview=[];
+const $=id=>document.getElementById(id);
+let currentCard=0, cardRevealed=false;
+function renderCards(){
+  const v=vocab[currentCard];
+  $("cards").innerHTML=`<article class="flash">
+    <div class="tag">UNIT 1 VOCABULARY</div>
+    <div class="flash-front">
+      <div class="small">Think about the meaning before revealing it.</div>
+      <div class="word">${v[0]}</div>
+      <div class="small">Try to explain this phrase in your own words.</div>
+    </div>
+    ${cardRevealed?`<div class="flash-back"><div class="tag">Definition</div><div class="definition">${v[1]}</div><div class="example"><b>Example:</b> ${v[2]}</div></div>`:""}
+  </article>`;
+  $("cardCounter").textContent=`Card ${currentCard+1} of ${vocab.length}`;
+  $("cardProgressBar").style.width=((currentCard+1)/vocab.length*100)+"%";
+  $("prevCard").disabled=currentCard===0;
+  $("nextCard").textContent=currentCard===vocab.length-1?"Last card ✓":"Next card →";
+  $("revealCard").textContent=cardRevealed?"Hide definition & example":"Show definition & example";
+}
+$("prevCard").onclick=()=>{if(currentCard>0){currentCard--;cardRevealed=false;renderCards();}};
+$("nextCard").onclick=()=>{if(currentCard<vocab.length-1){currentCard++;cardRevealed=false;renderCards();}else{$("learnDone").focus();}};
+$("revealCard").onclick=()=>{cardRevealed=!cardRevealed;renderCards();};
+function renderQuestions(id,arr,prefix){$(id).innerHTML=arr.map((x,i)=>`<div class="question" id="${prefix}q${i}"><p>${i+1}. ${x.q}</p><div class="options">${x.o.map((o,j)=>`<label><input type="radio" name="${prefix}${i}" value="${j}"> <span>${o}</span></label>`).join("")}</div><div class="feedback" id="${prefix}f${i}"></div></div>`).join("");}
+function renderPrompts(){$("writingPrompts").innerHTML=prompts.map((p,i)=>`<div class="sentence"><div class="tag">Sentence ${i+1}</div><div class="prompt">${p.label}</div><p class="small">${p.hint}</p><textarea id="s${i}" maxlength="350" placeholder="Write your sentence here..."></textarea><div class="feedback" id="sf${i}"></div></div>`).join("");}
+function markDone(k){completed[k]=true;updateProgress();}
+function updateProgress(){let n=Object.values(completed).filter(Boolean).length;$("progressText").textContent=`${n} of 4 sections completed`;$("progressBar").style.width=(n/4*100)+"%";}
+function switchTab(tab){document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("active",b.dataset.tab===tab));document.querySelectorAll("section.panel").forEach(s=>s.classList.toggle("active",s.id===tab));if(tab==="finish")showFinal();}
+document.querySelectorAll("nav button").forEach(b=>b.addEventListener("click",()=>switchTab(b.dataset.tab)));
+$("learnDone").onclick=()=>{markDone("learn");switchTab("vocab");};
+function checkMCQ(arr,prefix,resultId,key){let score=0,review=[];arr.forEach((x,i)=>{let sel=document.querySelector(`input[name="${prefix}${i}"]:checked`);let fb=$(`${prefix}f${i}`);if(sel&&Number(sel.value)===x.a){score++;fb.className="feedback good";fb.textContent="Correct. "+x.why;}else{fb.className="feedback bad";fb.textContent=(sel?"Not quite. ":"No answer. ")+`Correct answer: ${x.o[x.a]}. `+x.why;review.push({q:x.q,correct:x.o[x.a],why:x.why});}});scores[key]=score;return {score,total:arr.length,review};}
+$("checkVocab").onclick=()=>{let r=checkMCQ(vq,"v","vocabResult","vocab");vocabReview=r.review;markDone("vocab");$("vocabResult").classList.add("show");$("vocabResult").innerHTML=`<div class="scoreline">Vocabulary score: ${r.score}/${r.total}</div><p>${r.score===r.total?"Excellent — you remembered all the answers.":"Review the corrections below, then try the quiz again if you want to improve your score."}</p>`;};
+$("resetVocab").onclick=()=>{renderQuestions("vocabQuestions",vq,"v");$("vocabResult").classList.remove("show");scores.vocab=null;completed.vocab=false;updateProgress();};
+$("checkGrammar").onclick=()=>{let r=checkMCQ(gq,"g","grammarResult","grammar");grammarReview=r.review;markDone("grammar");$("grammarResult").classList.add("show");$("grammarResult").innerHTML=`<div class="scoreline">Grammar score: ${r.score}/${r.total}</div><p>${r.score>=10?"Strong work — check any feedback above.":"Study the explanations beside your answers. Pay special attention to present-simple endings, negatives, questions, and verb-ing."}</p>`;};
+$("resetGrammar").onclick=()=>{renderQuestions("grammarQuestions",gq,"g");$("grammarResult").classList.remove("show");scores.grammar=null;completed.grammar=false;updateProgress();};
+function analyzeSentence(s,i){let tips=[],good=[],low=s.toLowerCase().trim();if(!low)return {status:"empty",tips:["Please write a sentence before checking."],score:0};
+if(!/[.!?]$/.test(s.trim()))tips.push("Add an ending punctuation mark (., ? or !).");
+if(s.trim().split(/\s+/).length<4)tips.push("Try writing a fuller sentence with a subject and a verb.");
+if(!/[.!?]$/.test(s.trim()) && s.trim().length>0){} 
+if(i===0){if(/\b(i|you|we|they|he|she|it)\b/.test(low)&&/\b(play|plays|write|writes|collect|collects|take|takes|do|does|watch|watches|read|reads|go|goes|make|makes|have|has|like|likes)\b/.test(low))good.push("I can see a likely present-simple subject and verb.");else tips.push("Check that your sentence uses the present simple (for example, ‘I play…’ or ‘She plays…’).");}
+if(i===1){if(/\b(don't|doesn't|do not|does not)\b/.test(low))good.push("Good: you used a present-simple negative form.");else tips.push("Use don't or doesn't + the base verb (for example, ‘I don't play…’).");if(/\bdoesn't\s+\w+s\b/.test(low))tips.push("After doesn't, use the base verb: ‘doesn't play’, not ‘doesn't plays’.");}
+if(i===2){if(/\?/.test(s)&&(/\b(do|does)\b/.test(low)))good.push("Good: this looks like a Do/Does question.");else tips.push("Make it a question with Do/Does + subject + base verb, and add a question mark.");if(/\bdoes\s+\w+\s+\w+s\b/.test(low))tips.push("After Does, use the base verb: ‘Does she play…?’ not ‘Does she plays…?’");}
+if(i===3){if(/\b(like|likes|love|loves|enjoy|enjoys|hate|hates|can't stand)\b/.test(low)&&/\b\w+ing\b/.test(low))good.push("Good: you appear to use a preference phrase with an -ing form.");else tips.push("Use a phrase such as ‘I like…’, ‘I enjoy…’ or ‘I can't stand…’ followed by a verb ending in -ing.");}
+if(i===4){if(/\b(always|usually|often|sometimes|occasionally|rarely|never)\b/.test(low))good.push("Good: you included an adverb of frequency.");else tips.push("Include an adverb of frequency, such as usually, often, sometimes, rarely or never.");if(/\b(am|is|are)\s+(always|usually|often|sometimes|occasionally|rarely|never)\b/.test(low))good.push("The frequency adverb is placed naturally after ‘be’.");}
+if(/\bi\s+(play|write|collect|take|do|watch|read|go|make|have|like)\b/.test(low)){} 
+if(/\bhe\s+(play|write|collect|take|do|watch|read|go|make|have|like)\b/.test(low))tips.push("For he/she/it in the present simple, remember -s/-es (plays, watches, goes, has).");
+if(/\bdoesn't\s+(has|plays|likes|goes|watches|makes|writes|collects)\b/.test(low))tips.push("After doesn't, use the base form (have, play, like, go, watch, make, write, collect).");
+if(/\b(playsing|playes|writting|photograf|hobbys)\b/.test(low))tips.push("Check the spelling of the vocabulary word.");
+if(!tips.length)tips.push("No obvious issue was detected by the quick checker. Read your sentence aloud to check that it makes sense.");
+return {status:tips.some(t=>t.startsWith("Please"))?"empty":(good.length>0&&tips.length<=2?"check":"review"),tips,good,score:Math.max(0,2-tips.length)};}
+$("checkWriting").onclick=()=>{writingReview=[];let total=0;prompts.forEach((p,i)=>{let s=$("s"+i).value.trim(),r=analyzeSentence(s,i),fb=$("sf"+i);if(r.status==="empty"){fb.className="feedback bad";fb.textContent=r.tips.join(" ");}else{total+=r.score;fb.className="feedback "+(r.status==="check"?"good":"bad");fb.innerHTML=(r.good||[]).map(x=>"✓ "+x).concat(r.tips.map(x=>"• "+x)).join("<br>");}writingReview.push({prompt:p.label,text:s,feedback:[...(r.good||[]),...r.tips],status:r.status});});scores.writing=total;markDone("writing");$("writingResult").classList.add("show");$("writingResult").innerHTML=`<div class="scoreline">Sentence check: ${writingReview.filter(x=>x.text).length}/5 completed</div><p>Read each comment below the sentences. The checker looks for common patterns; it cannot fully judge meaning, every grammar error, or whether a sentence sounds natural.</p><p>${writingReview.some(x=>!x.text)?"You still have empty answers. Complete all five sentences for full practice.":"All five sentences have been checked. Use the feedback to edit your work."}</p>`;};
+$("clearWriting").onclick=()=>{renderPrompts();$("writingResult").classList.remove("show");scores.writing=null;completed.writing=false;updateProgress();};
+function showFinal(){let items=[];if(scores.vocab!==null)items.push(`<div class="reviewitem"><b>Vocabulary:</b> ${scores.vocab}/${vq.length}. ${scores.vocab>=8?"Good recall.": "Review the cards and focus on the phrases you missed."}</div>`);else items.push(`<div class="reviewitem"><b>Vocabulary:</b> Not checked yet.</div>`);if(scores.grammar!==null)items.push(`<div class="reviewitem"><b>Grammar:</b> ${scores.grammar}/${gq.length}. ${scores.grammar>=10?"Very good.": "Review the feedback for the grammar points you missed."}</div>`);else items.push(`<div class="reviewitem"><b>Grammar:</b> Not checked yet.</div>`);if(scores.writing!==null){items.push(`<div class="reviewitem"><b>Writing:</b> ${writingReview.filter(x=>x.text).length}/5 sentences submitted. The automatic checker has given sentence-by-sentence feedback.</div>`);writingReview.forEach((x,i)=>{if(x.text)items.push(`<div class="reviewitem"><b>Sentence ${i+1}:</b> ${escapeHtml(x.text)}<br><span class="small">${escapeHtml(x.feedback.join(" "))}</span></div>`);});}else items.push(`<div class="reviewitem"><b>Writing:</b> Not checked yet.</div>`);let tips=[];if(scores.vocab!==null&&scores.vocab<8)tips.push("Revise hobby phrases and collocations with have, especially ‘have a rest’, ‘have fun’, and ‘have a problem’.");if(scores.grammar!==null&&scores.grammar<10)tips.push("Practise he/she/it + -s, don't/doesn't + base verb, Do/Does questions, like/enjoy + -ing, and adverb placement.");if(scores.writing!==null&&writingReview.some(x=>x.status==="review"))tips.push("Edit any sentence marked for review. Check subject–verb agreement, word order, punctuation and the required grammar point.");if(!tips.length)tips.push("Keep practising by saying your sentences aloud and writing new examples with different hobbies.");$("finalSummary").innerHTML=`<div class="scoreline">Your Unit 1 report</div>${items.join("")}<h3 style="margin-top:18px">What to revise next</h3><ul>${tips.map(t=>`<li>${escapeHtml(t)}</li>`).join("")}</ul><p class="small">Note: sentence feedback is generated locally using rule-based checks. For a full assessment of meaning and naturalness, your teacher should review the sentences too.</p>`;}
+$("finishBtn").onclick=showFinal;$("printBtn").onclick=()=>window.print();
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+let seconds=25*60, timer=null;function drawClock(){let m=Math.floor(seconds/60),s=seconds%60;$("clock").textContent=String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");}
+$("timerBtn").onclick=()=>{if(timer){clearInterval(timer);timer=null;$("timerBtn").textContent="Resume timer";return;}if(seconds<=0)seconds=25*60;timer=setInterval(()=>{seconds--;drawClock();if(seconds<=0){clearInterval(timer);timer=null;$("timerBtn").textContent="Restart timer";alert("Suggested practice time is over. Finish your answers carefully.");}},1000);$("timerBtn").textContent="Pause timer";};
+renderCards();renderQuestions("vocabQuestions",vq,"v");renderPrompts();renderQuestions("grammarQuestions",gq,"g");drawClock();
+</script>
+</body>
+</html>
