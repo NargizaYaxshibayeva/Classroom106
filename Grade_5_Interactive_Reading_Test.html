@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grade 5 Reading Practice — 4 Texts</title>
+<style>
+:root{--navy:#17365d;--blue:#245b83;--teal:#197278;--pale:#edf4f7;--line:#d7e1e7;--ink:#24313b;--muted:#657784;--good:#187347;--bad:#b33b36;--gold:#9b6b13}
+*{box-sizing:border-box}body{margin:0;background:#f3f6f8;color:var(--ink);font:16px/1.55 Arial,Helvetica,sans-serif}
+header{background:linear-gradient(120deg,#17365d,#216477);color:#fff;padding:22px 18px}
+.wrap{max-width:1050px;margin:auto;padding:0 16px}
+h1{font-size:clamp(23px,4vw,32px);margin:0 0 4px}header p{margin:0;color:#e1edf1}
+main{max-width:1050px;margin:22px auto;padding:0 16px}
+.topbar{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:14px}
+.progress-shell{height:9px;background:#dce5e9;border-radius:99px;overflow:hidden;flex:1;min-width:160px}
+.progress{height:100%;background:#27918a;width:25%;transition:width .25s}
+.pill{background:#e3eef2;color:#1d5367;border-radius:99px;padding:5px 11px;font-size:13px;font-weight:bold}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.tab{border:1px solid var(--line);background:white;color:var(--navy);border-radius:8px;padding:9px 13px;cursor:pointer;font-weight:bold}
+.tab.active{background:var(--navy);color:white;border-color:var(--navy)}
+.panel{background:white;border:1px solid var(--line);border-radius:14px;padding:clamp(16px,3vw,28px);box-shadow:0 4px 18px #1c3b4b0b}
+h2{color:var(--navy);font-size:23px;line-height:1.25;margin:0 0 5px}
+.topic{color:var(--muted);font-size:14px;margin-bottom:18px}
+.passage p{margin:0 0 14px;text-align:left}
+.instructions{background:#f0f5f7;border-left:4px solid var(--teal);padding:11px 14px;border-radius:6px;font-size:14px;margin:12px 0 18px}
+.question{padding:15px 0;border-top:1px solid #e7edf0}
+.qtitle{font-weight:bold;margin-bottom:9px}
+.option{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;margin:5px 0;border:1px solid #e1e8ec;border-radius:8px;cursor:pointer}
+.option:hover{background:#f7fafb}
+.option input{margin-top:5px;accent-color:var(--teal)}
+.option.correct{border-color:#7eb99b;background:#eff9f2}
+.option.wrong{border-color:#dfa09c;background:#fff3f2}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+button{font:inherit;border:0;border-radius:8px;padding:11px 17px;cursor:pointer;font-weight:bold}
+.primary{background:var(--navy);color:#fff}.secondary{background:#e8eef1;color:#294554}.primary:hover{background:#214c75}
+.feedback{display:none;margin-top:16px;border-radius:10px;padding:14px;background:#f1f6f7;border:1px solid var(--line)}
+.feedback.show{display:block}
+.feedback h3{margin:0 0 8px;color:var(--navy)}
+.explain{padding:10px 0;border-top:1px solid #dce5e9}
+.explain strong{display:block;margin-bottom:3px}
+.correct-answer{color:var(--good)}.incorrect-answer{color:var(--bad)}
+.scoreline{font-weight:bold;margin:5px 0 12px}
+.small{font-size:13px;color:var(--muted)}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:25px}
+@media print{body{background:#fff}header{background:#fff;color:#000;border-bottom:2px solid #333}header p{color:#333}.tabs,.topbar,.actions{display:none}.panel{box-shadow:none;border:0;padding:0}.feedback{display:block}.option{break-inside:avoid}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><h1>Reading Comprehension Practice</h1><p>Grade 5 English • Four texts • 24 questions</p></div></header>
+<main>
+<div class="topbar">
+ <span class="pill" id="counter">Text 1 of 4</span>
+ <div class="progress-shell"><div class="progress" id="progress"></div></div>
+ <span class="pill" id="totalScore">Total: 0 / 24</span>
+</div>
+<div class="tabs" id="tabs"></div>
+<section class="panel">
+ <div id="content"></div>
+</section>
+</main>
+<footer>Read carefully. Choose the answer supported by the text, not by a guess.</footer>
+<script>
+const tests = [{"title": "The Club That Didn't Look Like a Club", "topic": "Hobbies, routines and personal growth", "paragraphs": ["On the first Thursday of term, Aisha walked past the school noticeboard without stopping. She was already a member of the art club and the swimming team, and she did not think she had time for anything else. However, a small poster caught her eye: “Repair, Reuse, Create — Thursday Workshop”. It promised no prizes and no competition. Students would learn to repair broken objects and turn unwanted materials into useful things.", "Aisha decided to give it a go, although she was not sure she would enjoy it. At the first meeting, the group was trying to repair an old desk lamp. The wires were in the wrong place, and the switch did not work. Aisha usually prefers drawing to practical activities, but she became engrossed in the task. She carefully followed the instructions while another student checked the tools. After forty minutes, the lamp was working again.", "Since then, Aisha has been attending the workshop once a week. She is currently making a pencil holder from an empty tin and pieces of coloured paper. She still enjoys swimming, and she has not given up art. In fact, she says the new activity helps her strike a balance: swimming keeps her active, drawing gives her a creative outlet, and repairing things teaches her patience. The workshop leader has noticed that Aisha now offers ideas more confidently, even when she is not certain they will work.", "Aisha's favourite part is not taking home something new. It is discovering that an object which seems useless may still have a purpose. “I used to think creativity meant making something beautiful,” she explains. “Now I think it can also mean finding a clever solution.”"], "questions": [{"q": "Why did Aisha initially walk past the noticeboard without stopping?", "opts": ["She disliked all school clubs.", "She already had activities and thought she had no time for another one.", "She did not understand the poster.", "The workshop had already finished."], "a": 1, "type": "mc", "e": "Paragraph 1: “She was already a member of the art club and the swimming team, and she did not think she had time for anything else.” This directly explains why she walked past. The other options are not supported."}, {"q": "What made the workshop different from the activities Aisha already attended?", "opts": ["Students had to win a prize.", "It focused on repairing and reusing objects rather than competing.", "It took place every day.", "Students worked alone."], "a": 1, "type": "mc", "e": "Paragraph 1 says students would learn “to repair broken objects and turn unwanted materials into useful things”. It also promised “no prizes and no competition”. Option B combines these details."}, {"q": "Aisha repaired the desk lamp successfully without following any instructions.", "opts": ["True", "False", "Not Given"], "a": 1, "type": "tf", "e": "Paragraph 2 says she “carefully followed the instructions” while repairing the lamp. The statement says she did it without instructions, so it directly contradicts the passage."}, {"q": "What does “she became engrossed in the task” mean?", "opts": ["She became bored and wanted to leave.", "She became completely interested and focused.", "She became worried about a competition.", "She became the group leader."], "a": 1, "type": "mc", "e": "Paragraph 2: after becoming engrossed, Aisha “carefully followed the instructions”. In this context, engrossed means fully absorbed or deeply interested."}, {"q": "Why does Aisha say the workshop helps her “strike a balance”?", "opts": ["She has replaced her other hobbies.", "Each activity gives her a different benefit.", "She spends exactly the same time on each hobby.", "She has stopped doing activities after school."], "a": 1, "type": "mc", "e": "Paragraph 3 lists a different benefit for each activity: swimming keeps her active, drawing gives her a creative outlet, and repairing things teaches patience."}, {"q": "What is the main message of the final paragraph?", "opts": ["Creativity is only useful in art lessons.", "Old objects should always be thrown away.", "Creativity can also mean solving practical problems.", "Repairing objects is easier than drawing."], "a": 2, "type": "mc", "e": "Paragraph 4 contrasts her old idea that creativity meant making something beautiful with her new idea that it can mean “finding a clever solution”."}]}, {"title": "The Price Tag Wasn't the Whole Story", "topic": "Shopping, money and consumer choices", "paragraphs": ["Rafiq had saved his pocket money for nearly two months to buy a pair of headphones. At the electronics shop, he found two models that looked almost the same. One cost 180,000 soum and the other cost 260,000 soum. The cheaper pair was on special offer, so he was tempted to buy it immediately. However, his older sister advised him to compare more than the price.", "The shop assistant explained that the cheaper headphones had a shorter battery life and no guarantee. The more expensive model came with a one-year guarantee, but it was not automatically the better choice. Rafiq read the information on both boxes and asked whether he could try them. The assistant said he could test the display model, but the shop did not accept returns simply because a customer changed their mind.", "Rafiq went home without buying anything. That evening, he checked two other shops online. One website offered the more expensive model for 235,000 soum, including delivery. Another advertised it for 220,000 soum, but charged 25,000 soum for delivery. The second website looked cheaper at first, yet the total cost was 245,000 soum. Rafiq also read customer reviews. Several people praised the battery life, although one review mentioned that the headphones felt uncomfortable after an hour.", "The next day, Rafiq returned to the first shop and asked if it could match the online price. It could not, but the assistant offered a small discount. Rafiq bought the headphones for 250,000 soum. He paid more than the lowest advertised price, but he could check the product before taking it home and speak to the seller if a problem appeared. He decided that convenience and reliable service were worth paying a little extra for."], "questions": [{"q": "Why didn't Rafiq buy the cheaper headphones immediately?", "opts": ["He had forgotten his money.", "His sister advised him to compare features as well as price.", "The assistant refused to help him.", "The cheaper model was out of stock."], "a": 1, "type": "mc", "e": "Paragraph 1: his sister advised him “to compare more than the price”. Paragraph 2 gives examples: battery life and guarantee."}, {"q": "Which statement about the guarantee is correct?", "opts": ["Both models had a one-year guarantee.", "The cheaper model had a longer guarantee.", "The more expensive model came with a one-year guarantee.", "Neither model had a guarantee."], "a": 2, "type": "mc", "e": "Paragraph 2: “The more expensive model came with a one-year guarantee.” The cheaper pair had no guarantee."}, {"q": "What was the total cost on the second website, including delivery?", "opts": ["220,000 soum", "235,000 soum", "245,000 soum", "260,000 soum"], "a": 2, "type": "mc", "e": "Paragraph 3: 220,000 soum + 25,000 soum delivery = 245,000 soum. The question asks for the total, not the advertised price alone."}, {"q": "Rafiq's sister had bought the same headphones before.", "opts": ["True", "False", "Not Given"], "a": 2, "type": "tf", "e": "The text says his sister gave advice, but it does not say whether she had bought these headphones herself. We cannot guess; the answer is Not Given."}, {"q": "Why did Rafiq finally buy from the first shop?", "opts": ["He was not allowed to shop online.", "The shop offered free delivery.", "He valued checking the product and being able to contact the seller.", "All online reviews were negative."], "a": 2, "type": "mc", "e": "Paragraph 4: he could check the product before taking it home and speak to the seller if a problem appeared. He valued convenience and reliable service."}, {"q": "What does “match the online price” mean?", "opts": ["Sell a product with the same features.", "Reduce the shop's price to the price offered online.", "Order the product from another website.", "Compare the colours of two products."], "a": 1, "type": "mc", "e": "He asks the shop to match the online price; the shop cannot do so but offers a discount. In shopping, this means lowering its price to the same level as a competitor's offer."}]}, {"title": "A Lunchbox with a Plan", "topic": "Food, nutrition and quantities", "paragraphs": ["When the school announced a “Waste Less Lunch” week, some pupils thought it meant they would have to bring smaller lunches. Their teacher explained that the aim was different: pupils should take enough food to feel satisfied, but they should avoid throwing away things they do not eat. They would also learn to notice what their meals contained.", "On Monday, the class compared lunchboxes. Daniel had brought two cheese sandwiches, a packet of crisps and a bottle of fruit drink. He usually enjoys sweet drinks, but he was surprised to discover that his bottle contained very little real fruit juice. Malika had a homemade egg sandwich, some carrot sticks and an apple. Her lunch was not more expensive; her family had simply planned it the night before.", "During the week, pupils recorded what they left uneaten. A few children had too many snacks but not enough proper food. Others brought plenty of food but forgot to include water. The class discussed how a balanced meal can include different nutrients: protein from eggs or beans, fibre from vegetables and fruit, and energy from bread or rice. The teacher reminded them that no single food provides everything the body needs.", "By Friday, Daniel had made two changes. He now brings water and chooses a piece of fruit more often, although he still has a sweet drink sometimes. He says he feels less thirsty during afternoon lessons. The class also agreed to share unopened food only when school rules allow it, and to take suitable portions in the first place. They learned that reducing waste does not mean going hungry; it means making thoughtful choices."], "questions": [{"q": "What was the real aim of “Waste Less Lunch” week?", "opts": ["To make every pupil bring a smaller lunch.", "To reduce food waste and help pupils understand what they eat.", "To stop pupils eating sandwiches.", "To make families spend more money."], "a": 1, "type": "mc", "e": "Paragraph 1: pupils should take enough food, avoid throwing away uneaten food and notice what their meals contain. The aim was not simply to bring smaller lunches."}, {"q": "What surprised Daniel about his fruit drink?", "opts": ["It contained very little real fruit juice.", "It had no liquid in it.", "It cost more than Malika's lunch.", "It contained too much protein."], "a": 0, "type": "mc", "e": "Paragraph 2 says Daniel “was surprised to discover that his bottle contained very little real fruit juice.”"}, {"q": "Malika's lunch cost less than Daniel's lunch.", "opts": ["True", "False", "Not Given"], "a": 2, "type": "tf", "e": "Paragraph 2 says Malika's lunch “was not more expensive” and that her family planned it. It does not compare the exact cost of her lunch with Daniel's. We cannot conclude that hers cost less."}, {"q": "Which behaviour did the class identify?", "opts": ["Every pupil brought exactly the right amount of food.", "Some pupils brought too many snacks but not enough proper food.", "Nobody brought water.", "Pupils were told to stop eating bread and rice."], "a": 1, "type": "mc", "e": "Paragraph 3: “A few children had too many snacks but not enough proper food.” This matches option B."}, {"q": "What does “it” refer to in “it means making thoughtful choices”?", "opts": ["Going hungry", "Reducing waste", "Bringing a sweet drink", "Sharing unopened food"], "a": 1, "type": "mc", "e": "The full sentence says: “They learned that reducing waste does not mean going hungry; it means making thoughtful choices.” The second “it” refers to reducing waste."}, {"q": "Which statement best describes Daniel's changes?", "opts": ["He has completely stopped drinking sweet drinks.", "He chooses water and fruit more often, but still sometimes has a sweet drink.", "He eats only homemade food.", "He no longer brings lunch."], "a": 1, "type": "mc", "e": "Paragraph 4 says Daniel now brings water and chooses fruit more often, “although he still has a sweet drink sometimes.” “More often” does not mean “never”."}]}, {"title": "The Market That Changed Its Route", "topic": "Markets, food choices and community", "paragraphs": ["Every Saturday morning, the old market near the river becomes busy. People come to buy seasonal vegetables, fresh bread and homemade yoghurt. Until recently, most visitors entered through the main gate, walked along the same narrow path and left by the car park. At busy times, shoppers often had to wait while delivery workers carried boxes through the crowd.", "Last month, the market manager introduced a new layout. Delivery vehicles now arrive before the market opens, and a separate entrance is used for unloading goods. The stalls selling fruit and vegetables have been moved closer to the main gate, while the food court is now at the far end. The manager hoped that visitors would move around more easily and spend time looking at different stalls.", "Not everyone liked the change at first. Some regular customers said they could no longer find their favourite bread seller quickly. A few stallholders were worried that moving their tables would reduce their sales. However, after two weeks, the market collected feedback from visitors. Many said the new route felt safer because there were fewer boxes and carts in the busiest area. The bread seller also reported that more people were noticing his stall, although he could not say whether the new position was the only reason.", "The market has not solved every problem. On rainy days, the path near the food court becomes slippery, and the manager is still looking for a suitable covering. Nevertheless, the new arrangement has made Saturday shopping more comfortable for many people. The manager says the next step is to reduce food waste by giving unsold but safe produce to a local community kitchen. “A market should do more than sell things,” she says. “It should serve the people who use it.”"], "questions": [{"q": "What problem did shoppers experience before the layout changed?", "opts": ["There were no fresh vegetables.", "Delivery workers and shoppers used the same crowded path.", "The market opened only in the afternoon.", "The food court was outside the market."], "a": 1, "type": "mc", "e": "Paragraph 1: delivery workers carried boxes through the same narrow path as shoppers, and customers had to wait at busy times."}, {"q": "Why were delivery vehicles asked to arrive before the market opened?", "opts": ["To make deliveries cheaper.", "To separate unloading from busy shopping times.", "To help customers buy more bread.", "To stop the market selling seasonal food."], "a": 1, "type": "mc", "e": "Paragraph 2 says vehicles arrive before opening and a separate entrance is used for unloading. This separates deliveries from busy shopping times."}, {"q": "Every stallholder supported the new layout immediately.", "opts": ["True", "False", "Not Given"], "a": 1, "type": "tf", "e": "Paragraph 3 begins: “Not everyone liked the change at first.” It describes stallholders who were worried, so the statement is False."}, {"q": "What can we understand from the bread seller's comment?", "opts": ["The new position may have helped people notice his stall, but other factors could also be involved.", "His sales definitely doubled because of the new route.", "He wants the old layout back.", "He has stopped selling bread."], "a": 0, "type": "mc", "e": "Paragraph 3 says more people noticed his stall, “although he could not say whether the new position was the only reason.” Option A preserves this uncertainty."}, {"q": "Which problem still needs attention?", "opts": ["The market has no main gate.", "Delivery vehicles arrive too late.", "The path near the food court can become slippery in rainy weather.", "Customers cannot find the fruit stalls."], "a": 2, "type": "mc", "e": "Paragraph 4: “On rainy days, the path near the food court becomes slippery,” and the manager is still looking for a covering."}, {"q": "What is the manager's main idea in the final paragraph?", "opts": ["A market should focus only on making money.", "A market should support its community as well as sell products.", "Unsold food should always be thrown away.", "Customers should visit only on sunny days."], "a": 1, "type": "mc", "e": "Paragraph 4 says safe unsold produce will go to a community kitchen. The manager says a market should “serve the people who use it”, so it has a community role as well as a commercial one."}]}];
+let current=0, results=tests.map(t=>Array(t.questions.length).fill(null)), checked=tests.map(t=>false);
+const letters=["A","B","C","D"];
+function el(tag,cls,txt){const x=document.createElement(tag);if(cls)x.className=cls;if(txt!==undefined)x.textContent=txt;return x}
+function updateTop(){
+ document.getElementById("counter").textContent=`Text ${current+1} of ${tests.length}`;
+ document.getElementById("progress").style.width=`${(current+1)/tests.length*100}%`;
+ const score=results.flat().filter(x=>x===true).length;
+ document.getElementById("totalScore").textContent=`Total: ${score} / 24`;
+ document.querySelectorAll(".tab").forEach((b,i)=>{b.classList.toggle("active",i===current);b.textContent=`Text ${i+1}${checked[i]?" ✓":""}`});
+}
+function render(){
+ updateTop();
+ const t=tests[current], root=document.getElementById("content");root.innerHTML="";
+ root.append(el("h2",null,t.title));root.append(el("div","topic",t.topic));
+ const note=el("div","instructions","Read the whole passage first. Then answer all six questions. Click “Check this text” to see your score, the correct answers and explanations. You can review and change your answers before checking.");
+ root.append(note);
+ const passage=el("div","passage");
+ t.paragraphs.forEach(txt=>passage.append(el("p",null,txt)));
+ root.append(passage);
+ root.append(el("h3",null,"Questions — 6 marks"));
+ t.questions.forEach((q,qi)=>{
+  const box=el("div","question");box.append(el("div","qtitle",`${qi+1}. ${q.q}`));
+  q.opts.forEach((op,oi)=>{
+   const lab=el("label","option");const inp=document.createElement("input");inp.type="radio";inp.name=`q${current}_${qi}`;inp.value=oi;
+   if(results[current][qi]===oi)inp.checked=true;
+   inp.disabled=checked[current];
+   lab.append(inp,el("span",null,q.type==="mc"?`${letters[oi]}. ${op}`:op));
+   if(checked[current]){if(oi===q.a)lab.classList.add("correct");else if(results[current][qi]===oi)lab.classList.add("wrong")}
+   inp.addEventListener("change",()=>{results[current][qi]=oi});
+   box.append(lab);
+  });
+  root.append(box);
+ });
+ const actions=el("div","actions");
+ if(!checked[current]){
+  const check=el("button","primary","Check this text");
+  check.addEventListener("click",()=>{const unanswered=results[current].filter(x=>x===null).length;if(unanswered){alert(`Please answer all six questions first. You have ${unanswered} unanswered.`);return;}checked[current]=true;render()});
+  actions.append(check);
+ }else{
+  const again=el("button","secondary","Review answers");
+  again.addEventListener("click",()=>{checked[current]=false;render()});
+  actions.append(again);
+ }
+ if(current>0){const prev=el("button","secondary","← Previous text");prev.addEventListener("click",()=>{current--;render()});actions.append(prev)}
+ if(current<3){const next=el("button","primary",checked[current]?"Next text →":"Next text (answers not checked) →");next.addEventListener("click",()=>{current++;render()});actions.append(next)}
+ root.append(actions);
+ if(checked[current]){
+  const score=t.questions.reduce((s,q,i)=>s+(results[current][i]===q.a?1:0),0);
+  const fb=el("div","feedback show");fb.append(el("h3",null,"Your results"));
+  fb.append(el("div","scoreline",`You scored ${score} / 6`));
+  fb.append(el("p","small","Green = correct answer. Red = your selected answer when it was incorrect. Read the evidence carefully before moving on."));
+  t.questions.forEach((q,i)=>{
+   const ex=el("div","explain");
+   const isRight=results[current][i]===q.a;
+   ex.append(el("strong",isRight?"correct-answer":"incorrect-answer",`${i+1}. ${isRight?"Correct":"Not quite"} — Correct answer: ${q.type==="mc"?letters[q.a]+". ":""}${q.opts[q.a]}`));
+   ex.append(el("div",null,q.e));
+   fb.append(ex);
+  });
+  root.append(fb);
+ }
+ updateTop();
+}
+function init(){
+ const tabs=document.getElementById("tabs");
+ tests.forEach((t,i)=>{const b=el("button","tab",`Text ${i+1}`);b.addEventListener("click",()=>{current=i;render()});tabs.append(b)});
+ render();
+}
+init();
+</script>
+</body></html>
