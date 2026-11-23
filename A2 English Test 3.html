@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A2 English Test 3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* VOICE: calm, elegant classroom; clear and encouraging
+   IDEA: an exam paper on fine stationery, marked with a soft gold highlighter
+   PICTURE: the live test on ivory sheets over a champagne–mocha–dusty-rose ground
+   COLOUR and TYPE: champagne, mocha, dusty rose ground; deep emerald accent, burgundy for mistakes, bronze details; Lexend
+   LAYOUT: sticky step bar, one part at a time on a paper sheet, explanation under each question */
+:root{color-scheme:light dark;
+--sheet:light-dark(#fffdf8,#2b2f2c);--paper:light-dark(#f1ebdd,#353b37);--ink:light-dark(#2e2a26,#f1ebdd);--soft:light-dark(#77766c,#b9b3a6);
+--line:light-dark(#e3d8c6,#4a4f4a);--blue:light-dark(#315447,#9fc2b2);--blueBg:light-dark(#e4ebe5,#2f4a40);
+--hl:light-dark(#e6d2a8,#6e5c3d);--ok:light-dark(#315447,#9fc2b2);--okBg:light-dark(#e2e9e1,#2c4238);--bad:light-dark(#722f37,#e0a3a8);--badBg:light-dark(#f4e6e4,#4a2a2e);
+--g1:light-dark(#e8dccb,#343b36);--g2:light-dark(#b7a18a,#704c43);--g3:light-dark(#d8b7ae,#806477);--g4:light-dark(#c6b7a5,#315447)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;color:var(--ink);font:16.5px/1.6 Lexend,system-ui,sans-serif;overflow-x:clip;min-height:100vh;
+background:radial-gradient(circle at 12% 18%,rgba(255,255,255,.28) 0 2px,transparent 4px) 0 0/46px 46px,
+radial-gradient(circle at 70% 60%,rgba(255,255,255,.18) 0 1.5px,transparent 3px) 0 0/34px 34px,
+linear-gradient(150deg,var(--g1) 0%,var(--g2) 38%,var(--g3) 72%,var(--g4) 100%) fixed}
+mark{background:linear-gradient(transparent 12%,var(--hl) 12%,var(--hl) 88%,transparent 88%);color:inherit;padding:0 .15em;border-radius:2px}
+.wrap{max-width:920px;margin:0 auto;padding:0 max(3vw,12px)}
+.sheet{background:var(--sheet);border-radius:22px;padding:clamp(18px,3.5vw,34px);box-shadow:0 18px 40px -20px rgba(60,45,35,.35),0 2px 0 rgba(255,255,255,.6) inset}
+header.hero{padding:28px 0 16px}
+.hero .sheet{display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.hero h1{font-size:clamp(32px,5vw,48px);line-height:1.05;margin:0 0 8px;font-weight:800;text-wrap:balance}
+.hero p{margin:0;color:var(--soft);max-width:58ch}
+.seal{flex:none;width:96px;height:96px;border-radius:50%;background:conic-gradient(#8b7355,#d8b7ae,#806477,#315447,#8b7355);display:grid;place-items:center}
+.seal span{width:76px;height:76px;border-radius:50%;background:var(--sheet);display:grid;place-items:center;font-weight:800;font-size:26px;color:var(--blue)}
+.steps{position:sticky;top:0;z-index:5;padding:8px 0}
+.steps .wrap>div{display:flex;gap:6px;overflow-x:auto;background:color-mix(in srgb,var(--sheet) 88%,transparent);backdrop-filter:blur(8px);border-radius:999px;padding:6px;box-shadow:0 8px 20px -14px rgba(60,45,35,.4)}
+.steps button{flex:none;font:500 14px Lexend,system-ui,sans-serif;border:1.5px solid transparent;background:transparent;color:var(--soft);border-radius:999px;padding:9px 15px;min-height:44px;cursor:pointer}
+.steps button.on{background:var(--blue);color:#fff}
+.steps button.done:not(.on){color:var(--ok);border-color:var(--ok)}
+.steps button:disabled{opacity:.4;cursor:not-allowed}
+main{padding:10px 0 30px}
+section.part{display:none}section.part.on{display:block}
+h2{font-size:30px;line-height:1.1;margin:0 0 6px;font-weight:800}
+h3{font-size:21px;margin:26px 0 12px}
+.lead{color:var(--soft);margin:0 0 22px}
+.q{border:1.5px solid var(--line);border-radius:16px;padding:16px 18px;margin:0 0 16px;background:var(--sheet)}
+.qt{display:flex;gap:12px;align-items:flex-start;font-weight:600}
+.n{flex:none;width:32px;height:32px;border-radius:50%;background:#8b7355;color:#fff;display:grid;place-items:center;font-size:14px;font-weight:700}
+.notice{flex:1;border:2px dashed #b7a18a;border-radius:12px;padding:10px 14px;font-weight:400;background:var(--paper)}
+.notice b{display:block}
+.opts{display:grid;gap:8px;margin:12px 0 0 44px}
+.opt{display:flex;gap:10px;align-items:center;border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;min-height:44px;cursor:pointer;background:var(--sheet)}
+.opt input{width:20px;height:20px;accent-color:var(--blue);flex:none}
+.opt:has(input:checked){border-color:var(--blue);background:var(--blueBg)}
+.opt .L{font-weight:700;width:18px}
+.locked .opt.right{border-color:var(--ok);background:var(--okBg)}
+.locked .opt.wrong{border-color:var(--bad);background:var(--badBg)}
+.locked .opt{cursor:default}
+.ex{display:none;margin:14px 0 0 44px;border-left:4px solid var(--blue);padding:4px 0 4px 14px}
+.checked .ex{display:block}
+.verdict{font-weight:700;margin-bottom:6px}.verdict.ok{color:var(--ok)}.verdict.no{color:var(--bad)}
+.keys{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 10px;align-items:center}
+.keys span{font-size:14px;background:var(--hl);color:light-dark(#17181f,#fff);border-radius:6px;padding:2px 8px}
+.why{margin:0;padding:0;list-style:none;display:grid;gap:5px;font-size:15px}
+.why li{display:flex;gap:8px}.why .m{flex:none;font-weight:700;width:46px}
+.why .y{color:var(--ok)}.why .x{color:var(--bad)}
+.text{background:var(--paper);border-radius:16px;padding:18px 20px;margin:0 0 20px}
+.text h3{margin:0 0 6px;font-size:19px}.text p{margin:0 0 10px}.text p:last-child{margin:0}
+.by{font-size:14px;color:var(--soft);margin:-4px 0 10px!important}
+.mus{display:grid;gap:12px;margin-bottom:22px}
+.mus .text{margin:0;position:relative}
+.mus .tag{position:absolute;top:14px;right:16px;font-weight:700;background:#722f37;color:#fff;border-radius:8px;padding:0 10px}
+.gap{display:inline-block;min-width:74px;text-align:center;border-bottom:2px solid var(--blue);font-weight:700;color:var(--blue);line-height:1.3}
+.cloze p{line-height:2.1}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:20px}
+.btn{font:600 16px Lexend,system-ui,sans-serif;border:0;border-radius:12px;padding:12px 22px;min-height:48px;cursor:pointer;background:var(--blue);color:#fff;box-shadow:0 6px 14px -8px var(--blue)}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line);box-shadow:none}
+.btn:focus-visible,.opt:focus-within,.steps button:focus-visible{outline:3px solid var(--hl);outline-offset:2px}
+.score{font-weight:700;font-size:20px}
+.msg{color:var(--soft);font-size:15px}
+.big{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:6px 0 18px}
+.big b{font-size:clamp(56px,10vw,88px);line-height:1;color:var(--blue)}
+.big span{font-size:20px;font-weight:600}
+.rows{display:grid;gap:10px;margin-bottom:10px}
+.row{display:grid;grid-template-columns:110px minmax(0,1fr) 56px;gap:12px;align-items:center}
+.track{height:14px;border-radius:7px;background:var(--paper);overflow:hidden}.track i{display:block;height:100%;background:linear-gradient(90deg,#b7a18a,#315447);border-radius:7px;animation:grow .9s ease-out}@keyframes grow{from{width:0!important}}
+.tips{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.tips li{background:var(--paper);border-radius:12px;padding:12px 16px}
+.tips b{color:var(--blue)}
+.vocab{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.w{border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--sheet)}
+.w h4{margin:0;font-size:18px}.w .src{font-size:13px;color:var(--soft)}
+.w p{margin:4px 0 0;font-size:15px}.w .uz{color:var(--blue);font-weight:600}
+.hideuz .w .uz{filter:blur(6px);cursor:pointer}
+.toggle{display:flex;gap:8px;align-items:center;margin:0 0 14px;font-size:15px;cursor:pointer}.toggle input{width:20px;height:20px;accent-color:var(--blue)}
+footer{padding:0 0 30px}
+footer .sheet{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-weight:700;padding:16px 24px}
+footer .s{color:#8b7355}
+@media(max-width:600px){.opts,.ex{margin-left:0}.row{grid-template-columns:80px minmax(0,1fr) 48px;font-size:14px}h2{font-size:26px}.seal{display:none}}
+@media(prefers-reduced-motion:reduce){.track i{animation:none}}
+</style></head><body>
+
+<div class="wrap"><header class="hero"><div class="sheet">
+<div><h1>English Test · A2</h1>
+<p>Reading · 4 parts + vocabulary mini test. Har bir partni bajarib, <b>“Check answers”</b> tugmasini bosing — nima uchun javob to‘g‘ri yoki noto‘g‘ri ekanini key words orqali ko‘rasiz.</p></div>
+<div class="seal"><span>A2</span></div>
+</div></header></div>
+
+<nav class="steps"><div class="wrap"><div id="steps"></div></div></nav>
+
+<main class="wrap">
+<section class="part sheet" id="p1">
+  <h2>Part 1 · Notices &amp; messages</h2>
+  <p class="lead">Questions 1–6. For each question, choose the correct answer.</p>
+  <div id="q1"></div><div class="bar" id="b1"></div>
+</section>
+
+<section class="part sheet" id="p2">
+  <h2>Part 2 · Three teenage sports superstars</h2>
+  <p class="lead">Read about three young sports stars. Questions 7–13: choose A, B or C.</p>
+  <div class="mus">
+    <div class="text"><span class="tag">A</span><h3>Gaurika Singh, swimmer</h3><p>Gaurika is from Nepal, and she was the only under-14-year-old to take part in the 2016 Olympics in Rio de Janeiro. She swam the 100 metres backstroke for Nepal. Home for Gaurika these days is in the UK, and she trains at the Copthall Swimming Club, where the coaches have trained other world-class swimmers. Her father, Paras Singh, travels with her around the world when she goes to a competition.</p></div>
+    <div class="text"><span class="tag">B</span><h3>Tracy Austin, tennis player</h3><p>When Tracy Austin was given a car as a prize in a tennis competition in Stuttgart, Germany, she was 15 and still too young to drive, but she was already a professional tennis player. Then, at the age of 17, the American became the youngest ever sports person to earn a million dollars. Before long, she was the world’s number one player. These days, she often appears on TV, talking about tennis matches at major competitions.</p></div>
+    <div class="text"><span class="tag">C</span><h3>Nadia Comăneci, gymnast</h3><p>When Romanian gymnast Nadia took part in the Olympic Games in Montreal, Canada, in 1976, she immediately became one of the most famous sports people in the world. She got perfect scores of 10.0 in seven different events. Everyone thought that nobody could do this and, in fact, 9.9 was the highest number that the score board could show. She did so well that she helped large numbers of people become interested in gymnastics.</p></div>
+  </div>
+  <div id="q2"></div><div class="bar" id="b2"></div>
+</section>
+
+<section class="part sheet" id="p3">
+  <h2>Part 3 · A young fashion designer</h2>
+  <p class="lead">Read the article. Questions 14–18: choose the correct answer.</p>
+  <div class="text">
+    <h3>Isabella Rose Taylor</h3>
+    <p>Lots of people become good at something when they are young. And quite a lot of children know what career they want to follow when they are older. But not everyone opens their own company. This is exactly what Isabella Rose Taylor has done. She started designing clothes when she was eight years old.</p>
+    <p>At the time, she was a keen painter. She used a lot of reds, blues and yellows, and these colours helped her to think of new clothes which she could make.</p>
+    <p>When she started designing and making clothes, Isabella just made clothes for fun. But people liked her designs, so soon she started selling them online. Now she has a business and takes part in fashion shows. She runs her business from the family home, where she has made one room into an office, and another into a studio where the clothes are made.</p>
+    <p>Isabella has also found time to finish school and get a college degree. She’s intelligent, and she has thousands of followers online who love her stuff. It’s brilliant that she already has people who work for her. Above all, she really knows what is needed to succeed in the world of fashion. And I am sure that she will.</p>
+    <p>‘The way I see it is I get to follow my dream and be a teenager at the same time. I think I’m pretty lucky,’ she says.</p>
+  </div>
+  <div id="q3"></div><div class="bar" id="b3"></div>
+</section>
+
+<section class="part sheet" id="res">
+  <h2>Your results · Parts 1–3</h2>
+  <div class="big"><b id="tot">0</b><span>/ 18 &nbsp;·&nbsp; <span id="lvl"></span></span></div>
+  <div class="rows" id="rows"></div>
+  <h3>Suggestions · Maslahatlar</h3>
+  <ul class="tips" id="tips"></ul>
+  <h3>Words to revise · Takrorlash uchun so‘zlar</h3>
+  <p class="msg">Parts 1–3 dagi qiyin so‘zlar: inglizcha ta’rif va o‘zbekcha tarjima. O‘zingizni tekshirish uchun tarjimani yashiring.</p>
+  <label class="toggle"><input type="checkbox" id="hide"> Hide Uzbek · O‘zbekchani yashirish (bosib ko‘ring)</label>
+  <div class="vocab" id="vocab"></div>
+  <div class="bar"><button class="btn" data-go="p4">Go to Part 4 →</button></div>
+</section>
+
+<section class="part sheet" id="p4">
+  <h2>Part 4 · Ferry to school</h2>
+  <p class="lead">Questions 19–24. Read the text and choose the correct word for each space. Tanlagan so‘zingiz matnda paydo bo‘ladi.</p>
+  <div class="text cloze">
+    <h3>Ferry to School</h3>
+    <p>Most pupils go to school each day on foot or by car, but Jordan Basford is different. He lives on the Scottish island of Egilsay. There, the school had to <span class="gap" data-g="19">19</span> because there weren’t any other pupils. The nearest school is in Rousay, across the sea. His family have a boat, but it is small, and they can <span class="gap" data-g="20">20</span> use it in good weather. A much larger boat is <span class="gap" data-g="21">21</span> in bad weather. So every day, Jordan has to <span class="gap" data-g="22">22</span> the ferry across the sea to go to school. He usually comes back home afterwards, but sometimes he phones home to say that he’s <span class="gap" data-g="23">23</span> the night at a friend’s house instead. ‘I know I have to travel a long <span class="gap" data-g="24">24</span> to school each day,’ he says. ‘But I don’t mind.’</p>
+  </div>
+  <div id="q4"></div><div class="bar" id="b4"></div>
+</section>
+
+<section class="part sheet" id="p5">
+  <h2>Part 5 · Vocabulary mini test</h2>
+  <p class="lead">Questions 1–12. Choose the correct word. Hamma so‘zlar Parts 1–3 dan olingan.</p>
+  <div id="q5"></div><div class="bar" id="b5"></div>
+</section>
+
+<section class="part sheet" id="fin">
+  <h2>Final results &amp; suggestions</h2>
+  <div class="big"><b id="ftot">0</b><span>/ 36 &nbsp;·&nbsp; <span id="flvl"></span></span></div>
+  <div class="rows" id="frows"></div>
+  <h3>Suggestions · Keyingi qadamlar</h3>
+  <ul class="tips" id="ftips"></ul>
+  <div class="bar"><button class="btn ghost" id="restart">↺ Start again</button></div>
+</section>
+</main>
+
+<div class="wrap"><footer><div class="sheet"><span>English <span class="s">★</span> Jizzakh Presidential School</span><span class="msg">A2 Reading Test</span></div></footer></div>
+
+<script>
+{
+const P1=[
+{n:1,note:'John,<br>You know I said that football practice will be on Wednesday … Well, it isn’t – it’s on Thursday. Sorry! See you there. Cheers, Adam',stem:'Why has Adam written this message?',o:['to ask if John wants to play football','to tell John that Adam can’t play football','to let John know about a change of plan'],a:2,k:['it isn’t – it’s on Thursday','Sorry!'],w:['Adam savol bermayapti — trenirovka allaqachon rejalashtirilgan.','Tuzoq: “See you there” — Adam ham keladi, o‘ynay oladi.','Chorshanba emas, payshanba → reja o‘zgardi = change of plan.']},
+{n:2,note:'<b>SCHOOL FESTIVAL OF BOOKS</b>Meet Ralph Sparks. Hear how he got ideas for his books, including <i>History of Exploring the New World</i>. Thurs 9 a.m. Room D31.',stem:'Pupils can',o:['buy books','read about explorers','come and listen to a writer'],a:2,k:['Meet Ralph Sparks','Hear how he got ideas for his books'],w:['Kitob sotish haqida gap yo‘q.','Tuzoq: “Exploring” so‘zi bor — bu faqat kitob nomi.','“Hear” = tinglash; “his books” → u yozuvchi = listen to a writer.']},
+{n:3,note:'<b>Science Museum trip next Friday</b>Tickets are available for $4 (for coach transport to the museum, and for museum entry). If you’re interested, see Mr Goss.',o:['You can now buy tickets for the museum trip.','Tell Mr Goss how you want to travel to the museum.','Mr Goss will tell you if you need a ticket to the museum.'],a:0,k:['Tickets are available for $4','see Mr Goss'],w:['“available for $4” = hozir 4 dollarga sotib olish mumkin.','Transport tanlanmaydi — hamma “coach” (avtobus)da boradi.','Chipta hamma uchun kerak; Mr Goss bu haqida qaror qilmaydi.']},
+{n:4,note:'<b>From: Lizzie · To: Jenny</b>Jenny, I think I left my scarf in your flat after the party. Have you seen it? Otherwise I’ll buy another one. Lizzie',stem:'Why has Lizzie written this?',o:['to invite Jenny to a party','to tell Jenny about a shopping trip','to ask about something that she’s lost'],a:2,k:['I left my scarf','Have you seen it?'],w:['Tuzoq: “after the party” — bayram o‘tib ketgan, taklif emas.','Tuzoq: “I’ll buy another one” — faqat topilmasa; xarid haqida xabar emas.','Sharfini qoldirgan va “Have you seen it?” = yo‘qolgan narsani so‘rayapti.']},
+{n:5,note:'Hi Dave,<br>I broke my tennis racket. Can I use yours? I’ll give it back in maths tomorrow. By the way, wasn’t the homework difficult? Mike',stem:'Mike wants to',o:['play tennis with Dave.','borrow something from Dave.','get help from Dave with the homework.'],a:1,k:['Can I use yours?','I’ll give it back'],w:['Birga o‘ynash haqida gap yo‘q.','“use yours” + “give it back” = qarzga olmoq = borrow.','Tuzoq: “By the way” — shunchaki qo‘shimcha gap, yordam so‘ramayapti.']},
+{n:6,note:'<b>Mr Gregson is away today.</b>Class 3, at 9 a.m., please go and join Class 4 in Room 7C for geography. Mr Gregson will be back tomorrow.',o:['There isn’t a geography lesson tomorrow.','Class 4’s lesson is happening at a different time today.','There will be more people in Room 7C than usual today.'],a:2,k:['join Class 4','Room 7C'],w:['“will be back tomorrow” — ertaga dars bo‘ladi.','Class 4 vaqti o‘zgarmagan — Class 3 ularga qo‘shiladi.','“join” = qo‘shilmoq → ikki sinf bir xonada = odam ko‘p.']}
+];
+const Mo=['Gaurika Singh','Tracy Austin','Nadia Comăneci'];
+const P2=[
+{n:7,q:'Which sports person now works as a journalist?',a:1,k:['These days','appears on TV, talking about tennis matches'],w:['Gaurika hozir ham suzuvchi, mashg‘ulot qiladi.','“These days… appears on TV, talking about… matches” = jurnalist.','Nadia haqida hozirgi ishi aytilmagan.']},
+{n:8,q:'Which sports person made her sport more popular?',a:2,k:['helped large numbers of people become interested in gymnastics'],w:['Mashhurlik haqida gap yo‘q.','Tuzoq: Tracy “number one” bo‘lgan, lekin tennisni ommalashtirgani aytilmagan.','“people become interested in gymnastics” = sport ommalashdi = popular.']},
+{n:9,q:'Which sports person won something that she couldn’t use?',a:1,k:['given a car as a prize','too young to drive'],w:['Sovrin haqida gap yo‘q.','Mashina yutgan, lekin haydash uchun yoshi kichik = couldn’t use.','Nadia ochko olgan, narsa emas.']},
+{n:10,q:'Which sports person became rich when she was young?',a:1,k:['at the age of 17','earn a million dollars'],w:['Pul haqida gap yo‘q.','17 yoshida million dollar ishlagan = rich.','Nadia mashhur bo‘lgan, boylik haqida gap yo‘q.']},
+{n:11,q:'Which sports person was the youngest person in a competition?',a:0,k:['the only under-14-year-old','2016 Olympics'],w:['Olimpiadadagi 14 yoshdan kichik yagona ishtirokchi = the youngest.','Tuzoq: Tracy “youngest… to earn a million” — pul bo‘yicha eng yosh, musobaqada emas.','Nadianing yoshi aytilmagan.']},
+{n:12,q:'Which sports person did something that people believed was not possible?',a:2,k:['Everyone thought that nobody could do this'],w:['Bunday gap yo‘q.','“world’s number one” — ajoyib, lekin “imkonsiz” deyilmagan.','“nobody could do this” + tablo 9.9 dan yuqorini ko‘rsata olmagan = not possible.']},
+{n:13,q:'Which sports person was born in one country and now lives in another?',a:0,k:['from Nepal','Home… these days is in the UK'],w:['Nepaldan, hozir Buyuk Britaniyada yashaydi.','Tuzoq: Tracy Germaniyada musobaqada qatnashgan, u yerda yashamaydi.','Tuzoq: Nadia Kanadada musobaqada bo‘lgan, u yerga ko‘chmagan.']}
+];
+const P3=[
+{n:14,q:'What does the writer say is unusual about Isabella Rose Taylor?',o:['She planned her future career when she was very young.','She started her own business when she was very young.','She got interested in fashion when she was very young.'],a:1,k:['But not everyone opens their own company','This is exactly what… has done'],w:['Tuzoq: “quite a lot of children know what career…” — bu ko‘p bolalarda bor, g‘ayrioddiy emas.','“not everyone opens their own company” → o‘z biznesini ochgani g‘ayrioddiy.','Yoshlikda qiziqish ko‘p odamlarda bor (“Lots of people…”).']},
+{n:15,q:'What does Isabella say about painting and making clothes?',o:['It is important to paint good pictures of clothes.','The colours in her paintings gave her ideas for clothes to make.','She uses paint to put her favourite colours on the clothes she makes.'],a:1,k:['these colours helped her to think of new clothes'],w:['Kiyim rasmini chizish haqida gap yo‘q.','“colours helped her to think of new clothes” = ranglar g‘oya berdi.','Tuzoq: kiyimni bo‘yoq bilan bo‘yashi aytilmagan.']},
+{n:16,q:'What do we learn about Isabella’s home?',o:['Everything for her business is done in the same room at home.','Her home is too small, so she’s looking for another one.','She’s made changes to her home so that she can work there.'],a:2,k:['made one room into an office','another into a studio'],w:['Bitta emas — ikki xona: ofis va studiya.','Uy kichikligi haqida gap yo‘q.','“made one room into… another into…” = uyni ish uchun o‘zgartirgan.']},
+{n:17,q:'Why does the writer think that Isabella will do well in the future?',o:['She is already very popular online.','She understands the fashion business.','She has brilliant people who work for her.'],a:1,k:['Above all','knows what is needed to succeed'],w:['Bu ham to‘g‘ri fakt, lekin asosiy sabab emas.','“Above all” = eng muhimi → moda biznesini tushunadi.','Tuzoq: “It’s brilliant that she has people” — odamlar emas, bu holat “brilliant”.']},
+{n:18,q:'What is the best title for the article?',o:['The girl who can’t wait to start working in fashion soon','The problem with working and studying','A hobby that is becoming a career'],a:2,k:['just made clothes for fun','Now she has a business'],w:['U allaqachon ishlayapti — “can’t wait to start” emas.','Teskari: u ikkalasini ham uddalagan, “pretty lucky” deydi.','“for fun” (hobbi) → “has a business” (kasb) = hobby becoming a career.']}
+];
+const P4=[
+{n:19,q:'There, the school had to ___ because there weren’t any other pupils.',o:['close','complete','finish'],a:0,k:['school','weren’t any other pupils'],w:['Maktab “close” — yopiladi (o‘quvchi yo‘q).','complete = tugatmoq (ish, vazifa); maktabga ishlatilmaydi.','finish — dars tugaydi, lekin maktab “finish” bo‘lmaydi.']},
+{n:20,q:'it is small, and they can ___ use it in good weather',o:['almost','only','nearly'],a:1,k:['small','good weather'],w:['almost = deyarli — “deyarli ishlata oladi” ma’nosiz.','only = faqat → kichik qayiq faqat yaxshi havoda.','nearly = deyarli — xuddi almost kabi mos emas.']},
+{n:21,q:'A much larger boat is ___ in bad weather.',o:['needed','liked','had'],a:0,k:['much larger','bad weather'],w:['needed = kerak → yomon havoda katta qayiq kerak.','liked — yoqadi; ma’noga mos emas.','“is had” — grammatik noto‘g‘ri.']},
+{n:22,q:'Jordan has to ___ the ferry across the sea',o:['travel','make','catch'],a:2,k:['catch the ferry'],w:['“travel the ferry” — “travel by ferry” bo‘lishi kerak edi.','make — yasash; paromni yasamaydi.','catch the ferry / bus / train = ulgurib chiqmoq.']},
+{n:23,q:'he’s ___ the night at a friend’s house instead',o:['resting','staying','sleeping'],a:1,k:['the night','at a friend’s house'],w:['“resting the night” — bunday birikma yo‘q.','stay the night = tunab qolmoq.','“sleeping the night” noto‘g‘ri; “sleeping at a friend’s” bo‘lishi mumkin edi, lekin “the night” bilan emas.']},
+{n:24,q:'I have to travel a long ___ to school each day',o:['way','transport','mile'],a:0,k:['a long way'],w:['a long way = uzoq yo‘l.','transport — sanalmaydi; “a long transport” bo‘lmaydi.','“a long mile” — mil o‘lchov birligi, uzun bo‘lmaydi.']}
+];
+const V=[
+['change of plan','when you do something different from what you said','rejaning o‘zgarishi',1],['festival','a special event with many activities','festival, bayram',1],
+['explore (explorer)','travel to learn about a new place','kashf qilmoq (kashfiyotchi)',1],['available','you can buy, get or use it','mavjud, olish mumkin',1],
+['entry','going into a place; a ticket to go in','kirish',1],['scarf','a long piece of cloth you wear round your neck','sharf',1],
+['flat','a home on one floor of a building','kvartira',1],['otherwise','if not','aks holda, bo‘lmasa',1],
+['racket','a thing you hit the ball with in tennis','raketka',1],['by the way','used to start talking about something new','aytgancha',1],
+['join','go and be together with a group','qo‘shilmoq',1],['take part in','do something with other people (a race, a game)','qatnashmoq',2],
+['train (trainer, coach)','practise a sport; a person who teaches a sport','mashq qilmoq; murabbiy',2],['competition','an event where people try to win','musobaqa',2],
+['prize','something you get when you win','sovrin',2],['professional','doing something as a job, for money','professional',2],
+['earn','get money for your work','pul topmoq',2],['appear on TV','be seen on television','televizorda chiqmoq',2],
+['immediately','at once, very quickly','darhol',2],['career','the job you do for a long time','kasb, martaba',3],
+['keen','very interested in something','qiziqqan, ishqiboz',3],['run a business','be the boss of a company','biznes yuritmoq',3],
+['degree','what you get when you finish university or college','diplom, daraja',3],['succeed','do well, get what you want','muvaffaqiyatga erishmoq',3]
+];
+const P5=[
+{n:1,q:'I left my ___ at home and now my neck is cold.',o:['racket','scarf','prize'],a:1,k:['neck is cold'],w:['racket — tennis uchun.','scarf = sharf, bo‘yinga taqiladi.','prize = sovrin.']},
+{n:2,q:'She won a big ___ — a new bike!',o:['prize','career','degree'],a:0,k:['won'],w:['prize = sovrin.','career = kasb.','degree = diplom.']},
+{n:3,q:'Hurry up, ___ we’ll be late.',o:['by the way','immediately','otherwise'],a:2,k:['we’ll be late'],w:['by the way — yangi mavzu boshlash uchun.','immediately = darhol; gap tuzilishiga mos emas.','otherwise = aks holda (shoshilmasak kech qolamiz).']},
+{n:4,q:'He wants to ___ in the school race next week.',o:['take part','earn','appear'],a:0,k:['race'],w:['take part in = qatnashmoq.','earn — pul topmoq.','appear — chiqmoq (TV).']},
+{n:5,q:'My brother works in a bank and ___ a lot of money.',o:['explores','earns','joins'],a:1,k:['money'],w:['explore — sayohat qilib o‘rganmoq.','earn money = pul topmoq.','join — qo‘shilmoq.']},
+{n:6,q:'Tickets for the concert are ___ online now.',o:['keen','professional','available'],a:2,k:['tickets','online now'],w:['keen — odamga ishlatiladi.','professional — kasbga oid.','available = sotuvda bor, olish mumkin.']},
+{n:7,q:'We play basketball after school. Do you want to ___ us?',o:['join','succeed','run'],a:0,k:['Do you want to … us?'],w:['join us = bizga qo‘shil.','succeed — muvaffaqiyatga erishmoq.','run us — ma’nosiz.']},
+{n:8,q:'He is very ___ on football — he plays every day.',o:['available','keen','immediately'],a:1,k:['plays every day'],w:['available — narsalar uchun.','keen on = juda qiziqadi.','immediately — ravish, bu yerga mos emas.']},
+{n:9,q:'They live in a small ___ on the fifth floor.',o:['flat','festival','competition'],a:0,k:['fifth floor'],w:['flat = kvartira.','festival — tadbir.','competition — musobaqa.']},
+{n:10,q:'The doctor said, “Come here ___! It’s urgent.”',o:['otherwise','immediately','by the way'],a:1,k:['urgent'],w:['otherwise — “aks holda”.','immediately = darhol.','by the way — mavzuni o‘zgartirish.']},
+{n:11,q:'My sister finished university and got her ___ last year.',o:['scarf','racket','degree'],a:2,k:['finished university'],w:['scarf — kiyim.','racket — sport anjomi.','degree = diplom.']},
+{n:12,q:'If you work hard, you will ___.',o:['succeed','appear','explore'],a:0,k:['work hard'],w:['succeed = muvaffaqiyatga erishmoq.','appear — paydo bo‘lmoq.','explore — kashf qilmoq.']}
+];
+const DATA={p1:[P1],p2:[P2,Mo],p3:[P3],p4:[P4],p5:[P5]};
+const L='ABC',$=s=>document.querySelector(s),st={p1:null,p2:null,p3:null,p4:null,p5:null};
+const STEPS=[['p1','Part 1'],['p2','Part 2'],['p3','Part 3'],['res','Results & words'],['p4','Part 4'],['p5','Part 5 · Mini test'],['fin','Final']];
+function qHTML(id,x,opts){
+  const head=x.note?`<div class="notice">${x.note}</div>`:`<div>${x.q}</div>`;
+  return `<div class="q" id="${id}-${x.n}"><div class="qt"><span class="n">${x.n}</span>${head}</div>
+  ${x.stem?`<p style="margin:10px 0 0 44px;font-weight:600">${x.stem}</p>`:''}
+  <div class="opts">${opts.map((t,i)=>`<label class="opt"><input type="radio" name="${id}-${x.n}" value="${i}"><span class="L">${L[i]}</span><span>${t}</span></label>`).join('')}</div>
+  <div class="ex"></div></div>`;
+}
+function render(id){const [d,o]=DATA[id],k=id.slice(1);
+  $('#q'+k).innerHTML=d.map(x=>qHTML(id,x,o||x.o)).join('');
+  $('#b'+k).innerHTML=`<button class="btn" data-check="${id}">Check answers ✓</button><span class="msg">Avval barcha savollarga javob bering.</span>`;}
+function check(id){
+  const [data,opts]=DATA[id],sec=$('#'+id),bar=$('#b'+id.slice(1));
+  const un=data.filter(x=>!sec.querySelector(`input[name="${id}-${x.n}"]:checked`));
+  if(un.length){bar.querySelector('.msg').textContent=`Javob berilmagan: ${un.map(x=>x.n).join(', ')}`;document.getElementById(`${id}-${un[0].n}`).scrollIntoView({behavior:'smooth',block:'center'});return}
+  let s=0;
+  data.forEach(x=>{
+    const box=document.getElementById(`${id}-${x.n}`),pick=+box.querySelector('input:checked').value,ok=pick===x.a;if(ok)s++;
+    box.classList.add('checked','locked');box.querySelectorAll('input').forEach(i=>i.disabled=true);
+    box.querySelectorAll('.opt').forEach((o,i)=>{if(i===x.a)o.classList.add('right');else if(i===pick)o.classList.add('wrong')});
+    const names=opts||x.o;
+    box.querySelector('.ex').innerHTML=`<div class="verdict ${ok?'ok':'no'}">${ok?'✓ Correct!':'✗ Not quite.'} To‘g‘ri javob: ${L[x.a]} — ${names[x.a]}</div>
+    <div class="keys">Key words: ${x.k.map(k=>`<span>${k}</span>`).join('')}</div>
+    <ul class="why">${x.w.map((t,i)=>`<li><span class="m ${i===x.a?'y':'x'}">${L[i]} ${i===x.a?'✓':'✗'}</span><span>${t}</span></li>`).join('')}</ul>`;
+    if(id==='p4'){const g=document.querySelector(`.gap[data-g="${x.n}"]`);g.textContent=names[x.a];g.style.color='var(--ok)';g.style.borderColor='var(--ok)'}
+  });
+  st[id]=s;
+  const nxt={p1:['p2','Next: Part 2 →'],p2:['p3','Next: Part 3 →'],p3:['res','See results & words →'],p4:['p5','Next: Mini test →'],p5:['fin','See final results →']}[id];
+  bar.innerHTML=`<span class="score">Score: ${s} / ${data.length}</span><button class="btn" data-go="${nxt[0]}">${nxt[1]}</button>`;
+  if(id==='p3')results();if(id==='p5')final();steps();
+}
+const lvl=p=>p>=.85?'Excellent!':p>=.65?'Good job!':p>=.45?'Keep practising':'Let’s revise together';
+const rowsH=parts=>parts.map(([n,s,m])=>`<div class="row"><span>${n}</span><div class="track"><i style="width:${s/m*100}%"></i></div><b>${s}/${m}</b></div>`).join('');
+const grow=()=>{};
+function tipList(){const t=[];
+  t.push(st.p1<5?'<b>Part 1:</b> “Why has … written this?” savollarida xabarning <mark>maqsadini</mark> toping: o‘zgarish (it isn’t – it’s on Thursday), so‘rov (Can I use yours?), yo‘qolgan narsa (Have you seen it?). Mayda detallarga emas, asosiy fikrga qarang.':'<b>Part 1:</b> Zo‘r! Xabarlarning maqsadini yaxshi tushunasiz.');
+  t.push(st.p2<6?'<b>Part 2:</b> Savoldagi so‘zning <mark>sinonimini</mark> qidiring: journalist = appears on TV talking about matches, rich = earn a million dollars, popular = people become interested. Hozir/oldin farqiga e’tibor: <mark>these days</mark>.':'<b>Part 2:</b> Sinonimlarni yaxshi topasiz. Tuzoq: “youngest” so‘zi Tracy matnida ham bor — savolni oxirigacha o‘qing.');
+  t.push(st.p3<4?'<b>Part 3:</b> <mark>Above all</mark>, <mark>But not everyone</mark>, <mark>This is exactly</mark> kabi so‘zlar muallifning asosiy fikrini ko‘rsatadi. Javob variantidagi so‘z matnda bo‘lsa ham, ma’nosi boshqa bo‘lishi mumkin.':'<b>Part 3:</b> Matnni yaxshi tushunasiz. “Best title” savolida butun matnni bir gapda xulosa qiling.');
+  return t}
+function results(){
+  const t=st.p1+st.p2+st.p3;$('#tot').textContent=t;$('#lvl').textContent=lvl(t/18);
+  $('#rows').innerHTML=rowsH([['Part 1',st.p1,6],['Part 2',st.p2,7],['Part 3',st.p3,5]]);grow();
+  $('#tips').innerHTML=[...tipList(),'<b>Har kuni:</b> pastdagi so‘zlardan 5 tasini tanlab, har biri bilan o‘zingiz haqingizda gap tuzing. Keyin Part 4 va mini testni bajaring.'].map(x=>`<li>${x}</li>`).join('');
+}
+function final(){
+  const t=Object.values(st).reduce((a,b)=>a+b,0);$('#ftot').textContent=t;$('#flvl').textContent=lvl(t/36);
+  $('#frows').innerHTML=rowsH([['Part 1',st.p1,6],['Part 2',st.p2,7],['Part 3',st.p3,5],['Part 4',st.p4,6],['Part 5',st.p5,12]]);
+  const t2=tipList();
+  t2.push(st.p4<5?'<b>Part 4 (grammar):</b> So‘z birikmalarini yod oling: <mark>catch the ferry/bus</mark>, <mark>stay the night</mark>, <mark>a long way</mark>, <mark>the school had to close</mark>. <mark>only</mark> = faqat; <mark>almost/nearly</mark> = deyarli — ma’nosi farq qiladi.':'<b>Part 4 (grammar):</b> So‘z birikmalarini yaxshi bilasiz. Yangi iboralarni daftarga yozib boring.');
+  t2.push(st.p5<10?'<b>Part 5 (vocabulary):</b> “Results & words” bo‘limiga qaytib, xato qilgan so‘zlaringizni o‘zbekchasini yashirib takrorlang, keyin testni qayta ishlang.':'<b>Part 5 (vocabulary):</b> Ajoyib! So‘zlarni yaxshi o‘zlashtirdingiz — endi ularni gapda ishlating.');
+  t2.push('<b>Next step:</b> Har hafta bitta A2 reading bajaring va har safar 5 ta yangi so‘zni daftarga ta’rifi va misoli bilan yozing.');
+  $('#ftips').innerHTML=t2.map(x=>`<li>${x}</li>`).join('');
+}
+function steps(){
+  const open={p1:1,p2:st.p1!==null,p3:st.p2!==null,res:st.p3!==null,p4:st.p3!==null,p5:st.p4!==null,fin:st.p5!==null};
+  const done={p1:st.p1!==null,p2:st.p2!==null,p3:st.p3!==null,res:st.p3!==null,p4:st.p4!==null,p5:st.p5!==null,fin:st.p5!==null};
+  const cur=document.querySelector('section.part.on')?.id;
+  $('#steps').innerHTML=STEPS.map(([id,n])=>`<button data-go="${id}" class="${id===cur?'on':''} ${done[id]?'done':''}" ${open[id]?'':'disabled'}>${n}</button>`).join('');
+}
+function go(id){document.querySelectorAll('section.part').forEach(s=>s.classList.toggle('on',s.id===id));steps();if(id==='res'||id==='fin')grow();window.scrollTo({top:$('.steps').offsetTop,behavior:'smooth'})}
+$('#vocab').innerHTML=V.map(([w,d,u,p])=>`<div class="w"><h4>${w}</h4><span class="src">from Part ${p}</span><p>${d}</p><p class="uz">${u}</p></div>`).join('');
+function init(){Object.keys(st).forEach(k=>st[k]=null);Object.keys(DATA).forEach(render);
+  document.querySelectorAll('.gap').forEach(g=>{g.textContent=g.dataset.g;g.style.color='';g.style.borderColor=''});go('p1')}
+document.addEventListener('change',e=>{const m=e.target.name&&e.target.name.match(/^p4-(\d+)$/);if(m){const g=document.querySelector(`.gap[data-g="${m[1]}"]`);g.textContent=P4.find(x=>x.n==m[1]).o[+e.target.value]}});
+document.addEventListener('click',e=>{
+  const g=e.target.closest('[data-go]');if(g&&!g.disabled){go(g.dataset.go);return}
+  const c=e.target.closest('[data-check]');if(c){check(c.dataset.check);return}
+  if(e.target.closest('#restart'))init();
+  const uz=e.target.closest('.hideuz .uz');if(uz)uz.style.filter='none';
+});
+$('#hide').addEventListener('change',e=>{$('#vocab').classList.toggle('hideuz',e.target.checked);document.querySelectorAll('.uz').forEach(u=>u.style.filter='')});
+init();
+}
+</script>
+</body></html>
