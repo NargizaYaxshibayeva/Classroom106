@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A2 English Test</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE: friendly classroom, clear and encouraging
+   IDEA: an exam paper a teacher marks with a yellow highlighter
+   PICTURE: the live test itself; keywords glow as highlighter marks
+   COLOUR and TYPE: white paper, ink, ink-blue accent, highlighter yellow, red/green marks; Lexend
+   LAYOUT: sticky step bar, one part at a time, explanation under each question */
+:root{color-scheme:light dark;
+--bg:light-dark(#ffffff,#121419);--paper:light-dark(#f4f6fb,#1b1e26);--ink:light-dark(#15171c,#eceef3);--soft:light-dark(#5b6170,#a3a9b8);
+--line:light-dark(#dde1ea,#2e3340);--blue:light-dark(#2747d8,#8aa0ff);--blueBg:light-dark(#e9edff,#232a4a);
+--hl:light-dark(#ffe46b,#7a6510);--ok:light-dark(#178a47,#5fd38e);--okBg:light-dark(#e5f6ec,#173324);--bad:light-dark(#cf3b2b,#ff8a7c);--badBg:light-dark(#fdecea,#3a1d1a)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16.5px/1.6 Lexend,system-ui,sans-serif;overflow-x:clip}
+mark{background:linear-gradient(transparent 12%,var(--hl) 12%,var(--hl) 88%,transparent 88%);color:inherit;padding:0 .15em;border-radius:2px}
+.wrap{max-width:900px;margin:0 auto;padding:0 max(4vw,16px)}
+header.hero{padding:34px 0 18px}
+.hero h1{font-size:clamp(32px,5vw,46px);line-height:1.05;margin:0 0 8px;text-wrap:balance}
+.hero p{margin:0;color:var(--soft);max-width:62ch}
+.steps{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+.steps .wrap{display:flex;gap:6px;overflow-x:auto;padding-block:10px}
+.steps button{flex:none;font:500 14px Lexend,system-ui,sans-serif;border:1.5px solid var(--line);background:var(--bg);color:var(--soft);border-radius:999px;padding:9px 15px;min-height:44px;cursor:pointer}
+.steps button.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.steps button.done:not(.on){color:var(--ok);border-color:var(--ok)}
+.steps button:disabled{opacity:.45;cursor:not-allowed}
+section.part{display:none;padding:26px 0 60px}section.part.on{display:block}
+h2{font-size:30px;line-height:1.1;margin:0 0 6px}
+.lead{color:var(--soft);margin:0 0 22px}
+.q{border:1.5px solid var(--line);border-radius:14px;padding:16px 18px;margin:0 0 16px;background:var(--bg)}
+.qt{display:flex;gap:12px;align-items:flex-start;font-weight:600}
+.n{flex:none;width:32px;height:32px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;font-size:14px;font-weight:700}
+.notice{flex:1;border:2px dashed var(--soft);border-radius:10px;padding:10px 14px;font-weight:400;background:var(--paper)}
+.notice b{display:block}
+.opts{display:grid;gap:8px;margin:12px 0 0 44px}
+.opt{display:flex;gap:10px;align-items:center;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;min-height:44px;cursor:pointer}
+.opt input{width:20px;height:20px;accent-color:var(--blue);flex:none}
+.opt:has(input:checked){border-color:var(--blue);background:var(--blueBg)}
+.opt .L{font-weight:700;width:18px}
+.opt.right{border-color:var(--ok);background:var(--okBg)}
+.opt.wrong{border-color:var(--bad);background:var(--badBg)}
+.locked .opt{cursor:default}
+.ex{display:none;margin:14px 0 0 44px;border-left:4px solid var(--blue);padding:4px 0 4px 14px}
+.checked .ex{display:block}
+.verdict{font-weight:700;margin-bottom:6px}.verdict.ok{color:var(--ok)}.verdict.no{color:var(--bad)}
+.keys{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 10px}
+.keys span{font-size:14px;background:var(--hl);color:light-dark(#15171c,#fff);border-radius:6px;padding:2px 8px}
+.why{margin:0;padding:0;list-style:none;display:grid;gap:5px;font-size:15px}
+.why li{display:flex;gap:8px}.why .m{flex:none;font-weight:700;width:46px}
+.why .y{color:var(--ok)}.why .x{color:var(--bad)}
+.text{background:var(--paper);border-radius:14px;padding:18px 20px;margin:0 0 20px}
+.text h3{margin:0 0 6px;font-size:19px}.text p{margin:0 0 10px}.text p:last-child{margin:0}
+.mus{display:grid;gap:12px;margin-bottom:22px}
+.mus .text{margin:0;position:relative;padding-top:16px}
+.mus .tag{position:absolute;top:14px;right:16px;font-weight:700;background:var(--ink);color:var(--bg);border-radius:8px;padding:0 10px}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:20px}
+.btn{font:600 16px Lexend,system-ui,sans-serif;border:0;border-radius:12px;padding:12px 22px;min-height:48px;cursor:pointer;background:var(--blue);color:#fff}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn:focus-visible,.opt:focus-within,.steps button:focus-visible{outline:3px solid var(--hl);outline-offset:2px}
+.score{font-weight:700;font-size:20px}
+.msg{color:var(--soft);font-size:15px}
+.big{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:6px 0 18px}
+.big b{font-size:clamp(56px,10vw,88px);line-height:1;color:var(--blue)}
+.big span{font-size:20px;font-weight:600}
+.rows{display:grid;gap:10px;margin-bottom:24px}
+.row{display:grid;grid-template-columns:110px minmax(0,1fr) 56px;gap:12px;align-items:center}
+.track{height:14px;border-radius:7px;background:var(--paper);overflow:hidden}.track i{display:block;height:100%;background:var(--blue);border-radius:7px;transition:width .8s}
+.tips{display:grid;gap:10px;margin:0 0 30px;padding:0;list-style:none}
+.tips li{background:var(--paper);border-radius:12px;padding:12px 16px}
+.tips b{color:var(--blue)}
+.vocab{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.w{border:1.5px solid var(--line);border-radius:12px;padding:12px 14px}
+.w h4{margin:0;font-size:18px}.w .src{font-size:13px;color:var(--soft)}
+.w p{margin:4px 0 0;font-size:15px}.w .uz{color:var(--blue);font-weight:600}
+.hideuz .w .uz{filter:blur(6px);cursor:pointer}
+.toggle{display:flex;gap:8px;align-items:center;margin:0 0 14px;font-size:15px;cursor:pointer}.toggle input{width:20px;height:20px;accent-color:var(--blue)}
+footer{border-top:2px solid var(--ink);padding:16px 0 30px;font-weight:600;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+footer .s{color:var(--blue)}
+@media(max-width:600px){.opts,.ex{margin-left:0}.row{grid-template-columns:80px minmax(0,1fr) 48px;font-size:14px}h2{font-size:26px}}
+@media(prefers-reduced-motion:reduce){.track i{transition:none}}
+</style></head><body>
+
+<div class="wrap"><header class="hero">
+<h1>English Test · A2</h1>
+<p>Reading · 3 parts + vocabulary mini test. Har bir partni bajarib, <b>“Check answers”</b> tugmasini bosing — nima uchun javob to'g'ri yoki noto'g'ri ekanini key words orqali ko'rasiz.</p>
+</header></div>
+
+<nav class="steps"><div class="wrap" id="steps"></div></nav>
+
+<main class="wrap">
+<section class="part" id="p1">
+  <h2>Part 1 · Notices &amp; messages</h2>
+  <p class="lead">Questions 1–6. For each question, choose the correct answer.</p>
+  <div id="q1"></div>
+  <div class="bar" id="b1"></div>
+</section>
+
+<section class="part" id="p2">
+  <h2>Part 2 · Three museums</h2>
+  <p class="lead">Read about three museums. Questions 7–13: choose A, B or C.</p>
+  <div class="mus">
+    <div class="text"><span class="tag">A</span><h3>Eureka!</h3><p>Eureka! is a complete hands-on experience, which means that visitors can actually pick up any object in the museum. It’s a great way for young visitors to learn about the world, the body, how things work and move. And when you buy an entry ticket, it allows you to come back as many times as you want for a whole year for no extra cost. As Eureka! is right next to Halifax train station, it’s very easy to get to from all over the country.</p></div>
+    <div class="text"><span class="tag">B</span><h3>Museum of Museums</h3><p>Every time you visit the Museum of Museums, you’ll be able to see something different. And that’s because the things you see there are actually lent by other museums around the country. The museum always has lots of different vehicles, from ice-cream vans and old motorbikes to the different kinds of public transport people used to get to work many years ago. You can find out about all this and lots more.</p></div>
+    <div class="text"><span class="tag">C</span><h3>Cinema Museum</h3><p>Ronald Grant, who opened the Cinema Museum in the 1960s, travelled round the country and bought things from cinemas which were closing down. This included old film posters and wooden cinema seating. At the museum, you can now see these and much more, including the uniforms that cinema staff once had to wear.</p><p>Please let us know by phone or email if you’d like to come. We’ll be happy to see you, but we need to arrange a guide, as it’s only possible to visit the museum on an organized tour.</p></div>
+  </div>
+  <div id="q2"></div>
+  <div class="bar" id="b2"></div>
+</section>
+
+<section class="part" id="p3">
+  <h2>Part 3 · Will’s blog</h2>
+  <p class="lead">Read the blog. Questions 14–18: choose the correct answer.</p>
+  <div class="text">
+    <p>One day my dad said, ‘Why don’t we have a street party?’ This means that the street is closed so cars can’t use it, and people put tables and chairs out in the street, then have a party! Dad said there was one in 1977 and he still remembers it well. Everyone loved it! I couldn’t believe that since 1977 they never had another one. If it was so good, why not do it again?</p>
+    <p>We started to organize it, together with some other people. I helped to make the web page, so everyone on the street knew about the party and could post their old photos from the party in 1977. There were some pictures of my dad when he was a kid, together with his friends, who have moved away from the street now. It was interesting to see that the buildings on the street haven’t changed at all!</p>
+    <p>My mum was a bit worried about the party. ‘But a lot of people on the street don’t really know each other’, she said. ‘What if they don’t have anything to talk about?’ I just said, ‘Relax, Mum. It’ll be great.’</p>
+    <p>So, what was the party like? It was fantastic! My friends and I really liked speaking to an old lady called Louisa. She’s 89 and was telling us about when she and her friends were our age. So now I always chat to her when I see her on the street. I didn’t know who she was before, so I’m glad we had the party.</p>
+  </div>
+  <div id="q3"></div>
+  <div class="bar" id="b3"></div>
+</section>
+
+<section class="part" id="res">
+  <h2>Your results · Parts 1–3</h2>
+  <div class="big"><b id="tot">0</b><span>/ 18 &nbsp;·&nbsp; <span id="lvl"></span></span></div>
+  <div class="rows" id="rows"></div>
+  <h3>Suggestions · Maslahatlar</h3>
+  <ul class="tips" id="tips"></ul>
+  <h3>Words to revise · Takrorlash uchun so'zlar</h3>
+  <p class="msg">Parts 1–3 dagi qiyin so'zlar: inglizcha ta'rif va o'zbekcha tarjima. O'zingizni tekshirish uchun tarjimani yashiring.</p>
+  <label class="toggle"><input type="checkbox" id="hide"> Hide Uzbek · O'zbekchani yashirish (bosib ko'ring)</label>
+  <div class="vocab" id="vocab"></div>
+  <div class="bar"><button class="btn" data-go="p4">Go to Part 4 · Mini test →</button></div>
+</section>
+
+<section class="part" id="p4">
+  <h2>Part 4 · Vocabulary mini test</h2>
+  <p class="lead">Questions 1–12. Choose the correct word. Hamma so'zlar Parts 1–3 dan olingan.</p>
+  <div id="q4"></div>
+  <div class="bar" id="b4"></div>
+  <div id="final" style="display:none;margin-top:30px">
+    <h3>Final score</h3>
+    <div class="big"><b id="ftot">0</b><span>/ 30 &nbsp;·&nbsp; Parts 1–3 + Part 4</span></div>
+    <p id="fmsg"></p>
+    <div class="bar"><button class="btn ghost" id="restart">↺ Start again</button></div>
+  </div>
+</section>
+</main>
+
+<div class="wrap"><footer><span>English <span class="s">★</span> Jizzakh Presidential School</span><span class="msg">A2 Reading Test</span></footer></div>
+
+<script>
+{
+const P1=[
+{n:1,note:'<b>Please note:</b>this afternoon’s football class will be tomorrow instead, as Mr Hall is away today.',o:['There is no football class today.','Mr Hall can’t come to the football class tomorrow.','You can choose to go to the football class today or tomorrow.'],a:0,k:['will be tomorrow instead','away today'],w:['“instead” = o‘rniga. Dars bugun emas, ertaga bo‘ladi → bugun dars yo‘q.','Mr Hall <b>bugun</b> yo‘q (away today), ertaga emas.','Tanlov yo‘q: “instead” dars faqat ertaga bo‘lishini bildiradi.']},
+{n:2,note:'Hi Jane,<br>Have you finished with that book I lent you? It’s just that my brother needs it for a school project.<br>Thanks, Louise',o:['Louise is offering to lend Jane a book.','Louise wants her book back from Jane.','Louise’s brother has borrowed a book from Jane.'],a:1,k:['finished with','I lent you','my brother needs it'],w:['Kitob allaqachon berilgan (lent — o‘tgan zamon). Bu yangi taklif emas.','“Have you finished with…?” + “needs it” → kitobini qaytarib berishni so‘rayapti.','Kitob Louisaniki; ukasi Jane’dan hech narsa olmagan, faqat kitob unga kerak.']},
+{n:3,note:'<b>Picnic area</b>No ball games here – please use the other side of the park.',o:['You can buy food somewhere else in the park.','Please don’t eat while you are playing sport here.','This is a place for eating and you can’t play football here.'],a:2,k:['Picnic area','No ball games'],w:['Ovqat sotish haqida hech narsa yozilmagan.','Sport paytida ovqatlanish haqida emas — bu yerda umuman to‘p o‘ynash mumkin emas.','Picnic area = ovqatlanish joyi; “No ball games” = futbol o‘ynash mumkin emas.']},
+{n:4,note:'<b>Museum open from 12.</b>Children must be with an adult.',o:['Adults can take children to the museum in the morning.','Adults with children over 12 will enjoy the museum.','Children can visit the museum if they are with an adult.'],a:2,k:['open from 12','must be with an adult'],w:['Muzey soat 12 dan ochiladi — ertalab yopiq.','Tuzoq! “12” — bu vaqt (soat), yosh emas.','“must be with an adult” = bolalar faqat kattalar bilan kirishi mumkin.']},
+{n:5,note:'<b>From: Mrs Monmouth, Head Teacher · To: All Pupils and Parents</b>Hello, this week, please don’t use the car to get to school. Coming on foot is healthy and doesn’t take much time. Thanks, Mrs Monmouth',stem:'Why has Mrs Monmouth written this message?',o:['to ask pupils to walk to school','to tell pupils to get to school on time','to explain about a health problem at school'],a:0,k:['don’t use the car','on foot'],w:['“on foot” = piyoda = walk. Mashinada emas, piyoda kelishni so‘rayapti.','Tuzoq: “doesn’t take much time” — piyoda yurish ko‘p vaqt olmaydi degani, kechikish haqida emas.','“healthy” — foydali degani; maktabda sog‘liq muammosi yo‘q.']},
+{n:6,note:'<b>Pedro’s Pizza Bar</b>Buy two pizzas at the same time, and we’ll give you a third one for free! This offer is Mon–Fri only.',o:['Pedro’s Pizza Bar isn’t open at weekends.','The third time you visit, you get a free pizza.','Three pizzas cost the same as two.'],a:2,k:['Buy two','third one for free'],w:['“Mon–Fri only” — faqat <b>aksiya</b> ish kunlari; restoran dam olish kunlari ham ochiq bo‘lishi mumkin.','“at the same time” = bir vaqtda; 3-tashrif haqida gap yo‘q.','2 ta pitsa olsangiz, 3-chisi bepul → 3 ta pitsa = 2 ta pitsa narxi.']}
+];
+const Mo=['Eureka!','Museum of Museums','Cinema Museum'];
+const P2=[
+{n:7,q:'Which museum has an exhibition of clothes?',a:2,k:['uniforms','staff once had to wear'],w:['Kiyimlar haqida gap yo‘q — bu yerda narsalarni ushlab ko‘rasiz.','Bu yerda transport vositalari bor, kiyim emas.','“uniforms” (forma) = clothes. Sinonimni toping!']},
+{n:8,q:'Which museum is full of things which visitors can touch?',a:0,k:['hands-on','pick up any object'],w:['“hands-on”, “pick up any object” = qo‘lga olish = touch.','Narsalarni “see” — ko‘rasiz, ushlash haqida aytilmagan.','Plakat va formalarni “see” — ko‘rasiz.']},
+{n:9,q:'Which museum is a good place to learn about how people travelled in the past?',a:1,k:['public transport','many years ago'],w:['Tuzoq: “how things work and move” — narsalar qanday ishlaydi, o‘tmishdagi sayohat emas.','“public transport people used… many years ago” = travelled in the past.','Kino buyumlari, transport emas.']},
+{n:10,q:'Which museum can you visit again for free after you pay once?',a:0,k:['come back as many times as you want','no extra cost'],w:['Bir marta chipta → bir yil davomida bepul qaytib kelish (no extra cost = free).','Tuzoq: “every time you visit… something different” — yangi narsalar, lekin bepul degani emas.','Faqat ekskursiya bilan; bepul qayta kirish haqida gap yo‘q.']},
+{n:11,q:'Which museum do you need to contact before you visit?',a:2,k:['let us know by phone or email','only possible… on an organized tour'],w:['“very easy to get to” — oldindan bog‘lanish shart emas.','Oldindan xabar berish haqida aytilmagan.','“let us know by phone or email” = contact before you visit.']},
+{n:12,q:'Which museum shows things that were borrowed from other places?',a:1,k:['lent by other museums'],w:['Bu muzeyning o‘z narsalari.','“lent by other museums” — boshqa muzeylar qarzga bergan = borrowed.','Tuzoq: Ronald Grant narsalarni “bought” — sotib olgan, qarzga olmagan.']},
+{n:13,q:'Which museum has some furniture which wasn’t needed anymore?',a:2,k:['wooden cinema seating','closing down'],w:['Mebel haqida gap yo‘q.','Transport vositalari bor, mebel emas.','“seating” (o‘rindiqlar) = furniture; yopilayotgan kinoteatrlardan = endi kerak emas.']}
+];
+const P3=[
+{n:14,q:'Why was Will surprised?',o:['His father wanted to have a street party.','There hasn’t been a street party for a long time.','Many people remembered the last street party.'],a:1,k:['I couldn’t believe','since 1977 they never had another one'],w:['Bu dadasining g‘oyasi, lekin Will bunga hayron bo‘lmagan.','“I couldn’t believe” = hayron bo‘ldim; 1977 dan beri boshqa bayram bo‘lmagan.','Matnda faqat dadasi eslashi aytilgan, “many people” emas.']},
+{n:15,q:'What did the photos from 1977 show?',o:['The street still looks the same now.','There are more children living in the street now.','The same people still live on the street now.'],a:0,k:['buildings… haven’t changed at all'],w:['“haven’t changed at all” = hech o‘zgarmagan = looks the same.','Bolalar soni haqida gap yo‘q.','Tuzoq: dadasining do‘stlari “moved away” — ko‘chib ketgan.']},
+{n:16,q:'Why was Will’s mother worried?',o:['She thought that the party was too expensive.','She thought that people might not come to the party.','She thought that the guests might not talk to each other.'],a:2,k:['don’t really know each other','don’t have anything to talk about'],w:['Pul haqida gap yo‘q.','Odamlar kelmasligi haqida aytmagan.','“What if they don’t have anything to talk about?” = gaplashmasligi mumkin.']},
+{n:17,q:'Will and his friends enjoyed…',o:['hearing Louisa’s stories.','meeting Louisa’s friends.','telling Louisa about their lives.'],a:0,k:['really liked','telling us about'],w:['Louisa “was telling us” → ular tinglagan = hearing her stories.','Louisaning do‘stlari bilan uchrashmagan — u faqat ular haqida gapirgan.','Teskari! Louisa gapirgan, bolalar tinglagan.']},
+{n:18,q:'What is the best title for the article?',o:['Why I love street parties','The street party we had','How to have a street party'],a:1,k:['the whole text: we organized → what was the party like?'],w:['Umumiy sevgi haqida emas — bitta aniq bayram haqida.','Butun matn ularning bayrami haqida: g‘oya → tayyorgarlik → bayram.','Bu yo‘riqnoma (instructions) emas, hikoya.']}
+];
+const V=[
+['instead','in place of something else','o‘rniga',1],['be away','not at the usual place (work, school)','yo‘q bo‘lmoq (joyida emas)',1],
+['lend (lent)','give something to someone for a short time','qarzga bermoq',1],['borrow','take something and give it back later','qarzga olmoq',2],
+['offer','a special price or deal from a shop','aksiya, taklif',1],['adult','a grown-up person','katta yoshli odam',1],
+['on foot','walking','piyoda',1],['pupil','a child at school','o‘quvchi',1],
+['hands-on','you can touch and use things yourself','amaliy, qo‘l bilan',2],['entry ticket','a ticket that lets you go in','kirish chiptasi',2],
+['extra cost','more money you must pay','qo‘shimcha to‘lov',2],['vehicle','a car, bus, van or motorbike','transport vositasi',2],
+['public transport','buses and trains that everyone can use','jamoat transporti',2],['close down','stop working for ever (a shop, a cinema)','butunlay yopilmoq',2],
+['uniform','special clothes for work or school','forma (kiyim)',2],['staff','the people who work in a place','xodimlar',2],
+['arrange','plan or organize something','tashkil qilmoq, kelishmoq',2],['guide','a person who shows visitors around','gid, yo‘lboshchi',2],
+['furniture','tables, chairs, beds, seats','mebel',2],['organize','plan and prepare an event','uyushtirmoq',3],
+['move away','go to live in another place','ko‘chib ketmoq',3],['worried','afraid that something bad may happen','xavotirda',3],
+['chat','talk in a friendly way','suhbatlashmoq',3],['surprised','feeling when something is unexpected','hayron, ajablangan',3]
+];
+const P4=[
+{n:1,q:'My friend ___ me his bike for the weekend.',o:['lent','borrowed','arranged'],a:0,k:['lend = bermoq'],w:['lend → lent: do‘stim menga velosipedini (vaqtincha) berdi.','borrow = olmoq; “borrowed me” noto‘g‘ri.','arrange = tashkil qilmoq; velosipedga mos emas.']},
+{n:2,q:'Can I ___ your pen? I’ll give it back after the lesson.',o:['lend','borrow','arrange'],a:1,k:['give it back'],w:['lend — men beraman; bu yerda men olaman.','borrow = qarzga olmoq, keyin qaytaraman.','arrange = tashkil qilmoq.']},
+{n:3,q:'We didn’t take the bus. We went to school ___.',o:['by bus','on foot','extra cost'],a:1,k:['didn’t take the bus'],w:['Avtobusga chiqmadik deyilgan — “by bus” qarama-qarshi.','on foot = piyoda.','extra cost = qo‘shimcha to‘lov; ma’nosi mos emas.']},
+{n:4,q:'Nurses and police officers wear a ___ at work.',o:['furniture','uniform','vehicle'],a:1,k:['wear'],w:['furniture = mebel, kiyib bo‘lmaydi.','uniform = forma kiyim.','vehicle = transport.']},
+{n:5,q:'Tables, chairs and beds are ___.',o:['furniture','staff','vehicles'],a:0,k:['tables, chairs, beds'],w:['furniture = mebel.','staff = xodimlar (odamlar).','vehicles = mashina, avtobus.']},
+{n:6,q:'Nobody came to the old shop, so it ___ last year.',o:['moved away','closed down','chatted'],a:1,k:['nobody came','shop'],w:['move away — odam ko‘chib ketadi, do‘kon emas.','close down = butunlay yopilmoq.','chat = suhbatlashmoq.']},
+{n:7,q:'“Staff” means…',o:['people who visit a place','people who work in a place','children at school'],a:1,k:['staff'],w:['Bular visitors (tashrif buyuruvchilar).','staff = xodimlar.','Bular pupils (o‘quvchilar).']},
+{n:8,q:'I don’t like tea, so I’ll have juice ___.',o:['instead','even','still'],a:0,k:['don’t like tea'],w:['instead = o‘rniga (choy o‘rniga sharbat).','even = hatto.','still = hali ham.']},
+{n:9,q:'Buses, trams and trains are ___.',o:['public transport','entry tickets','hands-on'],a:0,k:['buses, trains'],w:['public transport = jamoat transporti.','entry ticket = kirish chiptasi.','hands-on = amaliy.']},
+{n:10,q:'Mum was ___ because I came home very late.',o:['worried','relaxed','hands-on'],a:0,k:['very late'],w:['worried = xavotirda — kech qolsangiz ona xavotir oladi.','relaxed = xotirjam — mos emas.','hands-on — odamga ishlatilmaydi.']},
+{n:11,q:'A ___ showed us around the old castle.',o:['guide','uniform','pupil'],a:0,k:['showed us around'],w:['guide = gid, yo‘l ko‘rsatuvchi.','uniform = kiyim.','pupil = o‘quvchi.']},
+{n:12,q:'The ticket costs $5, and you don’t pay any ___ for the café.',o:['extra cost','offer','vehicle'],a:0,k:['don’t pay any'],w:['extra cost = qo‘shimcha to‘lov.','offer = aksiya; “pay an offer” bo‘lmaydi.','vehicle = transport.']}
+];
+const L='ABC',$=s=>document.querySelector(s),st={p1:null,p2:null,p3:null,p4:null};
+const STEPS=[['p1','Part 1'],['p2','Part 2'],['p3','Part 3'],['res','Results & words'],['p4','Part 4']];
+function qHTML(id,x,opts){
+  const head=x.note?`<div class="notice">${x.note}</div>`:`<div>${x.q}</div>`;
+  return `<div class="q" id="${id}-${x.n}"><div class="qt"><span class="n">${x.n}</span>${head}</div>
+  ${x.stem?`<p style="margin:10px 0 0 44px;font-weight:600">${x.stem}</p>`:''}
+  <div class="opts">${opts.map((t,i)=>`<label class="opt"><input type="radio" name="${id}-${x.n}" value="${i}"><span class="L">${L[i]}</span><span>${t}</span></label>`).join('')}</div>
+  <div class="ex"></div></div>`;
+}
+function render(id,data,opts){
+  $('#q'+id.slice(1)).innerHTML=data.map(x=>qHTML(id,x,opts||x.o)).join('');
+  $('#b'+id.slice(1)).innerHTML=`<button class="btn" data-check="${id}">Check answers ✓</button><span class="msg">Avval barcha savollarga javob bering.</span>`;
+}
+function check(id,data,opts){
+  const sec=$('#'+id),un=data.filter(x=>!sec.querySelector(`input[name="${id}-${x.n}"]:checked`));
+  const bar=$('#b'+id.slice(1));
+  if(un.length){bar.querySelector('.msg').textContent=`Javob berilmagan: ${un.map(x=>x.n).join(', ')}`;document.getElementById(`${id}-${un[0].n}`).scrollIntoView({behavior:'smooth',block:'center'});return}
+  let s=0;
+  data.forEach(x=>{
+    const box=document.getElementById(`${id}-${x.n}`),pick=+box.querySelector('input:checked').value,ok=pick===x.a;if(ok)s++;
+    box.classList.add('checked','locked');box.querySelectorAll('input').forEach(i=>i.disabled=true);
+    box.querySelectorAll('.opt').forEach((o,i)=>{if(i===x.a)o.classList.add('right');else if(i===pick)o.classList.add('wrong')});
+    const names=opts||x.o;
+    box.querySelector('.ex').innerHTML=`<div class="verdict ${ok?'ok':'no'}">${ok?'✓ Correct!':'✗ Not quite.'} To‘g‘ri javob: ${L[x.a]}${opts?' — '+names[x.a]:''}</div>
+    <div class="keys">Key words: ${x.k.map(k=>`<span>${k}</span>`).join('')}</div>
+    <ul class="why">${x.w.map((t,i)=>`<li><span class="m ${i===x.a?'y':'x'}">${L[i]} ${i===x.a?'✓':'✗'}</span><span>${t}</span></li>`).join('')}</ul>`;
+  });
+  st[id]=s;
+  const nxt={p1:['p2','Next: Part 2 →'],p2:['p3','Next: Part 3 →'],p3:['res','See results & words →'],p4:null}[id];
+  bar.innerHTML=`<span class="score">Score: ${s} / ${data.length}</span>`+(nxt?`<button class="btn" data-go="${nxt[0]}">${nxt[1]}</button>`:'');
+  if(id==='p3')results();
+  if(id==='p4')final();
+  steps();
+}
+function results(){
+  const t=st.p1+st.p2+st.p3;$('#tot').textContent=t;
+  $('#lvl').textContent=t>=16?'Excellent!':t>=12?'Good job!':t>=8?'Keep practising':'Let’s revise together';
+  const parts=[['Part 1',st.p1,6],['Part 2',st.p2,7],['Part 3',st.p3,5]];
+  $('#rows').innerHTML=parts.map(([n,s,m])=>`<div class="row"><span>${n}</span><div class="track"><i style="width:0" data-w="${s/m*100}"></i></div><b>${s}/${m}</b></div>`).join('');
+  requestAnimationFrame(()=>document.querySelectorAll('.track i').forEach(i=>i.style.width=i.dataset.w+'%'));
+  const tips=[];
+  tips.push(st.p1<5?'<b>Part 1:</b> Qisqa matnlarda har bir kichik so‘z muhim: <mark>instead</mark>, <mark>only</mark>, <mark>must</mark>, <mark>from 12</mark>. Raqam vaqtmi yoki yoshmi — tekshiring!':'<b>Part 1:</b> Zo‘r! Kichik so‘zlarga (instead, only, must) e’tiboringiz yaxshi.');
+  tips.push(st.p2<6?'<b>Part 2:</b> Savoldagi so‘zning <mark>sinonimini</mark> matndan qidiring: touch = pick up, clothes = uniforms, borrowed = lent, furniture = seating.':'<b>Part 2:</b> Sinonimlarni topish ko‘nikmangiz yaxshi. Tuzoqlarga (bought ≠ borrowed) e’tiborni davom ettiring.');
+  tips.push(st.p3<4?'<b>Part 3:</b> Avval savolni o‘qing, keyin matnda javob joyini toping. His-tuyg‘u so‘zlari (<mark>surprised</mark>, <mark>worried</mark>, <mark>enjoyed</mark>) yonidagi gapni diqqat bilan o‘qing.':'<b>Part 3:</b> Matnni yaxshi tushunasiz. Title savolida butun matnni o‘ylang, bitta gapni emas.');
+  tips.push('<b>Har kuni:</b> pastdagi so‘zlardan 5 tasini tanlab, har biri bilan o‘zingiz haqingizda gap tuzing. Keyin Part 4 mini testni bajaring.');
+  $('#tips').innerHTML=tips.map(t=>`<li>${t}</li>`).join('');
+}
+function final(){
+  const t=st.p1+st.p2+st.p3+st.p4;$('#ftot').textContent=t;$('#final').style.display='block';
+  $('#fmsg').textContent=st.p4>=10?'Vocabulary: excellent! So‘zlarni yaxshi o‘zlashtirdingiz.':st.p4>=7?'Vocabulary: good. Xato qilgan so‘zlaringizni yana bir bor takrorlang.':'Vocabulary: “Results & words” bo‘limiga qaytib, so‘zlarni yana takrorlang va testni qayta ishlang.';
+}
+function steps(){
+  const open={p1:1,p2:st.p1!==null,p3:st.p2!==null,res:st.p3!==null,p4:st.p3!==null};
+  const cur=document.querySelector('section.part.on')?.id;
+  $('#steps').innerHTML=STEPS.map(([id,n])=>`<button data-go="${id}" class="${id===cur?'on':''} ${(st[id]!=null||(id==='res'&&st.p3!=null))?'done':''}" ${open[id]?'':'disabled'}>${n}</button>`).join('');
+}
+function go(id){document.querySelectorAll('section.part').forEach(s=>s.classList.toggle('on',s.id===id));steps();window.scrollTo({top:document.querySelector('.steps').offsetTop,behavior:'smooth'})}
+$('#vocab').innerHTML=V.map(([w,d,u,p])=>`<div class="w"><h4>${w}</h4><span class="src">from Part ${p}</span><p>${d}</p><p class="uz">${u}</p></div>`).join('');
+function init(){Object.keys(st).forEach(k=>st[k]=null);render('p1',P1);render('p2',P2,Mo);render('p3',P3);render('p4',P4);$('#final').style.display='none';go('p1')}
+document.addEventListener('click',e=>{
+  const g=e.target.closest('[data-go]');if(g&&!g.disabled){go(g.dataset.go);return}
+  const c=e.target.closest('[data-check]');if(c){const id=c.dataset.check;check(id,{p1:P1,p2:P2,p3:P3,p4:P4}[id],id==='p2'?Mo:null);return}
+  if(e.target.closest('#restart'))init();
+  const uz=e.target.closest('.hideuz .uz');if(uz)uz.style.filter='none';
+});
+$('#hide').addEventListener('change',e=>{$('#vocab').classList.toggle('hideuz',e.target.checked);document.querySelectorAll('.uz').forEach(u=>u.style.filter='')});
+init();
+}
+</script>
+</body></html>
