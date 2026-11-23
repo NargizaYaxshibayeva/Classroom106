@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A2 English Test 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* VOICE: calm, elegant classroom; clear and encouraging
+   IDEA: an exam paper on fine stationery, marked with a soft gold highlighter
+   PICTURE: the live test on ivory sheets over a champagne–mocha–dusty-rose ground
+   COLOUR and TYPE: champagne, mocha, dusty rose ground; deep emerald accent, burgundy for mistakes, bronze details; Lexend
+   LAYOUT: sticky step bar, one part at a time on a paper sheet, explanation under each question */
+:root{color-scheme:light dark;
+--sheet:light-dark(#fffdf8,#2b2f2c);--paper:light-dark(#f1ebdd,#353b37);--ink:light-dark(#2e2a26,#f1ebdd);--soft:light-dark(#77766c,#b9b3a6);
+--line:light-dark(#e3d8c6,#4a4f4a);--blue:light-dark(#315447,#9fc2b2);--blueBg:light-dark(#e4ebe5,#2f4a40);
+--hl:light-dark(#e6d2a8,#6e5c3d);--ok:light-dark(#315447,#9fc2b2);--okBg:light-dark(#e2e9e1,#2c4238);--bad:light-dark(#722f37,#e0a3a8);--badBg:light-dark(#f4e6e4,#4a2a2e);
+--g1:light-dark(#e8dccb,#343b36);--g2:light-dark(#b7a18a,#704c43);--g3:light-dark(#d8b7ae,#806477);--g4:light-dark(#c6b7a5,#315447)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;color:var(--ink);font:16.5px/1.6 Lexend,system-ui,sans-serif;overflow-x:clip;min-height:100vh;
+background:radial-gradient(circle at 12% 18%,rgba(255,255,255,.28) 0 2px,transparent 4px) 0 0/46px 46px,
+radial-gradient(circle at 70% 60%,rgba(255,255,255,.18) 0 1.5px,transparent 3px) 0 0/34px 34px,
+linear-gradient(150deg,var(--g1) 0%,var(--g2) 38%,var(--g3) 72%,var(--g4) 100%) fixed}
+mark{background:linear-gradient(transparent 12%,var(--hl) 12%,var(--hl) 88%,transparent 88%);color:inherit;padding:0 .15em;border-radius:2px}
+.wrap{max-width:920px;margin:0 auto;padding:0 max(3vw,12px)}
+.sheet{background:var(--sheet);border-radius:22px;padding:clamp(18px,3.5vw,34px);box-shadow:0 18px 40px -20px rgba(60,45,35,.35),0 2px 0 rgba(255,255,255,.6) inset}
+header.hero{padding:28px 0 16px}
+.hero .sheet{display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.hero h1{font-size:clamp(32px,5vw,48px);line-height:1.05;margin:0 0 8px;font-weight:800;text-wrap:balance}
+.hero p{margin:0;color:var(--soft);max-width:58ch}
+.seal{flex:none;width:96px;height:96px;border-radius:50%;background:conic-gradient(#8b7355,#d8b7ae,#806477,#315447,#8b7355);display:grid;place-items:center}
+.seal span{width:76px;height:76px;border-radius:50%;background:var(--sheet);display:grid;place-items:center;font-weight:800;font-size:26px;color:var(--blue)}
+.steps{position:sticky;top:0;z-index:5;padding:8px 0}
+.steps .wrap>div{display:flex;gap:6px;overflow-x:auto;background:color-mix(in srgb,var(--sheet) 88%,transparent);backdrop-filter:blur(8px);border-radius:999px;padding:6px;box-shadow:0 8px 20px -14px rgba(60,45,35,.4)}
+.steps button{flex:none;font:500 14px Lexend,system-ui,sans-serif;border:1.5px solid transparent;background:transparent;color:var(--soft);border-radius:999px;padding:9px 15px;min-height:44px;cursor:pointer}
+.steps button.on{background:var(--blue);color:#fff}
+.steps button.done:not(.on){color:var(--ok);border-color:var(--ok)}
+.steps button:disabled{opacity:.4;cursor:not-allowed}
+main{padding:10px 0 30px}
+section.part{display:none}section.part.on{display:block}
+h2{font-size:30px;line-height:1.1;margin:0 0 6px;font-weight:800}
+h3{font-size:21px;margin:26px 0 12px}
+.lead{color:var(--soft);margin:0 0 22px}
+.q{border:1.5px solid var(--line);border-radius:16px;padding:16px 18px;margin:0 0 16px;background:var(--sheet)}
+.qt{display:flex;gap:12px;align-items:flex-start;font-weight:600}
+.n{flex:none;width:32px;height:32px;border-radius:50%;background:#8b7355;color:#fff;display:grid;place-items:center;font-size:14px;font-weight:700}
+.notice{flex:1;border:2px dashed #b7a18a;border-radius:12px;padding:10px 14px;font-weight:400;background:var(--paper)}
+.notice b{display:block}
+.opts{display:grid;gap:8px;margin:12px 0 0 44px}
+.opt{display:flex;gap:10px;align-items:center;border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;min-height:44px;cursor:pointer;background:var(--sheet)}
+.opt input{width:20px;height:20px;accent-color:var(--blue);flex:none}
+.opt:has(input:checked){border-color:var(--blue);background:var(--blueBg)}
+.opt .L{font-weight:700;width:18px}
+.locked .opt.right{border-color:var(--ok);background:var(--okBg)}
+.locked .opt.wrong{border-color:var(--bad);background:var(--badBg)}
+.locked .opt{cursor:default}
+.ex{display:none;margin:14px 0 0 44px;border-left:4px solid var(--blue);padding:4px 0 4px 14px}
+.checked .ex{display:block}
+.verdict{font-weight:700;margin-bottom:6px}.verdict.ok{color:var(--ok)}.verdict.no{color:var(--bad)}
+.keys{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 10px;align-items:center}
+.keys span{font-size:14px;background:var(--hl);color:light-dark(#17181f,#fff);border-radius:6px;padding:2px 8px}
+.why{margin:0;padding:0;list-style:none;display:grid;gap:5px;font-size:15px}
+.why li{display:flex;gap:8px}.why .m{flex:none;font-weight:700;width:46px}
+.why .y{color:var(--ok)}.why .x{color:var(--bad)}
+.text{background:var(--paper);border-radius:16px;padding:18px 20px;margin:0 0 20px}
+.text h3{margin:0 0 6px;font-size:19px}.text p{margin:0 0 10px}.text p:last-child{margin:0}
+.by{font-size:14px;color:var(--soft);margin:-4px 0 10px!important}
+.mus{display:grid;gap:12px;margin-bottom:22px}
+.mus .text{margin:0;position:relative}
+.mus .tag{position:absolute;top:14px;right:16px;font-weight:700;background:#722f37;color:#fff;border-radius:8px;padding:0 10px}
+.gap{display:inline-block;min-width:74px;text-align:center;border-bottom:2px solid var(--blue);font-weight:700;color:var(--blue);line-height:1.3}
+.cloze p{line-height:2.1}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:20px}
+.btn{font:600 16px Lexend,system-ui,sans-serif;border:0;border-radius:12px;padding:12px 22px;min-height:48px;cursor:pointer;background:var(--blue);color:#fff;box-shadow:0 6px 14px -8px var(--blue)}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line);box-shadow:none}
+.btn:focus-visible,.opt:focus-within,.steps button:focus-visible{outline:3px solid var(--hl);outline-offset:2px}
+.score{font-weight:700;font-size:20px}
+.msg{color:var(--soft);font-size:15px}
+.big{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:6px 0 18px}
+.big b{font-size:clamp(56px,10vw,88px);line-height:1;color:var(--blue)}
+.big span{font-size:20px;font-weight:600}
+.rows{display:grid;gap:10px;margin-bottom:10px}
+.row{display:grid;grid-template-columns:110px minmax(0,1fr) 56px;gap:12px;align-items:center}
+.track{height:14px;border-radius:7px;background:var(--paper);overflow:hidden}.track i{display:block;height:100%;background:linear-gradient(90deg,#b7a18a,#315447);border-radius:7px;animation:grow .9s ease-out}@keyframes grow{from{width:0!important}}
+.tips{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.tips li{background:var(--paper);border-radius:12px;padding:12px 16px}
+.tips b{color:var(--blue)}
+.vocab{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.w{border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--sheet)}
+.w h4{margin:0;font-size:18px}.w .src{font-size:13px;color:var(--soft)}
+.w p{margin:4px 0 0;font-size:15px}.w .uz{color:var(--blue);font-weight:600}
+.hideuz .w .uz{filter:blur(6px);cursor:pointer}
+.toggle{display:flex;gap:8px;align-items:center;margin:0 0 14px;font-size:15px;cursor:pointer}.toggle input{width:20px;height:20px;accent-color:var(--blue)}
+footer{padding:0 0 30px}
+footer .sheet{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-weight:700;padding:16px 24px}
+footer .s{color:#8b7355}
+@media(max-width:600px){.opts,.ex{margin-left:0}.row{grid-template-columns:80px minmax(0,1fr) 48px;font-size:14px}h2{font-size:26px}.seal{display:none}}
+@media(prefers-reduced-motion:reduce){.track i{animation:none}}
+</style></head><body>
+
+<div class="wrap"><header class="hero"><div class="sheet">
+<div><h1>English Test · A2</h1>
+<p>Reading · 4 parts + vocabulary mini test. Har bir partni bajarib, <b>“Check answers”</b> tugmasini bosing — nima uchun javob to‘g‘ri yoki noto‘g‘ri ekanini key words orqali ko‘rasiz.</p></div>
+<div class="seal"><span>A2</span></div>
+</div></header></div>
+
+<nav class="steps"><div class="wrap"><div id="steps"></div></div></nav>
+
+<main class="wrap">
+<section class="part sheet" id="p1">
+  <h2>Part 1 · Notices &amp; messages</h2>
+  <p class="lead">Questions 1–6. For each question, choose the correct answer.</p>
+  <div id="q1"></div><div class="bar" id="b1"></div>
+</section>
+
+<section class="part sheet" id="p2">
+  <h2>Part 2 · Advice on doing homework</h2>
+  <p class="lead">Read what three boys say about homework. Questions 7–13: choose A, B or C.</p>
+  <div class="mus">
+    <div class="text"><span class="tag">A</span><h3>Damian, 13</h3><p>I don’t mind doing homework, especially when I play some jazz (and not pop) on my phone. When I do, I’m able to think more carefully about what I’m doing. Sometimes I really enjoy doing my homework, especially when it’s maths and I understand it well. Or when one of my classmates comes to my place and we study together. I find it’s best if I let my parents and sister know I’m busy so they don’t come into my room and spend all evening talking to me!</p></div>
+    <div class="text"><span class="tag">B</span><h3>Louis, 11</h3><p>When I started doing my homework in my room every morning, it wasn’t a great success. I always found something more interesting to do! But these days, I don’t have the same problem. I just go to my room in the evening, switch on the light, sit down at my desk and do it. I do love music, but if I put my MP3 player on, I start to think about the song and not the homework! So I don’t listen while I work. It’s the same problem if my mum or dad put music on in the next room. I turn my mobile off or put it away before I start. That helps too.</p></div>
+    <div class="text"><span class="tag">C</span><h3>Jackson, 14</h3><p>I usually do most of my homework before I go to bed. And then I do a bit more as soon as I wake up. I’ve always found it easy to do that. I’ll maybe look at my German vocabulary for five minutes before breakfast. I tell my friends at school: ‘If you want to do your homework well, make sure your room is nice and bright. Otherwise, you’ll fall asleep!’</p></div>
+  </div>
+  <div id="q2"></div><div class="bar" id="b2"></div>
+</section>
+
+<section class="part sheet" id="p3">
+  <h2>Part 3 · Starting photography</h2>
+  <p class="lead">Read the text. Questions 14–18: choose the correct answer.</p>
+  <div class="text">
+    <h3>Starting photography</h3><p class="by">By Mrs Howells, Class 3D teacher</p>
+    <p>Have you ever wanted to take better pictures of your family, of your dinner or of your cat? Well, I can help you. In fact, that’s what makes photography such a fantastic hobby. It doesn’t matter if you have a nice new camera or just use your phone. We photographers are always trying to improve. We want today’s to be more interesting than yesterday’s.</p>
+    <p>In my photography classes, I’ll show you how to find your own style, not just take the same photos as all your friends. But you’ll need to be out of bed early and take pictures in the best light, before it gets too bright. We’ll talk more about light in Week 1.</p>
+    <p>Actually, I’ve never read a book about photography, and I get bored watching videos on the net. I started to understand more about photography by looking at my own photos. I thought about what was wrong with them and decided how to do better next time. And in Week 2, I’ll ask you to do the same with photos you have taken.</p>
+    <p>Do you want to know what I think? I don’t think there’s anyone who can’t take amazing photos. Not everyone wants to, and that’s cool. But if you do, come along to Room 4D on Wednesdays after lunch from 1:30 to 2:00.</p>
+  </div>
+  <div id="q3"></div><div class="bar" id="b3"></div>
+</section>
+
+<section class="part sheet" id="res">
+  <h2>Your results · Parts 1–3</h2>
+  <div class="big"><b id="tot">0</b><span>/ 18 &nbsp;·&nbsp; <span id="lvl"></span></span></div>
+  <div class="rows" id="rows"></div>
+  <h3>Suggestions · Maslahatlar</h3>
+  <ul class="tips" id="tips"></ul>
+  <h3>Words to revise · Takrorlash uchun so‘zlar</h3>
+  <p class="msg">Parts 1–3 dagi qiyin so‘zlar: inglizcha ta’rif va o‘zbekcha tarjima. O‘zingizni tekshirish uchun tarjimani yashiring.</p>
+  <label class="toggle"><input type="checkbox" id="hide"> Hide Uzbek · O‘zbekchani yashirish (bosib ko‘ring)</label>
+  <div class="vocab" id="vocab"></div>
+  <div class="bar"><button class="btn" data-go="p4">Go to Part 4 →</button></div>
+</section>
+
+<section class="part sheet" id="p4">
+  <h2>Part 4 · The oldest university</h2>
+  <p class="lead">Questions 19–24. Read the text and choose the correct word for each space. Tanlagan so‘zingiz matnda paydo bo‘ladi.</p>
+  <div class="text cloze">
+    <h3>The oldest university in the world</h3>
+    <p>Some people say University of Al Quaraouiyine in Morocco is the world’s oldest university because there has been a school in the same place <span class="gap" data-g="19">19</span> the year 859 AD. In other words, there has been one there <span class="gap" data-g="20">20</span> almost 1,100 years. The University has had many famous international students <span class="gap" data-g="21">21</span> the years including the great traveller, Ibn Khaldun. The University was started by a woman, Fatima al-Fihri and <span class="gap" data-g="22">22</span> a long history of teaching women and activities for women’s education. Lecturer Hisham Mahmoud believes this helps female students concentrate during their studies. Before joining Al Quaraouiyine, Dr Mahmoud was a scientist, but he decided to <span class="gap" data-g="23">23</span> his career and work in education. The University’s students all do well. After finishing at the University, many students will continue their <span class="gap" data-g="24">24</span> at universities in America and Europe.</p>
+  </div>
+  <div id="q4"></div><div class="bar" id="b4"></div>
+</section>
+
+<section class="part sheet" id="p5">
+  <h2>Part 5 · Vocabulary mini test</h2>
+  <p class="lead">Questions 1–12. Choose the correct word. Hamma so‘zlar Parts 1–3 dan olingan.</p>
+  <div id="q5"></div><div class="bar" id="b5"></div>
+</section>
+
+<section class="part sheet" id="fin">
+  <h2>Final results &amp; suggestions</h2>
+  <div class="big"><b id="ftot">0</b><span>/ 36 &nbsp;·&nbsp; <span id="flvl"></span></span></div>
+  <div class="rows" id="frows"></div>
+  <h3>Suggestions · Keyingi qadamlar</h3>
+  <ul class="tips" id="ftips"></ul>
+  <div class="bar"><button class="btn ghost" id="restart">↺ Start again</button></div>
+</section>
+</main>
+
+<div class="wrap"><footer><div class="sheet"><span>English <span class="s">★</span> Jizzakh Presidential School</span><span class="msg">A2 Reading Test</span></div></footer></div>
+
+<script>
+{
+const P1=[
+{n:1,note:'From 1 October, please do not enter the pool before you have used the shower.',o:['The pool is closed on October 1st.','You need to wash before you swim.','There will be a new shower at the pool.'],a:1,k:['do not enter the pool','before','used the shower'],w:['“From 1 October” = 1-oktabrdan <b>boshlab</b> qoida; basseyn yopiq degani emas.','Basseynga kirishdan <b>oldin</b> dush qabul qiling = wash before you swim.','Tuzoq: “shower” so‘zi bor, lekin yangi dush haqida gap yo‘q.']},
+{n:2,note:'<b>From: Amanda · To: Gran · Subject: Help with a school project</b>Hi Gran, Do you have any old photos showing you in your uniform when you were at school? If you do, can you send me one for school? Thanks, Amanda',stem:'Amanda wants her grandmother to',o:['let her have a picture.','lend her some clothes.','describe her old uniform.'],a:0,k:['old photos','can you send me one'],w:['“send me one (photo)” = menga rasm yuboring = let her have a picture.','Tuzoq: “uniform” — kiyim so‘zi bor, lekin kiyimni emas, <b>rasm</b>ni so‘rayapti.','Formani ta’riflab berishni so‘ramayapti, rasm yuborishni so‘rayapti.']},
+{n:3,note:'<b>Warning</b>Memory full. Please delete files or click here to buy more memory. &nbsp;[ OK ]',stem:'Where might you see this text?',o:['in a computer shop','on the screen of a computer','on the wall in the computer classroom'],a:1,k:['click here','delete files','OK'],w:['Tuzoq: “buy more memory” — lekin bu do‘kondagi e’lon emas.','“click here” va “OK” tugmasi → bu kompyuter ekranidagi xabar.','Devordagi qog‘ozni “click” qilib bo‘lmaydi.']},
+{n:4,note:'<b>TOMORROW’S TRIP</b>Time coach leaves school: 8:50. Please arrive no later than 8:40. The school gates will open at about 8:30. Thank you.',stem:'What time do pupils need to get to school tomorrow?',o:['about 8:30','by 8:40','at 8:50'],a:1,k:['arrive no later than 8:40'],w:['8:30 — darvoza ochiladigan vaqt, kelish shart bo‘lgan vaqt emas.','“no later than 8:40” = 8:40 dan kechikmay = by 8:40.','8:50 — avtobus jo‘naydigan vaqt; bu vaqtda kelsangiz kech qolasiz.']},
+{n:5,note:'<b>PLEASE NOTE EVERYBODY</b>There’s a lift if you need it. BUT use the stairs if you can. It’s a great way to stay fit.',o:['Get the lift if you are in a hurry.','Use the stairs if the lift is broken.','Walking up and down stairs is better for you.'],a:2,k:['use the stairs if you can','stay fit'],w:['“in a hurry” (shoshilish) haqida gap yo‘q.','Lift buzilgani aytilmagan — “There’s a lift if you need it”.','“great way to stay fit” = sog‘liq uchun foydali = better for you.']},
+{n:6,note:'<b>Hounslow Cinema: Special Offer</b>Buy tickets to four films and you don’t need to pay for the next one! Every day until 5:30 p.m.',o:['You can watch up to four films for free.','The fifth film you see during the daytime is free.','Cheap tickets are available for groups of four in the evenings.'],a:1,k:['four films','the next one','until 5:30 p.m.'],w:['To‘rtta filmga pul to‘laysiz; faqat <b>keyingisi</b> bepul.','4 ta film + “the next one” = 5-film bepul; “until 5:30 p.m.” = kunduzi.','Tuzoq: aksiya kechqurun emas, 5:30 gacha; guruh haqida gap yo‘q.']}
+];
+const Mo=['Damian','Louis','Jackson'];
+const P2=[
+{n:7,q:'Which person says it’s better not to look at his phone while he’s doing his homework?',a:1,k:['turn my mobile off','put it away'],w:['Tuzoq: Damian telefonda jazz qo‘yadi — u telefondan foydalanadi.','“I turn my mobile off or put it away” = telefonga qaramaydi.','Jackson telefon haqida gapirmaydi.']},
+{n:8,q:'Which person sometimes does homework with a friend?',a:0,k:['one of my classmates','study together'],w:['“classmate comes to my place and we study together” = do‘sti bilan.','Louis yolg‘iz ishlaydi.','Tuzoq: Jackson do‘stlariga <b>maslahat beradi</b>, birga ishlamaydi.']},
+{n:9,q:'Which person tells his family when he is working?',a:0,k:['let my parents and sister know I’m busy'],w:['“let my parents… know I’m busy” = oilasiga band ekanini aytadi.','Tuzoq: Louis ota-onasini eslaydi (musiqa), lekin ularga hech narsa demaydi.','Jackson oilasi haqida gapirmaydi.']},
+{n:10,q:'Which person says that there must be enough light in his room so he can work?',a:2,k:['make sure your room is nice and bright'],w:['Yorug‘lik haqida gap yo‘q.','Tuzoq: Louis “switch on the light” — chiroqni yoqadi, lekin yorug‘lik <b>kerakligi</b> haqida maslahat bermaydi.','“nice and bright… otherwise you’ll fall asleep” = yorug‘ bo‘lishi shart.']},
+{n:11,q:'Which person thinks that listening to music helps with homework?',a:0,k:['play some jazz','think more carefully'],w:['Jazz tinglasa “think more carefully” = musiqa yordam beradi.','Teskari! Louis musiqa tinglasa, qo‘shiq haqida o‘ylab qoladi.','Jackson musiqa haqida gapirmaydi.']},
+{n:12,q:'Which person works in the morning and evening?',a:2,k:['before I go to bed','as soon as I wake up'],w:['Damian kechqurun ishlaydi (“all evening”), ertalab emas.','Tuzoq: Louis <b>oldin</b> ertalab ishlardi, endi faqat kechqurun.','“before I go to bed” (kechqurun) + “as soon as I wake up” (ertalab).']},
+{n:13,q:'Which person says it’s easier to do homework now than it was before?',a:1,k:['wasn’t a great success','these days, I don’t have the same problem'],w:['Damian o‘tmish bilan solishtirmaydi.','Oldin “wasn’t a great success”, endi “these days… don’t have the same problem”.','Tuzoq: Jackson “I’ve <b>always</b> found it easy” — har doim oson bo‘lgan, o‘zgarmagan.']}
+];
+const P3=[
+{n:14,q:'Why does Mrs Howells enjoy photography?',o:['She loves using her new camera.','She likes taking photos of her family.','She enjoys trying to take better pictures.'],a:2,k:['always trying to improve','more interesting than yesterday’s'],w:['Tuzoq: “It doesn’t matter if you have a nice new camera” — kamera muhim emas.','Oila — faqat misol (family, dinner, cat), sababi emas.','“always trying to improve” = doim yaxshiroq rasm olishga harakat qilish.']},
+{n:15,q:'What advice does Mrs Howells give?',o:['Take pictures with your friends.','Don’t take photos if it is dark.','Take photos early in the morning.'],a:2,k:['out of bed early','before it gets too bright'],w:['Teskari: “not just take the same photos as all your friends”.','Qorong‘ilik haqida emas — juda <b>yorug‘</b> bo‘lishidan oldin degan.','“be out of bed early” = erta turing → ertalab suratga oling.']},
+{n:16,q:'How did Mrs Howells learn about photography?',o:['from books','from her mistakes','from videos on the web'],a:1,k:['what was wrong with them','do better next time'],w:['“I’ve never read a book about photography.”','O‘z rasmlaridagi xatolarni (what was wrong) ko‘rib o‘rgangan.','“I get bored watching videos on the net.”']},
+{n:17,q:'Mrs Howells believes that',o:['everybody should learn photography.','photography is a great hobby for everyone.','everybody can take good photos if they want to.'],a:2,k:['anyone who can’t take amazing photos','Not everyone wants to'],w:['Teskari: “Not everyone wants to, and that’s cool” — shart emas.','“for everyone” — u buni aytmagan; hamma xohlamaydi.','Hamma ajoyib rasm ola oladi, agar xohlasa (if you do).']},
+{n:18,q:'Why has Mrs Howells written this text?',o:['to ask pupils what they like photographing','to tell pupils about a photography course','to answer pupils’ questions about photography'],a:1,k:['my photography classes','Week 1, Week 2','come along to Room 4D'],w:['U savol bermayapti, ma’lumot beryapti.','Darslar, haftalar, xona va vaqt → kurs haqida e’lon.','Matnda o‘quvchilarning savollari yo‘q.']}
+];
+const P4=[
+{n:19,q:'there has been a school in the same place ___ the year 859 AD',o:['since','between','after'],a:0,k:['has been','859 AD (aniq vaqt nuqtasi)'],w:['since + aniq vaqt (859, 2010, Monday) = …dan beri. Present perfect bilan ishlatiladi.','between … <b>and</b> … — ikkita vaqt kerak.','“has been … after 859” — present perfect bilan mos emas.']},
+{n:20,q:'there has been one there ___ almost 1,100 years',o:['since','during','for'],a:2,k:['almost 1,100 years (davr)'],w:['since — vaqt nuqtasi bilan, “since 1,100 years” bo‘lmaydi.','during + ot (during the war); necha yil davom etganini aytmaydi.','for + davr (for 3 years, for 1,100 years) = … davomida.']},
+{n:21,q:'many famous international students ___ the years',o:['under','over','until'],a:1,k:['over the years'],w:['“under the years” — bunday ibora yo‘q.','“over the years” = yillar davomida (turg‘un ibora).','until — “gacha”; “until the years” ma’nosiz.']},
+{n:22,q:'started by a woman … and ___ a long history of teaching women',o:['has','makes','goes'],a:0,k:['a long history'],w:['“has a long history” = uzoq tarixga ega.','“make a history” — noto‘g‘ri birikma.','“goes a history” — grammatik noto‘g‘ri.']},
+{n:23,q:'he decided to ___ his career and work in education',o:['give','change','take'],a:1,k:['was a scientist','work in education'],w:['“give his career” — ma’nosiz.','Olim edi → ta’limga o‘tdi = change his career (kasbini o‘zgartirdi).','“take his career” — noto‘g‘ri birikma.']},
+{n:24,q:'many students will continue their ___ at universities',o:['marks','studies','information'],a:1,k:['continue','at universities'],w:['marks = baholar; bahoni “davom ettirib” bo‘lmaydi.','“continue their studies” = o‘qishni davom ettirish.','information — sanalmaydi, “their information” bu yerda ma’nosiz.']}
+];
+const V=[
+['enter','go into a place','kirmoq',1],['memory','space in a computer to keep files','xotira',1],
+['delete','remove a file from a computer','o‘chirmoq',1],['coach','a big comfortable bus for trips','sayohat avtobusi',1],
+['no later than','at that time or before','…dan kechikmay',1],['lift','a machine that takes people up and down in a building','lift',1],
+['stairs','steps you walk up and down','zinapoya',1],['stay fit','stay healthy and strong','sog‘lom, baquvvat bo‘lmoq',1],
+['special offer','a lower price for a short time','maxsus taklif, aksiya',1],['don’t mind','it is OK for me, no problem','qarshi emasman',2],
+['classmate','a person in your class','sinfdosh',2],['switch on / turn off','start / stop a machine or a light','yoqmoq / o‘chirmoq',2],
+['put away','put something back in its place','yig‘ishtirib qo‘ymoq',2],['success','a good result','muvaffaqiyat',2],
+['vocabulary','the words you learn in a language','lug‘at, so‘zlar',2],['bright','full of light','yorug‘',2],
+['fall asleep','start to sleep','uxlab qolmoq',2],['improve','become better','yaxshilanmoq, yaxshilamoq',3],
+['hobby','something you enjoy doing in free time','sevimli mashg‘ulot',3],['style','your own way of doing something','uslub',3],
+['bored','not interested, tired of something','zerikkan',3],['amazing','very, very good','ajoyib',3],
+['come along','come to an event or a place','kelib qatnashmoq',3],['wrong','not correct','noto‘g‘ri, xato',3]
+];
+const P5=[
+{n:1,q:'The memory is full. Please ___ some old files.',o:['enter','delete','improve'],a:1,k:['memory is full'],w:['enter = kirmoq.','delete = o‘chirmoq — xotira bo‘shaydi.','improve = yaxshilamoq.']},
+{n:2,q:'We went on the school trip by ___.',o:['coach','lift','stairs'],a:0,k:['school trip'],w:['coach = sayohat avtobusi.','lift — bino ichida, sayohatda emas.','stairs = zinapoya.']},
+{n:3,q:'The lift is broken, so please use the ___.',o:['memory','coach','stairs'],a:2,k:['lift is broken'],w:['memory = xotira.','coach — avtobus, bino ichida yo‘q.','stairs = zinapoya.']},
+{n:4,q:'“Arrive no later than 9:00” means…',o:['come after 9:00','come at 9:00 or before','come at about 10:00'],a:1,k:['no later than'],w:['Teskari ma’no.','no later than = …dan kechikmay.','10:00 — juda kech.']},
+{n:5,q:'It’s dark in here. Can you ___ the light, please?',o:['switch on','put away','fall asleep'],a:0,k:['dark','light'],w:['switch on = yoqmoq.','put away = yig‘ishtirmoq.','fall asleep = uxlab qolmoq.']},
+{n:6,q:'Tom sits next to me in class. He is my ___.',o:['coach','style','classmate'],a:2,k:['in class'],w:['coach = avtobus.','style = uslub.','classmate = sinfdosh.']},
+{n:7,q:'“Can you help me?” — “Sure, I ___ helping you.”',o:['don’t mind','am bored','delete'],a:0,k:['Sure'],w:['don’t mind = qarshi emasman.','am bored = zerikdim — “Sure” ga mos emas.','delete — fayl uchun.']},
+{n:8,q:'Practise every day and your English will ___.',o:['enter','improve','put away'],a:1,k:['practise every day'],w:['enter = kirmoq.','improve = yaxshilanadi.','put away — narsalar uchun.']},
+{n:9,q:'The film was very long and slow, so I ___.',o:['fell asleep','stayed fit','switched on'],a:0,k:['long and slow'],w:['fell asleep = uxlab qoldim.','stay fit — sport bilan bog‘liq.','switched on — nimani? Ma’no to‘liq emas.']},
+{n:10,q:'Swimming and cycling help you ___.',o:['fall asleep','stay fit','delete'],a:1,k:['swimming, cycling'],w:['Uxlash uchun emas.','stay fit = sog‘lom bo‘lmoq.','delete — kompyuter uchun.']},
+{n:11,q:'Reading is my favourite ___. I read every evening.',o:['memory','lift','hobby'],a:2,k:['favourite','every evening'],w:['memory = xotira.','lift — mashina.','hobby = sevimli mashg‘ulot.']},
+{n:12,q:'There was nothing to do at home. I was so ___.',o:['bored','bright','amazing'],a:0,k:['nothing to do'],w:['bored = zerikkan.','bright — xona/rang uchun.','amazing — ijobiy, ma’noga mos emas.']}
+];
+const DATA={p1:[P1],p2:[P2,Mo],p3:[P3],p4:[P4],p5:[P5]};
+const L='ABC',$=s=>document.querySelector(s),st={p1:null,p2:null,p3:null,p4:null,p5:null};
+const STEPS=[['p1','Part 1'],['p2','Part 2'],['p3','Part 3'],['res','Results & words'],['p4','Part 4'],['p5','Part 5 · Mini test'],['fin','Final']];
+function qHTML(id,x,opts){
+  const head=x.note?`<div class="notice">${x.note}</div>`:`<div>${x.q}</div>`;
+  return `<div class="q" id="${id}-${x.n}"><div class="qt"><span class="n">${x.n}</span>${head}</div>
+  ${x.stem?`<p style="margin:10px 0 0 44px;font-weight:600">${x.stem}</p>`:''}
+  <div class="opts">${opts.map((t,i)=>`<label class="opt"><input type="radio" name="${id}-${x.n}" value="${i}"><span class="L">${L[i]}</span><span>${t}</span></label>`).join('')}</div>
+  <div class="ex"></div></div>`;
+}
+function render(id){const [d,o]=DATA[id],k=id.slice(1);
+  $('#q'+k).innerHTML=d.map(x=>qHTML(id,x,o||x.o)).join('');
+  $('#b'+k).innerHTML=`<button class="btn" data-check="${id}">Check answers ✓</button><span class="msg">Avval barcha savollarga javob bering.</span>`;}
+function check(id){
+  const [data,opts]=DATA[id],sec=$('#'+id),bar=$('#b'+id.slice(1));
+  const un=data.filter(x=>!sec.querySelector(`input[name="${id}-${x.n}"]:checked`));
+  if(un.length){bar.querySelector('.msg').textContent=`Javob berilmagan: ${un.map(x=>x.n).join(', ')}`;document.getElementById(`${id}-${un[0].n}`).scrollIntoView({behavior:'smooth',block:'center'});return}
+  let s=0;
+  data.forEach(x=>{
+    const box=document.getElementById(`${id}-${x.n}`),pick=+box.querySelector('input:checked').value,ok=pick===x.a;if(ok)s++;
+    box.classList.add('checked','locked');box.querySelectorAll('input').forEach(i=>i.disabled=true);
+    box.querySelectorAll('.opt').forEach((o,i)=>{if(i===x.a)o.classList.add('right');else if(i===pick)o.classList.add('wrong')});
+    const names=opts||x.o;
+    box.querySelector('.ex').innerHTML=`<div class="verdict ${ok?'ok':'no'}">${ok?'✓ Correct!':'✗ Not quite.'} To‘g‘ri javob: ${L[x.a]} — ${names[x.a]}</div>
+    <div class="keys">Key words: ${x.k.map(k=>`<span>${k}</span>`).join('')}</div>
+    <ul class="why">${x.w.map((t,i)=>`<li><span class="m ${i===x.a?'y':'x'}">${L[i]} ${i===x.a?'✓':'✗'}</span><span>${t}</span></li>`).join('')}</ul>`;
+    if(id==='p4'){const g=document.querySelector(`.gap[data-g="${x.n}"]`);g.textContent=names[x.a];g.style.color='var(--ok)';g.style.borderColor='var(--ok)'}
+  });
+  st[id]=s;
+  const nxt={p1:['p2','Next: Part 2 →'],p2:['p3','Next: Part 3 →'],p3:['res','See results & words →'],p4:['p5','Next: Mini test →'],p5:['fin','See final results →']}[id];
+  bar.innerHTML=`<span class="score">Score: ${s} / ${data.length}</span><button class="btn" data-go="${nxt[0]}">${nxt[1]}</button>`;
+  if(id==='p3')results();if(id==='p5')final();steps();
+}
+const lvl=p=>p>=.85?'Excellent!':p>=.65?'Good job!':p>=.45?'Keep practising':'Let’s revise together';
+const rowsH=parts=>parts.map(([n,s,m])=>`<div class="row"><span>${n}</span><div class="track"><i style="width:${s/m*100}%"></i></div><b>${s}/${m}</b></div>`).join('');
+const grow=()=>{};
+function tipList(){const t=[];
+  t.push(st.p1<5?'<b>Part 1:</b> E’londagi vaqt va so‘zlarni aniq o‘qing: <mark>no later than</mark>, <mark>before</mark>, <mark>the next one</mark>. Bir e’londa bir nechta vaqt bo‘lsa, savol qaysi birini so‘rayotganini toping.':'<b>Part 1:</b> Zo‘r! Qisqa e’lonlardagi mayda detallarni yaxshi ilg‘aysiz.');
+  t.push(st.p2<6?'<b>Part 2:</b> Savoldagi so‘zning <mark>sinonimini</mark> qidiring: look at phone = turn off mobile, enough light = bright, family = parents and sister. Zamonlarga e’tibor: <mark>before</mark> / <mark>these days</mark> / <mark>always</mark>.':'<b>Part 2:</b> Sinonimlarni yaxshi topasiz. Tuzoqlar: bir so‘z hammada uchrashi mumkin (music, phone), ma’nosini tekshiring.');
+  t.push(st.p3<4?'<b>Part 3:</b> “Never”, “not everyone”, “doesn’t matter” kabi <mark>inkor so‘zlar</mark> javobni butunlay o‘zgartiradi. Oxirgi savolda (why written?) butun matn maqsadini o‘ylang.':'<b>Part 3:</b> Matnni yaxshi tushunasiz. Muallifning fikri (believes, thinks) savollarida “if they want to” kabi shartlarga e’tibor bering.');
+  return t}
+function results(){
+  const t=st.p1+st.p2+st.p3;$('#tot').textContent=t;$('#lvl').textContent=lvl(t/18);
+  $('#rows').innerHTML=rowsH([['Part 1',st.p1,6],['Part 2',st.p2,7],['Part 3',st.p3,5]]);grow();
+  $('#tips').innerHTML=[...tipList(),'<b>Har kuni:</b> pastdagi so‘zlardan 5 tasini tanlab, har biri bilan o‘zingiz haqingizda gap tuzing. Keyin Part 4 va mini testni bajaring.'].map(x=>`<li>${x}</li>`).join('');
+}
+function final(){
+  const t=Object.values(st).reduce((a,b)=>a+b,0);$('#ftot').textContent=t;$('#flvl').textContent=lvl(t/36);
+  $('#frows').innerHTML=rowsH([['Part 1',st.p1,6],['Part 2',st.p2,7],['Part 3',st.p3,5],['Part 4',st.p4,6],['Part 5',st.p5,12]]);
+  const t2=tipList();
+  t2.push(st.p4<5?'<b>Part 4 (grammar):</b> <mark>since</mark> + vaqt nuqtasi (since 859), <mark>for</mark> + davr (for 3 years). Turg‘un iboralarni yod oling: <mark>over the years</mark>, <mark>have a long history</mark>, <mark>change your career</mark>, <mark>continue your studies</mark>.':'<b>Part 4 (grammar):</b> Since/for va iboralarni yaxshi bilasiz. Yangi iboralarni daftarga yozib boring.');
+  t2.push(st.p5<10?'<b>Part 5 (vocabulary):</b> “Results & words” bo‘limiga qaytib, xato qilgan so‘zlaringizni o‘zbekchasini yashirib takrorlang, keyin testni qayta ishlang.':'<b>Part 5 (vocabulary):</b> Ajoyib! So‘zlarni yaxshi o‘zlashtirdingiz — endi ularni gapda ishlating.');
+  t2.push('<b>Next step:</b> Har hafta bitta A2 reading bajaring va har safar 5 ta yangi so‘zni daftarga ta’rifi va misoli bilan yozing.');
+  $('#ftips').innerHTML=t2.map(x=>`<li>${x}</li>`).join('');
+}
+function steps(){
+  const open={p1:1,p2:st.p1!==null,p3:st.p2!==null,res:st.p3!==null,p4:st.p3!==null,p5:st.p4!==null,fin:st.p5!==null};
+  const done={p1:st.p1!==null,p2:st.p2!==null,p3:st.p3!==null,res:st.p3!==null,p4:st.p4!==null,p5:st.p5!==null,fin:st.p5!==null};
+  const cur=document.querySelector('section.part.on')?.id;
+  $('#steps').innerHTML=STEPS.map(([id,n])=>`<button data-go="${id}" class="${id===cur?'on':''} ${done[id]?'done':''}" ${open[id]?'':'disabled'}>${n}</button>`).join('');
+}
+function go(id){document.querySelectorAll('section.part').forEach(s=>s.classList.toggle('on',s.id===id));steps();if(id==='res'||id==='fin')grow();window.scrollTo({top:$('.steps').offsetTop,behavior:'smooth'})}
+$('#vocab').innerHTML=V.map(([w,d,u,p])=>`<div class="w"><h4>${w}</h4><span class="src">from Part ${p}</span><p>${d}</p><p class="uz">${u}</p></div>`).join('');
+function init(){Object.keys(st).forEach(k=>st[k]=null);Object.keys(DATA).forEach(render);
+  document.querySelectorAll('.gap').forEach(g=>{g.textContent=g.dataset.g;g.style.color='';g.style.borderColor=''});go('p1')}
+document.addEventListener('change',e=>{const m=e.target.name&&e.target.name.match(/^p4-(\d+)$/);if(m){const g=document.querySelector(`.gap[data-g="${m[1]}"]`);g.textContent=P4.find(x=>x.n==m[1]).o[+e.target.value]}});
+document.addEventListener('click',e=>{
+  const g=e.target.closest('[data-go]');if(g&&!g.disabled){go(g.dataset.go);return}
+  const c=e.target.closest('[data-check]');if(c){check(c.dataset.check);return}
+  if(e.target.closest('#restart'))init();
+  const uz=e.target.closest('.hideuz .uz');if(uz)uz.style.filter='none';
+});
+$('#hide').addEventListener('change',e=>{$('#vocab').classList.toggle('hideuz',e.target.checked);document.querySelectorAll('.uz').forEach(u=>u.style.filter='')});
+init();
+}
+</script>
+</body></html>
