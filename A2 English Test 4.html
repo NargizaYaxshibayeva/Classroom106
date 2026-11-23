@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A2 English Test 4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* VOICE: calm, elegant classroom; clear and encouraging
+   IDEA: an exam paper on rosewood stationery with burgundy ink and bronze details
+   PICTURE: the live test on ivory sheets over an ivory-to-rosewood ground
+   COLOUR and TYPE: ivory, dusty rose, rosewood ground; burgundy accent, bronze tags, emerald right, rust mistakes; Lexend
+   LAYOUT: sticky step bar, one part at a time on a paper sheet, explanation under each question */
+:root{color-scheme:light dark;
+--sheet:light-dark(#fffcf8,#2e2626);--paper:light-dark(#f4ebe4,#3a3030);--ink:light-dark(#2f2526,#f3ebe6);--soft:light-dark(#7a6a66,#c2b2ad);
+--line:light-dark(#e8dbd2,#523f40);--blue:light-dark(#722f37,#e3a7ae);--blueBg:light-dark(#f6e9ea,#4c2a2f);
+--hl:light-dark(#ead7b0,#6a5530);--ok:light-dark(#315447,#9fc2b2);--okBg:light-dark(#e2e9e1,#2c4238);--bad:light-dark(#b0563f,#f0a58f);--badBg:light-dark(#f8e7e0,#4d2e25);
+--g1:#5c2329;--g2:#722f37;--g3:#4a1d22;--g4:#704c43}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;color:var(--ink);font:16.5px/1.6 Lexend,system-ui,sans-serif;overflow-x:clip;min-height:100vh;
+background:radial-gradient(circle at 12% 18%,rgba(232,220,203,.16) 0 2px,transparent 4px) 0 0/46px 46px,
+radial-gradient(circle at 70% 60%,rgba(232,220,203,.10) 0 1.5px,transparent 3px) 0 0/34px 34px,
+linear-gradient(150deg,var(--g1) 0%,var(--g2) 38%,var(--g3) 72%,var(--g4) 100%) fixed}
+mark{background:linear-gradient(transparent 12%,var(--hl) 12%,var(--hl) 88%,transparent 88%);color:inherit;padding:0 .15em;border-radius:2px}
+.wrap{max-width:920px;margin:0 auto;padding:0 max(3vw,12px)}
+.sheet{background:var(--sheet);border-radius:22px;padding:clamp(18px,3.5vw,34px);box-shadow:0 18px 40px -18px rgba(20,5,8,.6),0 2px 0 rgba(255,255,255,.6) inset}
+header.hero{padding:28px 0 16px}
+.hero .sheet{display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.hero h1{font-size:clamp(32px,5vw,48px);line-height:1.05;margin:0 0 8px;font-weight:800;text-wrap:balance}
+.hero p{margin:0;color:var(--soft);max-width:58ch}
+.seal{flex:none;width:96px;height:96px;border-radius:50%;background:conic-gradient(#8b7355,#e8dccb,#b7a18a,#722f37,#8b7355);display:grid;place-items:center}
+.seal span{width:76px;height:76px;border-radius:50%;background:var(--sheet);display:grid;place-items:center;font-weight:800;font-size:26px;color:var(--blue)}
+.steps{position:sticky;top:0;z-index:5;padding:8px 0}
+.steps .wrap>div{display:flex;gap:6px;overflow-x:auto;background:color-mix(in srgb,var(--sheet) 94%,transparent);backdrop-filter:blur(8px);border-radius:999px;padding:6px;box-shadow:0 8px 20px -14px rgba(60,45,35,.4)}
+.steps button{flex:none;font:500 14px Lexend,system-ui,sans-serif;border:1.5px solid transparent;background:transparent;color:var(--soft);border-radius:999px;padding:9px 15px;min-height:44px;cursor:pointer}
+.steps button.on{background:var(--blue);color:#fff}
+.steps button.done:not(.on){color:var(--ok);border-color:var(--ok)}
+.steps button:disabled{opacity:.4;cursor:not-allowed}
+main{padding:10px 0 30px}
+section.part{display:none}section.part.on{display:block}
+h2{font-size:30px;line-height:1.1;margin:0 0 6px;font-weight:800}
+h3{font-size:21px;margin:26px 0 12px}
+.lead{color:var(--soft);margin:0 0 22px}
+.q{border:1.5px solid var(--line);border-radius:16px;padding:16px 18px;margin:0 0 16px;background:var(--sheet)}
+.qt{display:flex;gap:12px;align-items:flex-start;font-weight:600}
+.n{flex:none;width:32px;height:32px;border-radius:50%;background:#8b7355;color:#fff;display:grid;place-items:center;font-size:14px;font-weight:700}
+.notice{flex:1;border:2px dashed #c4a09a;border-radius:12px;padding:10px 14px;font-weight:400;background:var(--paper)}
+.notice b{display:block}
+.opts{display:grid;gap:8px;margin:12px 0 0 44px}
+.opt{display:flex;gap:10px;align-items:center;border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;min-height:44px;cursor:pointer;background:var(--sheet)}
+.opt input{width:20px;height:20px;accent-color:var(--blue);flex:none}
+.opt:has(input:checked){border-color:var(--blue);background:var(--blueBg)}
+.opt .L{font-weight:700;width:18px}
+.locked .opt.right{border-color:var(--ok);background:var(--okBg)}
+.locked .opt.wrong{border-color:var(--bad);background:var(--badBg)}
+.locked .opt{cursor:default}
+.ex{display:none;margin:14px 0 0 44px;border-left:4px solid var(--blue);padding:4px 0 4px 14px}
+.checked .ex{display:block}
+.verdict{font-weight:700;margin-bottom:6px}.verdict.ok{color:var(--ok)}.verdict.no{color:var(--bad)}
+.keys{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 10px;align-items:center}
+.keys span{font-size:14px;background:var(--hl);color:light-dark(#17181f,#fff);border-radius:6px;padding:2px 8px}
+.why{margin:0;padding:0;list-style:none;display:grid;gap:5px;font-size:15px}
+.why li{display:flex;gap:8px}.why .m{flex:none;font-weight:700;width:46px}
+.why .y{color:var(--ok)}.why .x{color:var(--bad)}
+.text{background:var(--paper);border-radius:16px;padding:18px 20px;margin:0 0 20px}
+.text h3{margin:0 0 6px;font-size:19px}.text p{margin:0 0 10px}.text p:last-child{margin:0}
+.by{font-size:14px;color:var(--soft);margin:-4px 0 10px!important}
+.mus{display:grid;gap:12px;margin-bottom:22px}
+.mus .text{margin:0;position:relative}
+.mus .tag{position:absolute;top:14px;right:16px;font-weight:700;background:#722f37;color:#fff;border-radius:8px;padding:0 10px}
+.gap{display:inline-block;min-width:74px;text-align:center;border-bottom:2px solid var(--blue);font-weight:700;color:var(--blue);line-height:1.3}
+.cloze p{line-height:2.1}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:20px}
+.btn{font:600 16px Lexend,system-ui,sans-serif;border:0;border-radius:12px;padding:12px 22px;min-height:48px;cursor:pointer;background:var(--blue);color:#fff;box-shadow:0 6px 14px -8px var(--blue)}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line);box-shadow:none}
+.btn:focus-visible,.opt:focus-within,.steps button:focus-visible{outline:3px solid var(--hl);outline-offset:2px}
+.score{font-weight:700;font-size:20px}
+.msg{color:var(--soft);font-size:15px}
+.big{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:6px 0 18px}
+.big b{font-size:clamp(56px,10vw,88px);line-height:1;color:var(--blue)}
+.big span{font-size:20px;font-weight:600}
+.rows{display:grid;gap:10px;margin-bottom:10px}
+.row{display:grid;grid-template-columns:110px minmax(0,1fr) 56px;gap:12px;align-items:center}
+.track{height:14px;border-radius:7px;background:var(--paper);overflow:hidden}.track i{display:block;height:100%;background:linear-gradient(90deg,#8b7355,#722f37);border-radius:7px;animation:grow .9s ease-out}@keyframes grow{from{width:0!important}}
+.tips{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.tips li{background:var(--paper);border-radius:12px;padding:12px 16px}
+.tips b{color:var(--blue)}
+.vocab{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.w{border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--sheet)}
+.w h4{margin:0;font-size:18px}.w .src{font-size:13px;color:var(--soft)}
+.w p{margin:4px 0 0;font-size:15px}.w .uz{color:var(--blue);font-weight:600}
+.hideuz .w .uz{filter:blur(6px);cursor:pointer}
+.toggle{display:flex;gap:8px;align-items:center;margin:0 0 14px;font-size:15px;cursor:pointer}.toggle input{width:20px;height:20px;accent-color:var(--blue)}
+footer{padding:0 0 30px}
+footer .sheet{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-weight:700;padding:16px 24px}
+footer .s{color:#722f37}
+@media(max-width:600px){.opts,.ex{margin-left:0}.row{grid-template-columns:80px minmax(0,1fr) 48px;font-size:14px}h2{font-size:26px}.seal{display:none}}
+@media(prefers-reduced-motion:reduce){.track i{animation:none}}
+</style></head><body>
+
+<div class="wrap"><header class="hero"><div class="sheet">
+<div><h1>English Test · A2</h1>
+<p>Reading · 4 parts + vocabulary mini test. Har bir partni bajarib, <b>“Check answers”</b> tugmasini bosing — nima uchun javob to‘g‘ri yoki noto‘g‘ri ekanini key words orqali ko‘rasiz.</p></div>
+<div class="seal"><span>A2</span></div>
+</div></header></div>
+
+<nav class="steps"><div class="wrap"><div id="steps"></div></div></nav>
+
+<main class="wrap">
+<section class="part sheet" id="p1">
+  <h2>Part 1 · Notices &amp; messages</h2>
+  <p class="lead">Questions 1–6. For each question, choose the correct answer.</p>
+  <div id="q1"></div><div class="bar" id="b1"></div>
+</section>
+
+<section class="part sheet" id="p2">
+  <h2>Part 2 · Cookery books for young people</h2>
+  <p class="lead">This week, we look at three books about cooking for young people. Questions 7–13: choose A, B or C.</p>
+  <div class="mus">
+    <div class="text"><span class="tag">A</span><h3>My First Cookbook</h3><p class="by">by Lenard Minnow</p><p>Lenard Minnow’s last cookery book was a huge success across the world. And now, he has written a cookery book just for children. It has lots of lovely reading activities, so that children can get to know the names of more unusual foods. It explains in an easy-to-read way how to cook and makes it clear that cooking can be a hobby that young and old can really enjoy.</p></div>
+    <div class="text"><span class="tag">B</span><h3>Cooking for Students</h3><p class="by">by Cormac O’Dally</p><p>The idea for this book came when Cormac O’Dally’s two sons went away to university. They never cooked and had no idea what to do in the kitchen, so Cormac wrote this book to help them. The photo on the cover of the book shows Cormac and his sons laughing and enjoying the food together. Students who use this book won’t win prizes for great new food ideas. The meals are very simple, like cheese on toast, but they’re easy to prepare and good for you, too.</p></div>
+    <div class="text"><span class="tag">C</span><h3>Everybody Can Cook</h3><p class="by">by Denise Macon</p><p>With its ‘look-as-you-cook’ photos, you can see the author doing everything that you need to do in this wonderful new book. And, as the title says, you’ll soon be able to make tasty meals. Many of them come from all four corners of the world. The author received £4,000 when the book was chosen as Cookbook of the Year in a competition this year.</p></div>
+  </div>
+  <div id="q2"></div><div class="bar" id="b2"></div>
+</section>
+
+<section class="part sheet" id="p3">
+  <h2>Part 3 · The Ocean View Hotel</h2>
+  <p class="lead">Read the text. Questions 14–18: choose the correct answer.</p>
+  <div class="text">
+    <h3>An amazing stay at the Ocean View Hotel</h3>
+    <p>I’m usually sad to say goodbye to my cousins after visiting them in Australia. But last June I wasn’t. We had to change planes in the Middle East on the way back and had to stay overnight. I just couldn’t wait to get to our hotel.</p>
+    <p>The first thing I noticed in the hotel was all the glass. It was really bright, so I don’t know why all the lights were on in the building! There was also loud rock music playing, which I loved (but my parents didn’t)! There weren’t many people waiting at the reception, so we were soon in our rooms.</p>
+    <p>The garden wasn’t what I expected. ‘Dad’, I said, ‘you told me there was a pool!’ He took me back into the reception area and then up in the lift to the 39th floor and out onto the top of the building. ‘Here it is,’ he said. It was amazing! Swimming under the clouds was awesome.</p>
+    <p>I’ve stayed in some great hotels around the world, but nothing as cool as that one! I saw photographs of it before I went, but they don’t really show how large the building is. I couldn’t believe it. Everything is huge – the building, the pool, the meals (which were delicious, too, by the way)! There’s so much to do and see there. I hope we can go back again and stay for longer!</p>
+  </div>
+  <div id="q3"></div><div class="bar" id="b3"></div>
+</section>
+
+<section class="part sheet" id="res">
+  <h2>Your results · Parts 1–3</h2>
+  <div class="big"><b id="tot">0</b><span>/ 18 &nbsp;·&nbsp; <span id="lvl"></span></span></div>
+  <div class="rows" id="rows"></div>
+  <h3>Suggestions · Maslahatlar</h3>
+  <ul class="tips" id="tips"></ul>
+  <h3>Words to revise · Takrorlash uchun so‘zlar</h3>
+  <p class="msg">Parts 1–3 dagi qiyin so‘zlar: inglizcha ta’rif va o‘zbekcha tarjima. O‘zingizni tekshirish uchun tarjimani yashiring.</p>
+  <label class="toggle"><input type="checkbox" id="hide"> Hide Uzbek · O‘zbekchani yashirish (bosib ko‘ring)</label>
+  <div class="vocab" id="vocab"></div>
+  <div class="bar"><button class="btn" data-go="p4">Go to Part 4 →</button></div>
+</section>
+
+<section class="part sheet" id="p4">
+  <h2>Part 4 · The Museum of Childhood</h2>
+  <p class="lead">Questions 19–24. Read the text and choose the correct word for each space. Tanlagan so‘zingiz matnda paydo bo‘ladi.</p>
+  <div class="text cloze">
+    <h3>The Museum of Childhood</h3>
+    <p>The Museum of Childhood in Edinburgh is full of variety. Visitors can <span class="gap" data-g="19">19</span> dolls houses, toy cars and much more. There is everything from toy soldiers to board <span class="gap" data-g="20">20</span>. The museum was started by a man called Patrick Murray, who <span class="gap" data-g="21">21</span> many toys during his life and wanted to show them to the public. But it’s more than <span class="gap" data-g="22">22</span> a museum of toys. It explores all parts of growing <span class="gap" data-g="23">23</span>, and its exhibitions include lots of different things, from storybooks to baby <span class="gap" data-g="24">24</span>. The museum is easy to find in the centre of Edinburgh and is open all year.</p>
+  </div>
+  <div id="q4"></div><div class="bar" id="b4"></div>
+</section>
+
+<section class="part sheet" id="p5">
+  <h2>Part 5 · Vocabulary mini test</h2>
+  <p class="lead">Questions 1–12. Choose the correct word. Hamma so‘zlar Parts 1–3 dan olingan.</p>
+  <div id="q5"></div><div class="bar" id="b5"></div>
+</section>
+
+<section class="part sheet" id="fin">
+  <h2>Final results &amp; suggestions</h2>
+  <div class="big"><b id="ftot">0</b><span>/ 36 &nbsp;·&nbsp; <span id="flvl"></span></span></div>
+  <div class="rows" id="frows"></div>
+  <h3>Suggestions · Keyingi qadamlar</h3>
+  <ul class="tips" id="ftips"></ul>
+  <div class="bar"><button class="btn ghost" id="restart">↺ Start again</button></div>
+</section>
+</main>
+
+<div class="wrap"><footer><div class="sheet"><span>English <span class="s">★</span> Jizzakh Presidential School</span><span class="msg">A2 Reading Test</span></div></footer></div>
+
+<script>
+{
+const P1=[
+{n:1,note:'<b>COMPUTER GAMES SHOW</b>Buy two tickets and get the third one half price. Hurry! Last few days of offer. Only until the end of the week.',o:['There is 30% off all tickets.','You can save money this week.','Tickets are only available this week.'],a:1,k:['third one half price','Only until the end of the week'],w:['Tuzoq: “30%” yozilmagan — faqat 3-chipta yarim narxda.','Yarim narx = pul tejaysiz; “until the end of the week” = shu hafta.','Tuzoq: hafta oxirigacha <b>aksiya</b> tugaydi, chiptalar emas.']},
+{n:2,note:'We can only take you on the school trip if your parents have said it’s OK. Please ask them to fill in the form.',o:['Parents can come on the trip if they want.','Pupils must fill in a form and show it to their parents.','The school can take pupils on the trip if their parents let them go.'],a:2,k:['only… if your parents have said it’s OK'],w:['Ota-onalar sayohatga borishi haqida gap yo‘q.','Teskari: formani <b>ota-onalar</b> to‘ldiradi (ask them to fill in).','“parents have said it’s OK” = ota-ona ruxsat bersa = let them go.']},
+{n:3,note:'The school’s sports hall is used by all pupils for gym and indoor sports. There is also an outdoor area for hockey and football.',stem:'This text is',o:['describing the sports lessons at the school.','explaining where you can do sports at the school.','saying that the pupils at the school are good at sports.'],a:1,k:['sports hall','indoor','outdoor area'],w:['Darslar haqida (vaqt, o‘qituvchi) gap yo‘q.','Sport zali (ichkarida) + ochiq maydon (tashqarida) = qayerda sport qilish mumkin.','O‘quvchilarning mahorati haqida gap yo‘q.']},
+{n:4,note:'Jim,<br>Any chance your mum could take me home in the car after school today? I forgot to bring the money for my bus ticket! Mark',stem:'What does Mark want to do?',o:['borrow some money','travel home with Jim','invite Jim to visit him'],a:1,k:['take me home in the car'],w:['Tuzoq: “money” so‘zi bor, lekin pul so‘ramayapti — mashinada olib ketishni so‘rayapti.','Jimning onasi mashinada olib ketsa = Jim bilan birga uyga boradi.','Mehmonga taklif yo‘q.']},
+{n:5,note:'How about joining the school singing group? It doesn’t matter if you can’t read music. All staff and pupils welcome! Mondays after lessons at 4 p.m.',stem:'Who can join the singing group?',o:['anyone at the school','pupils who have music lessons','people who can already read music'],a:0,k:['All staff and pupils welcome'],w:['staff (xodimlar) + pupils (o‘quvchilar) = maktabdagi hamma.','Musiqa darsi shart emas.','Teskari: “It doesn’t matter if you can’t read music”.']},
+{n:6,note:'If you are not well and miss a class, please ask a classmate to tell you what was taught.',stem:'Who is this message for?',o:['pupils who are feeling ill','pupils who couldn’t go to a lesson','pupils who would like to help their friends'],a:1,k:['miss a class','what was taught'],w:['Tuzoq: “not well” — sabab; xabar darsni o‘tkazib yuborganlar uchun.','miss a class = darsga bora olmaslik → nima o‘tilganini so‘rang.','Yordam so‘raydigan odamga yozilgan, yordam beruvchiga emas.']}
+];
+const Mo=['My First Cookbook','Cooking for Students','Everybody Can Cook'];
+const P2=[
+{n:7,q:'Which book won a prize?',a:2,k:['received £4,000','Cookbook of the Year'],w:['Tuzoq: muallifning <b>oldingi</b> kitobi muvaffaqiyatli bo‘lgan, sovrin aytilmagan.','Teskari: “won’t win prizes for great new food ideas”.','£4,000 va “Cookbook of the Year” = sovrin yutgan.']},
+{n:8,q:'Which book has healthy recipes?',a:1,k:['good for you, too'],w:['Sog‘lom ovqat haqida gap yo‘q.','“good for you” = sog‘liq uchun foydali = healthy.','“tasty” = mazali, lekin sog‘lom degani emas.']},
+{n:9,q:'Which book shows that cooking can be fun?',a:0,k:['a hobby that young and old can really enjoy'],w:['“hobby… can really enjoy” = ovqat pishirish qiziqarli.','Tuzoq: muqovadagi rasmda ular <b>ovqatdan</b> zavqlanmoqda, pishirishdan emas.','“tasty meals” — natija haqida, jarayon qiziqligi aytilmagan.']},
+{n:10,q:'Which book has dishes from different countries?',a:2,k:['from all four corners of the world'],w:['“unusual foods” — g‘ayrioddiy, lekin turli davlatlardan deyilmagan.','Oddiy ovqatlar (cheese on toast).','“all four corners of the world” = dunyoning turli joylaridan.']},
+{n:11,q:'Which book teaches words to talk about food?',a:0,k:['reading activities','names of more unusual foods'],w:['Ovqat nomlarini o‘rgatadigan o‘qish mashqlari bor.','So‘z o‘rgatish haqida gap yo‘q.','Rasmlar bor, so‘zlar emas.']},
+{n:12,q:'Which book is about food that the writer’s family liked?',a:1,k:['his sons','enjoying the food together'],w:['Oila haqida gap yo‘q.','Muallif va o‘g‘illari birga ovqatdan zavqlanmoqda.','Muallifning oilasi aytilmagan.']},
+{n:13,q:'Which book has pictures of someone preparing the food?',a:2,k:['look-as-you-cook photos','see the author doing everything'],w:['Rasm haqida gap yo‘q.','Tuzoq: muqovadagi rasmda ular <b>ovqatlanmoqda</b>, tayyorlamayapti.','Muallif hamma narsani qilayotgan rasmlar = preparing.']}
+];
+const P3=[
+{n:14,q:'The writer says that last June, she felt',o:['excited about where she was going.','sad because she was leaving her cousins.','angry because of the delay in her journey.'],a:0,k:['But last June I wasn’t','couldn’t wait to get to our hotel'],w:['“couldn’t wait” = intiqlik bilan kutdi = excited.','Tuzoq: “usually sad… But last June I wasn’t” — bu safar xafa emas edi.','Kechikishdan jahli chiqqani aytilmagan.']},
+{n:15,q:'What was the hotel like inside?',o:['dark','noisy','busy'],a:1,k:['loud rock music'],w:['Teskari: “really bright” — juda yorug‘.','“loud rock music” = shovqinli.','Teskari: “There weren’t many people waiting”.']},
+{n:16,q:'Where was the hotel’s pool?',o:['in the hotel garden','on the roof of the hotel','close to the hotel’s reception area'],a:1,k:['39th floor','top of the building'],w:['Tuzoq: “The garden wasn’t what I expected” — bog‘da basseyn yo‘q edi.','“top of the building” = roof (tom).','Tuzoq: resepsiyadan o‘tib, liftda yuqoriga chiqishgan.']},
+{n:17,q:'What do we learn about the writer in the last paragraph?',o:['She hasn’t visited many hotels in her life.','She didn’t have time to see everything in the hotel.','She didn’t know the hotel is so big.'],a:2,k:['photographs… don’t really show how large','I couldn’t believe it'],w:['Teskari: “I’ve stayed in some great hotels around the world”.','Tuzoq: “stay for longer” — yana kelishni xohlaydi, vaqt yetmagani aytilmagan.','Rasmlarda katta ko‘rinmagan → “couldn’t believe it” = bilmagan.']},
+{n:18,q:'Why has the writer written this text?',o:['to describe what the hotel looks like','to say how the hotel could improve','to explain why she loved the hotel'],a:2,k:['amazing','nothing as cool as that one','I hope we can go back'],w:['Tasvir bor, lekin maqsad — his-tuyg‘ularini aytish.','Kamchilik yozilmagan.','“amazing”, “awesome”, “cool” = nega yoqqanini tushuntiradi.']}
+];
+const P4=[
+{n:19,q:'Visitors can ___ dolls houses, toy cars and much more.',o:['watch','look','see'],a:2,k:['can ___ dolls houses (obyekt bor)'],w:['watch — harakatlanadigan narsa (film, o‘yin).','look — “look <b>at</b>” bo‘lishi kerak, predlogsiz bo‘lmaydi.','see + obyekt = ko‘rmoq.']},
+{n:20,q:'from toy soldiers to board ___',o:['games','competitions','matches'],a:0,k:['board games'],w:['board games = stol o‘yinlari (shaxmat, monopoliya).','competitions = musobaqalar.','matches = o‘yinlar (futbol), “board matches” bo‘lmaydi.']},
+{n:21,q:'Patrick Murray, who ___ many toys during his life',o:['picked','collected','took'],a:1,k:['many toys','during his life'],w:['pick = terib olmoq (gul, meva).','collect = yig‘moq, kolleksiya qilmoq.','take = olmoq; “kolleksiya” ma’nosi yo‘q.']},
+{n:22,q:'But it’s more than ___ a museum of toys.',o:['already','just','yet'],a:1,k:['more than just'],w:['already = allaqachon.','“more than just” = shunchaki … emas.','yet = hali (inkor/savolda).']},
+{n:23,q:'It explores all parts of growing ___',o:['up','out','away'],a:0,k:['growing up'],w:['grow up = ulg‘aymoq.','grow out — boshqa ma’no (soch o‘sishi).','grow away — “uzoqlashmoq”, mos emas.']},
+{n:24,q:'from storybooks to baby ___',o:['snack','food','meal'],a:1,k:['baby food'],w:['snack = yengil tamaddi, “baby snack” — turg‘un ibora emas.','baby food = bolalar ovqati.','meal = taom (nonushta, tushlik).']}
+];
+const V=[
+['half price','for 50% of the usual price','yarim narx',1],['save money','spend less money','pul tejamoq',1],
+['fill in a form','write information in the spaces','anketa to‘ldirmoq',1],['let (somebody) go','say yes, allow somebody to go','ruxsat bermoq',1],
+['indoor / outdoor','inside a building / outside','yopiq / ochiq havodagi',1],['any chance…?','a polite way to ask for something','…ning iloji bormi?',1],
+['forget (forgot)','not remember','unutmoq',1],['welcome','happy to have you','xush kelibsiz, taklif etiladi',1],
+['miss a class','not go to a lesson','darsni qoldirmoq',1],['success','something that goes very well','muvaffaqiyat',2],
+['unusual','not common, different','g‘ayrioddiy',2],['prepare','make ready (food)','tayyorlamoq',2],
+['cover','the outside of a book','muqova',2],['tasty','with a good taste','mazali',2],
+['receive','get something','olmoq, qabul qilmoq',2],['good for you','healthy','foydali, sog‘lom',2],
+['change planes','get off one plane and get on another','samolyot almashtirmoq',3],['overnight','for one night','tunda, bir kecha',3],
+['notice','see something for the first time','payqamoq',3],['reception','the place where you arrive in a hotel','qabulxona, resepsiya',3],
+['expect','think that something will happen','kutmoq (bo‘ladi deb o‘ylamoq)',3],['awesome','very, very good','zo‘r, ajoyib',3],
+['huge','very big','juda katta',3],['delicious','very tasty','juda mazali',3]
+];
+const P5=[
+{n:1,q:'The jacket was $40, but I bought it for $20. It was ___.',o:['half price','huge','overnight'],a:0,k:['$40 → $20'],w:['half price = yarim narx.','huge = juda katta.','overnight = bir kecha.']},
+{n:2,q:'Please ___ this form with your name and address.',o:['notice','fill in','receive'],a:1,k:['form','name and address'],w:['notice = payqamoq.','fill in = to‘ldirmoq.','receive = olmoq.']},
+{n:3,q:'I was ill yesterday, so I ___ my English class.',o:['expected','prepared','missed'],a:2,k:['I was ill'],w:['expect = kutmoq.','prepare = tayyorlamoq.','miss a class = darsni qoldirmoq.']},
+{n:4,q:'Mum, this soup is ___! Can I have some more?',o:['delicious','indoor','unusual'],a:0,k:['Can I have some more?'],w:['delicious = juda mazali.','indoor — joy uchun.','unusual — g‘ayrioddiy, lekin “more” so‘rash sababi emas.']},
+{n:5,q:'It’s raining, so let’s play an ___ game.',o:['outdoor','indoor','overnight'],a:1,k:['raining'],w:['outdoor — tashqarida, yomg‘irda emas.','indoor = bino ichida.','overnight — vaqt haqida.']},
+{n:6,q:'I ___ my keys at home, so I couldn’t open the door.',o:['forgot','saved','received'],a:0,k:['couldn’t open the door'],w:['forget → forgot = unutdim.','save = tejamoq.','receive = olmoq.']},
+{n:7,q:'An elephant is a ___ animal.',o:['tasty','huge','awesome'],a:1,k:['elephant'],w:['tasty — ovqat uchun.','huge = juda katta.','awesome — “zo‘r”, kattalik emas.']},
+{n:8,q:'When you arrive at the hotel, go to the ___ first.',o:['cover','reception','success'],a:1,k:['hotel','arrive'],w:['cover = muqova.','reception = resepsiya.','success = muvaffaqiyat.']},
+{n:9,q:'I ___ the test to be difficult, but it was easy!',o:['expected','noticed','filled in'],a:0,k:['but it was easy'],w:['expect = shunday bo‘ladi deb o‘ylamoq.','notice — ko‘rib qolmoq.','fill in — form uchun.']},
+{n:10,q:'Walk to school and you’ll ___ money on bus tickets.',o:['miss','save','prepare'],a:1,k:['money'],w:['miss money — ma’nosiz.','save money = pul tejamoq.','prepare money — mos emas.']},
+{n:11,q:'Vegetables and fruit are ___.',o:['good for you','half price','indoor'],a:0,k:['vegetables and fruit'],w:['good for you = sog‘liq uchun foydali.','narx haqida gap yo‘q.','indoor — joy.']},
+{n:12,q:'I didn’t ___ the new picture on the wall until my friend showed me.',o:['receive','notice','expect'],a:1,k:['until my friend showed me'],w:['receive = olmoq.','notice = payqamoq.','expect = kutmoq.']}
+];
+const DATA={p1:[P1],p2:[P2,Mo],p3:[P3],p4:[P4],p5:[P5]};
+const L='ABC',$=s=>document.querySelector(s),st={p1:null,p2:null,p3:null,p4:null,p5:null};
+const STEPS=[['p1','Part 1'],['p2','Part 2'],['p3','Part 3'],['res','Results & words'],['p4','Part 4'],['p5','Part 5 · Mini test'],['fin','Final']];
+function qHTML(id,x,opts){
+  const head=x.note?`<div class="notice">${x.note}</div>`:`<div>${x.q}</div>`;
+  return `<div class="q" id="${id}-${x.n}"><div class="qt"><span class="n">${x.n}</span>${head}</div>
+  ${x.stem?`<p style="margin:10px 0 0 44px;font-weight:600">${x.stem}</p>`:''}
+  <div class="opts">${opts.map((t,i)=>`<label class="opt"><input type="radio" name="${id}-${x.n}" value="${i}"><span class="L">${L[i]}</span><span>${t}</span></label>`).join('')}</div>
+  <div class="ex"></div></div>`;
+}
+function render(id){const [d,o]=DATA[id],k=id.slice(1);
+  $('#q'+k).innerHTML=d.map(x=>qHTML(id,x,o||x.o)).join('');
+  $('#b'+k).innerHTML=`<button class="btn" data-check="${id}">Check answers ✓</button><span class="msg">Avval barcha savollarga javob bering.</span>`;}
+function check(id){
+  const [data,opts]=DATA[id],sec=$('#'+id),bar=$('#b'+id.slice(1));
+  const un=data.filter(x=>!sec.querySelector(`input[name="${id}-${x.n}"]:checked`));
+  if(un.length){bar.querySelector('.msg').textContent=`Javob berilmagan: ${un.map(x=>x.n).join(', ')}`;document.getElementById(`${id}-${un[0].n}`).scrollIntoView({behavior:'smooth',block:'center'});return}
+  let s=0;
+  data.forEach(x=>{
+    const box=document.getElementById(`${id}-${x.n}`),pick=+box.querySelector('input:checked').value,ok=pick===x.a;if(ok)s++;
+    box.classList.add('checked','locked');box.querySelectorAll('input').forEach(i=>i.disabled=true);
+    box.querySelectorAll('.opt').forEach((o,i)=>{if(i===x.a)o.classList.add('right');else if(i===pick)o.classList.add('wrong')});
+    const names=opts||x.o;
+    box.querySelector('.ex').innerHTML=`<div class="verdict ${ok?'ok':'no'}">${ok?'✓ Correct!':'✗ Not quite.'} To‘g‘ri javob: ${L[x.a]} — ${names[x.a]}</div>
+    <div class="keys">Key words: ${x.k.map(k=>`<span>${k}</span>`).join('')}</div>
+    <ul class="why">${x.w.map((t,i)=>`<li><span class="m ${i===x.a?'y':'x'}">${L[i]} ${i===x.a?'✓':'✗'}</span><span>${t}</span></li>`).join('')}</ul>`;
+    if(id==='p4'){const g=document.querySelector(`.gap[data-g="${x.n}"]`);g.textContent=names[x.a];g.style.color='var(--ok)';g.style.borderColor='var(--ok)'}
+  });
+  st[id]=s;
+  const nxt={p1:['p2','Next: Part 2 →'],p2:['p3','Next: Part 3 →'],p3:['res','See results & words →'],p4:['p5','Next: Mini test →'],p5:['fin','See final results →']}[id];
+  bar.innerHTML=`<span class="score">Score: ${s} / ${data.length}</span><button class="btn" data-go="${nxt[0]}">${nxt[1]}</button>`;
+  if(id==='p3')results();if(id==='p5')final();steps();
+}
+const lvl=p=>p>=.85?'Excellent!':p>=.65?'Good job!':p>=.45?'Keep practising':'Let’s revise together';
+const rowsH=parts=>parts.map(([n,s,m])=>`<div class="row"><span>${n}</span><div class="track"><i style="width:${s/m*100}%"></i></div><b>${s}/${m}</b></div>`).join('');
+const grow=()=>{};
+function tipList(){const t=[];
+  t.push(st.p1<5?'<b>Part 1:</b> Variantdagi so‘z matnda bo‘lsa ham, ma’nosi boshqa bo‘lishi mumkin (<mark>money</mark>, <mark>not well</mark>, <mark>form</mark>). Kim nima qilishini aniqlang: formani <b>kim</b> to‘ldiradi? Pulni <b>kim</b> so‘rayapti?':'<b>Part 1:</b> Zo‘r! Qisqa matnlardagi tuzoqlarni yaxshi ilg‘aysiz.');
+  t.push(st.p2<6?'<b>Part 2:</b> Sinonimlarni toping: healthy = <mark>good for you</mark>, prize = <mark>received £4,000</mark>, different countries = <mark>four corners of the world</mark>. Bir xil so‘z (photo, enjoy) ikki matnda ham bo‘lishi mumkin — kim nima qilayotganiga qarang.':'<b>Part 2:</b> Sinonimlarni yaxshi topasiz. Tuzoq: “last book was a success” — oldingi kitob haqida.');
+  t.push(st.p3<4?'<b>Part 3:</b> <mark>But</mark>, <mark>usually</mark>, <mark>wasn’t what I expected</mark> kabi so‘zlar kutilgan va bo‘lgan narsa farqini ko‘rsatadi. Inkorlarga e’tibor bering: “There weren’t many people” = busy emas.':'<b>Part 3:</b> Matnni yaxshi tushunasiz. “Why written?” savolida muallifning his-tuyg‘ulariga qarang.');
+  return t}
+function results(){
+  const t=st.p1+st.p2+st.p3;$('#tot').textContent=t;$('#lvl').textContent=lvl(t/18);
+  $('#rows').innerHTML=rowsH([['Part 1',st.p1,6],['Part 2',st.p2,7],['Part 3',st.p3,5]]);grow();
+  $('#tips').innerHTML=[...tipList(),'<b>Har kuni:</b> pastdagi so‘zlardan 5 tasini tanlab, har biri bilan o‘zingiz haqingizda gap tuzing. Keyin Part 4 va mini testni bajaring.'].map(x=>`<li>${x}</li>`).join('');
+}
+function final(){
+  const t=Object.values(st).reduce((a,b)=>a+b,0);$('#ftot').textContent=t;$('#flvl').textContent=lvl(t/36);
+  $('#frows').innerHTML=rowsH([['Part 1',st.p1,6],['Part 2',st.p2,7],['Part 3',st.p3,5],['Part 4',st.p4,6],['Part 5',st.p5,12]]);
+  const t2=tipList();
+  t2.push(st.p4<5?'<b>Part 4 (grammar):</b> Turg‘un birikmalarni yod oling: <mark>board games</mark>, <mark>grow up</mark>, <mark>more than just</mark>, <mark>baby food</mark>, <mark>collect toys</mark>. <mark>see</mark> + obyekt, lekin <mark>look at</mark> + obyekt.':'<b>Part 4 (grammar):</b> So‘z birikmalarini yaxshi bilasiz. Phrasal verblarni (grow up, fill in) daftarga yozib boring.');
+  t2.push(st.p5<10?'<b>Part 5 (vocabulary):</b> “Results & words” bo‘limiga qaytib, xato qilgan so‘zlaringizni o‘zbekchasini yashirib takrorlang, keyin testni qayta ishlang.':'<b>Part 5 (vocabulary):</b> Ajoyib! So‘zlarni yaxshi o‘zlashtirdingiz — endi ularni gapda ishlating.');
+  t2.push('<b>Next step:</b> Har hafta bitta A2 reading bajaring va har safar 5 ta yangi so‘zni daftarga ta’rifi va misoli bilan yozing.');
+  $('#ftips').innerHTML=t2.map(x=>`<li>${x}</li>`).join('');
+}
+function steps(){
+  const open={p1:1,p2:st.p1!==null,p3:st.p2!==null,res:st.p3!==null,p4:st.p3!==null,p5:st.p4!==null,fin:st.p5!==null};
+  const done={p1:st.p1!==null,p2:st.p2!==null,p3:st.p3!==null,res:st.p3!==null,p4:st.p4!==null,p5:st.p5!==null,fin:st.p5!==null};
+  const cur=document.querySelector('section.part.on')?.id;
+  $('#steps').innerHTML=STEPS.map(([id,n])=>`<button data-go="${id}" class="${id===cur?'on':''} ${done[id]?'done':''}" ${open[id]?'':'disabled'}>${n}</button>`).join('');
+}
+function go(id){document.querySelectorAll('section.part').forEach(s=>s.classList.toggle('on',s.id===id));steps();if(id==='res'||id==='fin')grow();window.scrollTo({top:$('.steps').offsetTop,behavior:'smooth'})}
+$('#vocab').innerHTML=V.map(([w,d,u,p])=>`<div class="w"><h4>${w}</h4><span class="src">from Part ${p}</span><p>${d}</p><p class="uz">${u}</p></div>`).join('');
+function init(){Object.keys(st).forEach(k=>st[k]=null);Object.keys(DATA).forEach(render);
+  document.querySelectorAll('.gap').forEach(g=>{g.textContent=g.dataset.g;g.style.color='';g.style.borderColor=''});go('p1')}
+document.addEventListener('change',e=>{const m=e.target.name&&e.target.name.match(/^p4-(\d+)$/);if(m){const g=document.querySelector(`.gap[data-g="${m[1]}"]`);g.textContent=P4.find(x=>x.n==m[1]).o[+e.target.value]}});
+document.addEventListener('click',e=>{
+  const g=e.target.closest('[data-go]');if(g&&!g.disabled){go(g.dataset.go);return}
+  const c=e.target.closest('[data-check]');if(c){check(c.dataset.check);return}
+  if(e.target.closest('#restart'))init();
+  const uz=e.target.closest('.hideuz .uz');if(uz)uz.style.filter='none';
+});
+$('#hide').addEventListener('change',e=>{$('#vocab').classList.toggle('hideuz',e.target.checked);document.querySelectorAll('.uz').forEach(u=>u.style.filter='')});
+init();
+}
+</script>
+</body></html>
